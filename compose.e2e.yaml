@@ -1,0 +1,32 @@
+# E2E, suíte geral: sobre o compose.yaml, com limite alto e proteção ligada (ADR 0020).
+# Uso: e2e/scripts/run.sh
+services:
+    backend:
+        environment:
+            RATE_LIMIT_MAX: '100000'
+            TRUSTED_PROXY_CIDR: 172.30.0.0/24
+
+    e2e:
+        build:
+            context: .
+            dockerfile: e2e/Dockerfile
+        environment:
+            E2E_BASE_URL: http://frontend
+            E2E_DATABASE_PATH: /app/e2e/.tmp/censo.sqlite
+        volumes:
+            - ./e2e:/app/e2e
+            - e2e_node_modules:/app/e2e/node_modules
+        depends_on:
+            frontend:
+                condition: service_started
+        networks:
+            - censo
+
+volumes:
+    e2e_node_modules:
+
+networks:
+    censo:
+        ipam:
+            config:
+                - subnet: 172.30.0.0/24

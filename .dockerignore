@@ -11,3 +11,4 @@ docs
 coverage
 e2e/*
 !e2e/package.json
+**/*.tsbuildinfo
