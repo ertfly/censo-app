@@ -228,9 +228,9 @@ defineExpose({ focusTitle })
                                 <th colspan="2" class="pb-1 text-right font-normal">População</th>
                             </tr>
                         </thead>
-                        <tbody class="font-condensed tabular-nums">
+                        <tbody class="tabular-nums">
                             <tr v-for="row in areaTypeLegend" :key="row.key">
-                                <td class="py-0.5 font-sans">
+                                <td class="py-0.5">
                                     <span class="flex items-center gap-2 text-ink">
                                         <span
                                             class="size-3 shrink-0"
@@ -239,14 +239,16 @@ defineExpose({ focusTitle })
                                         {{ row.label }}
                                     </span>
                                 </td>
-                                <td class="py-0.5 pl-2 text-right text-ink">{{ row.tracts }}</td>
-                                <td class="py-0.5 pl-2 text-right text-ink-muted">
+                                <td class="py-0.5 pl-2 text-right font-condensed text-ink">
+                                    {{ row.tracts }}
+                                </td>
+                                <td class="py-0.5 pl-2 text-right font-condensed text-ink-muted">
                                     {{ row.tractsPercent }}
                                 </td>
-                                <td class="py-0.5 pl-3 text-right text-ink">
+                                <td class="py-0.5 pl-3 text-right font-condensed text-ink">
                                     {{ row.population }}
                                 </td>
-                                <td class="py-0.5 pl-2 text-right text-ink-muted">
+                                <td class="py-0.5 pl-2 text-right font-condensed text-ink-muted">
                                     {{ row.populationPercent }}
                                 </td>
                             </tr>

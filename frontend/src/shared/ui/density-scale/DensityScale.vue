@@ -40,7 +40,7 @@ onMounted(() => {
 
 const markerLeft = computed(() => `${placed.value ? position.value : 0}%`)
 
-// Rótulos 10 e 1.000 somem em telas estreitas (design.md, "celular").
+// Em telas estreitas, só os rótulos 1, 100 e 10.000 (design.md, "celular").
 const NARROW_HIDDEN = new Set<number>([10, 1000])
 
 const description = computed(
@@ -104,7 +104,7 @@ const description = computed(
             aria-hidden="true"
             class="relative mx-1 mt-1 h-5 font-condensed text-sm text-ink-muted tabular-nums"
         >
-            <span class="absolute left-0">{{ formatDensityTick(DENSITY_MIN) }}</span>
+            <span class="absolute left-0 max-sm:hidden">{{ formatDensityTick(DENSITY_MIN) }}</span>
             <span
                 v-for="tick in DENSITY_TICKS"
                 :key="tick"
@@ -113,7 +113,7 @@ const description = computed(
                 :style="{ left: `${densityPosition(tick) * 100}%` }"
                 >{{ formatDensityTick(tick) }}</span
             >
-            <span class="absolute right-0">{{ formatDensityTick(DENSITY_MAX) }}</span>
+            <span class="absolute right-0 max-sm:hidden">{{ formatDensityTick(DENSITY_MAX) }}</span>
         </div>
     </figure>
 </template>
