@@ -10,11 +10,13 @@ services:
         environment:
             NODE_ENV: production
             DATABASE_PATH: /app/data/censo.sqlite
+            PROTECTION_LOG_DIR: /var/lib/censo/protection-log
         env_file:
             - path: .env
               required: false
         volumes:
             - ${DATABASE_FILE:-./censo.sqlite}:/app/data/censo.sqlite:ro
+            - protection-log:/var/lib/censo/protection-log
         healthcheck:
             # A imagem slim não tem curl nem wget; o próprio Node faz a verificação.
             test:
@@ -43,6 +45,10 @@ services:
         restart: unless-stopped
         networks:
             - censo
+
+volumes:
+    # Registros de proteção sem endereço de rede, por 7 dias (ADR 0019).
+    protection-log:
 
 networks:
     censo:

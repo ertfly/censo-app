@@ -27,7 +27,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 - [X] T001 Adicionar ao `backend/package.json` as dependências `@fastify/cookie` 11.1.2, `@fastify/rate-limit` 11.2.0 e `altcha-lib` 2.5.0, e ao `frontend/package.json` a dependência `altcha` 3.2.3; atualizar `package-lock.json` no container
 - [X] T002 [P] Acrescentar ao `.env.example`: `ALTCHA_HMAC_KEY=`, `SESSION_SECRET=`, `PROTECTION_LOG_KEY=` (vazios, com comentário: "obrigatórios, pelo menos 32 caracteres, diferentes entre si"), `SESSION_TTL_SECONDS=1800`, `RATE_LIMIT_MAX=120`, `RATE_LIMIT_WINDOW_SECONDS=60`, `RATE_LIMIT_BAN_SECONDS=60`, `ALTCHA_MAX_NUMBER=` (valor calibrado em T041), `PROTECTION_LOG_RETENTION_DAYS=7`, `TRUSTED_PROXY_CIDR=172.28.0.0/24` (research R7)
-- [ ] T003 [P] Em `compose.yaml` e `compose.dev.yaml`: volume nomeado `protection-log` montado em `/var/lib/censo/protection-log` no `backend` (gravável), variável `PROTECTION_LOG_DIR` apontando para ele, e as variáveis da T002 repassadas via `env_file` ([ADR 0019](../../.harness/decisions/0019-registros-de-protecao.md))
+- [X] T003 [P] Em `compose.yaml` e `compose.dev.yaml`: volume nomeado `protection-log` montado em `/var/lib/censo/protection-log` no `backend` (gravável), variável `PROTECTION_LOG_DIR` apontando para ele, e as variáveis da T002 repassadas via `env_file` ([ADR 0019](../../.harness/decisions/0019-registros-de-protecao.md))
 
 ---
 

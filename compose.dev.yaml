@@ -29,10 +29,18 @@ services:
             NODE_ENV: development
             DATABASE_PATH: /app/censo.sqlite
             TRUSTED_PROXY_CIDR: 172.29.0.0/24
+            PROTECTION_LOG_DIR: /var/lib/censo/protection-log
         env_file:
             - path: .env
               required: false
-        volumes: *node-volumes
+        volumes:
+            - .:/app
+            - node_modules:/app/node_modules
+            - contracts_node_modules:/app/packages/contracts/node_modules
+            - backend_node_modules:/app/backend/node_modules
+            - frontend_node_modules:/app/frontend/node_modules
+            - e2e_node_modules:/app/e2e/node_modules
+            - protection-log:/var/lib/censo/protection-log
         ports:
             - 3000:3000
         depends_on:
@@ -58,6 +66,7 @@ services:
             - censo
 
 volumes:
+    protection-log:
     node_modules:
     contracts_node_modules:
     backend_node_modules:

@@ -19,8 +19,8 @@ FROM toolchain AS dev
 # Pastas de node_modules criadas como usuário node: os volumes nomeados herdam o dono,
 # e os arquivos gravados no repositório montado ficam com o UID do host (1000).
 RUN mkdir -p node_modules packages/contracts/node_modules backend/node_modules \
-    frontend/node_modules e2e/node_modules \
-    && chown -R node:node /app
+    frontend/node_modules e2e/node_modules /var/lib/censo/protection-log \
+    && chown -R node:node /app /var/lib/censo
 USER node
 CMD ["npm", "run", "dev", "--workspace", "@censo/backend"]
 
@@ -44,6 +44,8 @@ WORKDIR /app
 COPY --from=prod-deps /app /app
 COPY --from=build /app/packages/contracts/dist packages/contracts/dist
 COPY --from=build /app/backend/dist backend/dist
+# Volume dos registros de proteção herda o dono node (ADR 0019).
+RUN mkdir -p /var/lib/censo/protection-log && chown -R node:node /var/lib/censo
 USER node
 WORKDIR /app/backend
 EXPOSE 3000
