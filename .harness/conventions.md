@@ -10,6 +10,16 @@
 | Rotas da API e campos do JSON | Inglês |
 | Tabelas e colunas do banco | Português, como entregue (ver [database.md](database.md)) |
 | Documentação (`.harness/`, specs), ADRs e mensagens de commit | Português |
+| Tudo que é visual para o usuário: textos da interface, mensagens, rótulos | Português (pt-BR) por padrão |
+
+### Textos para o usuário
+
+- O idioma padrão da interface é pt-BR.
+- Números, datas e unidades exibidos seguem o formato pt-BR via `Intl`
+  (`203.080.756`, `0,54 km²`).
+- A API não envia texto para exibição: erros retornam um código em inglês
+  (ex.: `MUNICIPALITY_NOT_FOUND`) e o frontend mostra a mensagem em pt-BR.
+- O suporte a outros idiomas (i18n) não faz parte da primeira versão.
 
 ### Fronteira entre português e inglês
 
