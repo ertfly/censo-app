@@ -17,7 +17,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012, revisto pelo 0013) |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
 | [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
-| [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito (revisto pelo 0013) |
+| [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito (revisto pelo 0013 e 0014) |
 | [0012](0012-comunicacao-entre-consultas-e-contextos.md) | Comunicação entre consultas e entre contextos | Aceito |
 | [0013](0013-organizacao-do-repositorio.md) | Monorepo com npm workspaces e pacote de contratos | Aceito |
 | [0014](0014-arquitetura-frontend.md) | Arquitetura do frontend: Feature-Sliced Design enxuto | Aceito |

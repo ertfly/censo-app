@@ -1,6 +1,6 @@
 # 0011. Lint, formatação e fronteiras de importação
 
-- Status: Aceito (fronteiras revistas pelo [ADR 0013](0013-organizacao-do-repositorio.md))
+- Status: Aceito (fronteiras revistas pelo [ADR 0013](0013-organizacao-do-repositorio.md); fronteiras do frontend definidas pelo [ADR 0014](0014-arquitetura-frontend.md))
 - Data: 2026-09-25
 
 ## Contexto
