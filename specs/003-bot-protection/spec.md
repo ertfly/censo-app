@@ -76,6 +76,9 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **FR-013**: A lista de robôs de IA recusados DEVE poder ser atualizada pelo responsável sem alterar o comportamento das telas.
 - **FR-014**: Todos os textos exibidos pela verificação e pelo bloqueio DEVEM estar em português do Brasil.
 - **FR-015**: A verificação e as mensagens de bloqueio DEVEM ser acessíveis por teclado e leitores de tela.
+- **FR-016**: O sistema DEVE registrar cada bloqueio por excesso de consultas e cada falha de verificação, com data, hora, tipo do evento e um identificador embaralhado do acesso, que permite reconhecer o mesmo acesso em eventos diferentes, mas não permite recuperar o endereço de rede.
+- **FR-017**: Os registros NÃO DEVEM conter o endereço de rede nem qualquer outro dado que identifique o visitante, e DEVEM ser descartados após 7 dias.
+- **FR-018**: O responsável DEVE conseguir consultar os registros dos últimos 7 dias para avaliar se o limite está adequado.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -83,6 +86,7 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **Acesso**: origem das consultas, usada para contar consultas por período; várias pessoas na mesma rede podem aparecer como um mesmo acesso.
 - **Bloqueio**: período em que um acesso que ultrapassou o limite tem as consultas recusadas.
 - **Regras para robôs**: orientação pública sobre o que robôs podem ou não acessar.
+- **Registro de proteção**: evento de bloqueio ou de falha de verificação, com data, hora, tipo e identificador embaralhado do acesso; mantido por 7 dias.
 
 ## Success Criteria *(mandatory)*
 
@@ -94,6 +98,7 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **SC-004**: 100% das consultas acima do limite são recusadas até o fim do bloqueio, e voltam a ser aceitas depois dele.
 - **SC-005**: 100% dos acessos que se identificam como os robôs de IA listados são recusados.
 - **SC-006**: Após a expiração da verificação, o visitante conclui a consulta seguinte sem redigitar nada.
+- **SC-007**: 100% dos bloqueios e das falhas de verificação ficam registrados, e nenhum registro contém o endereço de rede ou tem mais de 7 dias.
 
 ## Clarifications
 
@@ -101,6 +106,7 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 
 - Q: Por quanto tempo a verificação vale? → A: 30 minutos.
 - Q: Qual o limite de consultas e a duração do bloqueio? → A: 120 consultas por minuto por acesso; bloqueio de 1 minuto.
+- Q: O responsável deve ver registros de bloqueios e falhas de verificação, e eles podem guardar o endereço de rede? → A: Registrar cada bloqueio e falha com data, hora e identificador embaralhado do acesso (sem o endereço real), por 7 dias.
 
 ## Assumptions
 
