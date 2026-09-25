@@ -60,9 +60,17 @@ const explanation = computed(() =>
 
         <div
             v-else
+            role="region"
+            aria-labelledby="ranking-title"
+            tabindex="0"
             class="mt-3 rounded-sm border border-border bg-sheet sm:max-h-[70vh] sm:overflow-y-auto"
         >
-            <table data-ranking class="w-full border-collapse text-left">
+            <!-- A região com rolagem recebe foco para ser percorrida pelo teclado. -->
+            <table
+                data-ranking
+                aria-labelledby="ranking-title"
+                class="w-full border-collapse text-left"
+            >
                 <thead class="max-sm:sr-only">
                     <tr class="text-sm text-ink">
                         <th

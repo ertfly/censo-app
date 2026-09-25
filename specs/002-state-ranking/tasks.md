@@ -105,7 +105,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 ## Phase 5: Polish & Cross-Cutting Concerns
 
 - [X] T029 [P] Medir SC-001 (ranking e totais de MG em até 1 s na stack local) e SC-004 (encontrar a posição de 5 municípios de MG escolhidos ao acaso usando o filtro, cada um em até 30 s) em `e2e/tests/state-ranking-performance.spec.ts`
-- [ ] T030 [P] Revisar a tela em 360px, só com teclado e com leitor de tela, e corrigir o que falhar (FR-015)
+- [X] T030 [P] Revisar a tela em 360px, só com teclado e com leitor de tela, e corrigir o que falhar (FR-015)
 - [ ] T031 Rodar lint, formatação, todos os testes das três features e os quickstarts manuais; registrar desvios em `.harness/` se houver
 
 ---
