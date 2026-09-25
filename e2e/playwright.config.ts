@@ -8,7 +8,10 @@ export default defineConfig({
     retries: 0,
     reporter: [['list']],
     use: {
-        baseURL: process.env.E2E_BASE_URL ?? 'http://frontend',
+        // Os testes rodam na rede do container do frontend e acessam http://localhost:
+        // a verificação usa a Web Crypto, que o navegador só libera em contexto seguro
+        // (HTTPS ou localhost), como na execução local (ADR 0016).
+        baseURL: process.env.E2E_BASE_URL ?? 'http://localhost',
         locale: 'pt-BR',
         trace: 'retain-on-failure',
     },
