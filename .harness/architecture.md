@@ -1,6 +1,6 @@
 # Arquitetura
 
-> Visão consolidada das decisões [0001 a 0018](decisions/README.md).
+> Visão consolidada das decisões [0001 a 0019](decisions/README.md).
 > Em caso de divergência, vale o ADR.
 
 ## Visão geral
@@ -139,7 +139,11 @@ Toda consulta /api/*:
 ```
 
 - `robots.txt` e bloqueio de User-Agents de robôs de IA no nginx.
-- Segredos (`ALTCHA_HMAC_KEY`, `SESSION_SECRET`) por variável de ambiente.
+- Segredos (`ALTCHA_HMAC_KEY`, `SESSION_SECRET`, `PROTECTION_LOG_KEY`) por variável de ambiente.
+- Bloqueios e falhas de verificação registrados em arquivos JSONL diários, no
+  volume `protection-log`, com identificador embaralhado do acesso, por 7 dias
+  ([ADR 0019](decisions/0019-registros-de-protecao.md)).
+- Nenhum log (backend ou nginx) contém endereço de rede.
 
 ## Fluxo de uma consulta
 
