@@ -15,6 +15,7 @@ spec-kit (`.specify/memory/constitution.md`) e o `plan.md` de cada feature
 | [conventions.md](conventions.md) | Padrões de código, nomenclatura e organização |
 | [database.md](database.md) | Mapeamento do banco: estrutura, qualidade dos dados, melhorias |
 | [indexes.md](indexes.md) | Diagnóstico de índices e processo para criá-los |
+| [design-system.md](design-system.md) | Sistema visual: cor, tipografia, forma, movimento e texto da interface |
 | [decisions/](decisions/) | Registros de decisão de arquitetura (ADRs) |
 
 ## Processo
