@@ -70,6 +70,8 @@ rural, sexo). A escala de densidade mantém a régua inteira, com rótulos só e
 |---|---|
 | Vazia | Campo com rótulo "Município" e texto de apoio "Digite o nome de um município. Ex.: Campinas, Bom Jesus, Paulo Afonso." Os exemplos são links que preenchem a busca |
 | Sugerindo | Lista abaixo do campo com até 10 itens "Nome/SIGLA", o trecho digitado destacado em peso 600 |
+| Carregando sugestões | Na lista, uma linha "Buscando municípios" em Tinta diluída, sem animação |
+| Falha nas sugestões | Na lista: "Não foi possível carregar os dados." e botão "Tentar de novo"; o texto digitado permanece |
 | Sem resultado | Na lista: "Nenhum município encontrado para "xyz". Confira a grafia ou digite só o começo do nome." |
 | Carregando | A ficha aparece com as divisões e os rótulos; os valores são substituídos por barras cinza estáticas (sem brilho animado) |
 | Erro | Na ficha: "Não foi possível carregar os dados de Campinas/SP." e botão "Tentar de novo" |

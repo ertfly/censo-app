@@ -116,9 +116,9 @@ contrato); arredondamento simples (soma incorreta).
 | `/municipalities/:municipalityCode` | Tela com o município escolhido (FR-017) |
 | `/states`, `/states/:stateCode` | Tela "Busca por estado" (feature 002) |
 
-- Escolher um município troca a URL com `router.replace` quando já há um
-  município na URL e `router.push` quando não há, para que o botão voltar não
-  empilhe cada escolha.
+- Toda escolha de município troca a URL com `router.replace`, para que o
+  botão voltar leve à página visitada antes da busca (FR-025), sem empilhar
+  cada escolha.
 - Código inválido ou inexistente na URL: a API responde
   `INVALID_MUNICIPALITY_CODE` ou `MUNICIPALITY_NOT_FOUND`; a tela mostra a
   busca vazia com a mesma mensagem (FR-018).
