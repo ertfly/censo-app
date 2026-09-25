@@ -30,6 +30,7 @@ O visitante abre a tela "Busca por estado", escolhe uma UF em uma lista e vê os
 8. **Given** uma UF exibida, **When** o visitante copia o endereço da página e o abre em outra aba ou recarrega a página, **Then** vê a mesma UF, com os mesmos totais e ranking, sem escolher nada.
 9. **Given** o ranking de Minas Gerais exibido, **When** o visitante digita "juiz" no filtro, **Then** aparece apenas "Juiz de Fora", com a mesma posição que ocupa no ranking completo.
 10. **Given** um filtro aplicado, **When** o visitante apaga o termo, **Then** o ranking completo volta a ser exibido.
+11. **Given** o ranking de Minas Gerais exibido, **When** o visitante observa "Águas Vermelhas" e "Luminárias", que aparecem com a mesma densidade arredondada (11,17 hab/km²), **Then** "Águas Vermelhas" vem antes, porque sua densidade sem arredondamento é maior, e cada um tem a sua própria posição.
 
 ---
 
@@ -46,6 +47,7 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 1. **Given** uma UF escolhida, **When** os totais são exibidos, **Then** aparecem população total, área total em km² e densidade em hab/km².
 2. **Given** uma UF escolhida, **When** os totais são exibidos, **Then** a densidade da UF é a população total dividida pela área total, e não a média das densidades dos municípios.
 3. **Given** os totais e o ranking exibidos, **When** o visitante compara os números, **Then** a população total da UF é igual à soma das populações do ranking.
+4. **Given** a UF Rio Grande do Sul escolhida, **When** os totais são exibidos, **Then** a área total é 281.707,15 km², acompanhada da informação de que 13.085,86 km² estão fora dos municípios, e a soma das áreas do ranking é menor que a área total.
 
 ---
 
