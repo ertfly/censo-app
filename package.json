@@ -1,0 +1,21 @@
+{
+    "name": "censo-app",
+    "private": true,
+    "type": "module",
+    "workspaces": [
+        "packages/*",
+        "backend",
+        "frontend",
+        "e2e"
+    ],
+    "engines": {
+        "node": "24.21.0"
+    },
+    "scripts": {
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "test": "npm run test --workspaces --if-present",
+        "build": "npm run build --workspaces --if-present"
+    }
+}

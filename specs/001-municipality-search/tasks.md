@@ -42,7 +42,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 
 **Purpose**: monorepo, ferramentas, containers e configuração base.
 
-- [ ] T001 Criar `package.json` na raiz com `"private": true`, `"type": "module"`, `"workspaces": ["packages/*", "backend", "frontend", "e2e"]`, `"engines": { "node": "24.21.0" }` e scripts orquestradores (`lint`, `format`, `format:check`, `test`, `build`); criar `.nvmrc` com `24.21.0`
+- [X] T001 Criar `package.json` na raiz com `"private": true`, `"type": "module"`, `"workspaces": ["packages/*", "backend", "frontend", "e2e"]`, `"engines": { "node": "24.21.0" }` e scripts orquestradores (`lint`, `format`, `format:check`, `test`, `build`); criar `.nvmrc` com `24.21.0`
 - [ ] T002 [P] Criar `tsconfig.base.json` na raiz com `strict: true`, `noUncheckedIndexedAccess: true`, `exactOptionalPropertyTypes: true`, `target: ES2023`, `skipLibCheck: true`, `verbatimModuleSyntax: true`
 - [ ] T003 [P] Criar `.editorconfig` (4 espaços, LF, UTF-8, newline final, sem espaço no fim da linha), `.prettierrc` (`tabWidth: 4`, `useTabs: false`, `printWidth: 100`, `semi: false`, `singleQuote: true`, `trailingComma: "all"`, `endOfLine: "lf"`) e `.prettierignore` (`**/*.md`, `*.sqlite`, `dist`, `coverage`, `playwright-report`, `test-results`)
 - [ ] T004 [P] Criar `.gitignore` (`node_modules`, `dist`, `.env`, `coverage`, `playwright-report`, `test-results`, `e2e/.tmp`) e `.dockerignore` (`node_modules`, `**/dist`, `.git`, `*.sqlite`, `.harness`, `specs`, `docs`, `e2e`, `.env`)
