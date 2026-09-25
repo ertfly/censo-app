@@ -8,7 +8,7 @@
 
 | Item | Valor |
 |---|---|
-| Arquivo | `censo.sqlite`, na raiz ([ADR 0018](decisions/0018-banco-na-raiz.md)) (~35 MB, Git LFS) |
+| Arquivo | `censo.sqlite`, na raiz ([ADR 0018](decisions/0018-banco-na-raiz.md)) (~35 MB, versionado direto no Git, [ADR 0025](decisions/0025-banco-fora-do-git-lfs.md)) |
 | Motor | SQLite 3 |
 | Page size | 4096 bytes (8.593 páginas, 0 livres) |
 | `journal_mode` | `delete` (padrão) |

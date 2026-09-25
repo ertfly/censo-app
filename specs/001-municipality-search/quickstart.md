@@ -6,9 +6,11 @@ aqui ficam os cenários e os resultados esperados.
 
 ## Pré-requisitos
 
-- Docker e Git com Git LFS.
-- `censo.sqlite` na raiz, baixado pelo LFS (não um ponteiro de texto).
-- `.env` criado a partir de `.env.example`.
+- Docker e Git.
+- `censo.sqlite` na raiz, que vem no clone
+  ([ADR 0025](../../.harness/decisions/0025-banco-fora-do-git-lfs.md)).
+- `.env` opcional: sem ele, valem os padrões e os segredos são gerados na
+  primeira subida ([ADR 0024](../../.harness/decisions/0024-segredos-gerados-na-primeira-subida.md)).
 
 ## Subir a aplicação
 
@@ -17,7 +19,7 @@ docker compose up                              # produção
 docker compose -f compose.dev.yaml up          # desenvolvimento
 ```
 
-Abrir o endereço publicado pelo nginx (porta definida no `.env`).
+Abrir `http://localhost:8080` (porta em `APP_PORT`).
 
 ## Cenários manuais
 

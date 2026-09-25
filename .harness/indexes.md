@@ -33,8 +33,9 @@ alterado. Tempos em milissegundos, média de 2 execuções.
 | População por município (`GROUP BY cd_mun`) | 103 | 115 | `SCAN` + B-tree temporária |
 | População por UF (join + `GROUP BY`) | 150 | 121 | `SCAN s` + `SEARCH m` pela PK |
 
-Custo medido: os dois índices levaram o arquivo de ~35 MB para ~48 MB. Com
-Git LFS, cada commit do banco guarda uma cópia inteira do arquivo.
+Custo medido: os dois índices levaram o arquivo de ~35 MB para ~48 MB. Cada
+commit do banco guarda uma cópia inteira do arquivo no histórico do Git
+([ADR 0025](decisions/0025-banco-fora-do-git-lfs.md)).
 
 ## Conclusão
 

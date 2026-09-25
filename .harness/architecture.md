@@ -63,7 +63,7 @@ censo-app/
 ├── .specify/                 # spec-kit: constituição, templates, scripts
 ├── specs/                    # 001-municipality-search, 002-state-ranking, 003-bot-protection
 ├── docs/user-stories.md      # histórias de usuário da v1
-├── censo.sqlite              # banco (Git LFS), na raiz por requisito
+├── censo.sqlite              # banco (no Git, sem LFS), na raiz por requisito
 ├── packages/contracts/       # @censo/contracts: schemas da API
 ├── backend/                  # @censo/backend
 ├── frontend/                 # @censo/frontend

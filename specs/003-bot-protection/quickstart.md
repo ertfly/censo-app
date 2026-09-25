@@ -1,8 +1,9 @@
 # Quickstart: validar a Proteção contra bots
 
 Pré-requisitos e forma de subir a aplicação iguais aos da
-[feature 001](../001-municipality-search/quickstart.md). O `.env` precisa dos
-três segredos (research R7).
+[feature 001](../001-municipality-search/quickstart.md). Os três segredos vêm do
+`.env`, se definidos, ou são gerados na primeira subida (research R7,
+[ADR 0024](../../.harness/decisions/0024-segredos-gerados-na-primeira-subida.md)).
 
 ## Cenários manuais
 
