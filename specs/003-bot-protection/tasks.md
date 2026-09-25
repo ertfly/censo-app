@@ -35,7 +35,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 **Purpose**: configuração, chave do acesso, contratos e registros, usados pelas duas stories.
 
-- [ ] T004 Criar `backend/src/infra/config/protection-config.ts`: lê e valida as variáveis de research R7; o backend não sobe se `ALTCHA_HMAC_KEY`, `SESSION_SECRET` ou `PROTECTION_LOG_KEY` faltarem, tiverem menos de 32 caracteres ou forem iguais entre si; números com os padrões `1800`, `120`, `60`, `60`, `7`
+- [X] T004 Criar `backend/src/infra/config/protection-config.ts`: lê e valida as variáveis de research R7; o backend não sobe se `ALTCHA_HMAC_KEY`, `SESSION_SECRET` ou `PROTECTION_LOG_KEY` faltarem, tiverem menos de 32 caracteres ou forem iguais entre si; números com os padrões `1800`, `120`, `60`, `60`, `7`
 - [X] T005 [P] Teste unitário `backend/test/unit/infra/protection-config.test.ts`: segredo ausente, curto, repetido; padrões numéricos; valores inválidos
 - [ ] T006 [P] Criar `backend/src/infra/http/protection/access-key.ts`: IPv4 completo; IPv6 reduzido ao prefixo `/64`; IPv4 mapeado em IPv6 (`::ffff:a.b.c.d`) tratado como IPv4 (research R4)
 - [ ] T007 [P] Teste unitário `backend/test/unit/infra/access-key.test.ts`: IPv4, IPv6 do mesmo `/64` geram a mesma chave, IPv6 de `/64` diferentes geram chaves diferentes, IPv4 mapeado
