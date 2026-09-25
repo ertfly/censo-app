@@ -59,3 +59,14 @@ WHERE s.cd_mun = :codigo;
 | E2E | Cenários 1, 3, 5, 7, 8, 9 no navegador, contra a stack em Docker com cópia do banco | ADR 0009 |
 
 Nenhum teste usa `censo.sqlite` diretamente (Princípio V).
+
+## Medições (T080, 2026-09-25)
+
+Teste `e2e/tests/capitals.spec.ts`, na stack E2E (imagens de produção, cópia
+do banco), percorrendo as 27 capitais:
+
+| Critério | Resultado |
+|---|---|
+| SC-001 | 25 de 27; com 5 caracteres, "Campo" e "Porto" ainda não trazem Campo Grande/MS e Porto Velho/RO entre as 10 sugestões |
+| SC-002 | pior caso 336 ms do fim da digitação às sugestões (inclui a espera de 250 ms) |
+| SC-003 | pior caso 93 ms da escolha aos indicadores |
