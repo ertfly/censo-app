@@ -1,11 +1,19 @@
 <script setup lang="ts">
+import type { GetChallengeResponse } from '@censo/contracts'
 import { computed, onMounted, ref } from 'vue'
-import { ensureSession, markUnsupported, registerVerifier, verificationState } from '@/shared/api'
+import {
+    ensureSession,
+    markUnsupported,
+    registerVerifier,
+    request,
+    verificationState,
+} from '@/shared/api'
 import { loadAltcha } from '../lib/load-altcha'
 
 // Widget do ALTCHA invisível: só produz a solução. O status visível é nosso
 // (specs/003-bot-protection/design.md).
 interface AltchaWidgetElement extends HTMLElement {
+    configure: (config: { challenge: GetChallengeResponse }) => Promise<void>
     verify: () => Promise<{ payload: string } | null>
 }
 
@@ -27,6 +35,10 @@ onMounted(async () => {
         return
     }
     registerVerifier(async () => {
+        // O desafio passa pelo nosso cliente, que trata o bloqueio (429); o widget
+        // só resolve o cálculo.
+        const challenge = await request<GetChallengeResponse>('/challenge')
+        await widget.value?.configure({ challenge })
         const result = await widget.value?.verify()
         if (!result?.payload) {
             throw new Error('The ALTCHA widget did not produce a solution')
@@ -50,13 +62,7 @@ const message = computed(() => {
 
 <template>
     <div class="flex items-center gap-2 text-sm">
-        <altcha-widget
-            ref="widget"
-            challenge="/api/challenge"
-            display="invisible"
-            auto="off"
-            language="pt-br"
-        />
+        <altcha-widget ref="widget" display="invisible" auto="off" language="pt-br" />
         <span
             v-if="verificationState === 'verifying'"
             aria-hidden="true"

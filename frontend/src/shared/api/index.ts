@@ -1,6 +1,6 @@
 export { errorMessage } from './error-messages'
 export { getJson } from './http-client'
-export { ApiError } from './request'
+export { ApiError, request } from './request'
 export {
     ensureSession,
     markUnsupported,
