@@ -1,6 +1,6 @@
 # 0003. Frontend em Vue 3 com Composition API e Vite
 
-- Status: Aceito
+- Status: Aceito (papel do Pinia revisto pelo [ADR 0014](0014-arquitetura-frontend.md))
 - Data: 2026-09-25
 
 ## Contexto
