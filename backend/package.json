@@ -1,0 +1,43 @@
+{
+    "name": "@censo/backend",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "imports": {
+        "#domain/*": {
+            "development": "./src/domain/*",
+            "default": "./dist/domain/*"
+        },
+        "#application/*": {
+            "development": "./src/application/*",
+            "default": "./dist/application/*"
+        },
+        "#infra/*": {
+            "development": "./src/infra/*",
+            "default": "./dist/infra/*"
+        }
+    },
+    "scripts": {
+        "dev": "tsx watch --conditions=development src/main.ts",
+        "build": "tsc -b",
+        "start": "node dist/main.js",
+        "test": "vitest run --passWithNoTests",
+        "migrate": "tsx --conditions=development src/infra/database/migrate.ts",
+        "migrate:down": "tsx --conditions=development src/infra/database/migrate-down.ts"
+    },
+    "dependencies": {
+        "@censo/contracts": "0.0.0",
+        "@fastify/type-provider-typebox": "6.1.0",
+        "better-sqlite3": "13.0.3",
+        "fastify": "5.12.5",
+        "kysely": "0.29.6",
+        "typebox": "1.3.34"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "9.6.0",
+        "@types/node": "24.13.6",
+        "tsx": "4.23.15",
+        "typescript": "6.0.3",
+        "vitest": "5.0.2"
+    }
+}
