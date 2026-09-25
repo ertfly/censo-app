@@ -8,6 +8,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | # | Título | Status |
 |---|---|---|
 | [0001](0001-banco-de-dados-sqlite.md) | Banco de dados SQLite em data/ versionado com Git LFS | Aceito |
+| [0002](0002-runtime-e-backend.md) | Runtime Node.js LTS com TypeScript e backend em Fastify | Aceito |
 
 ## Modelo
 
