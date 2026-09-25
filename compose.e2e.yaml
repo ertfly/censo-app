@@ -7,7 +7,8 @@ services:
             ALTCHA_HMAC_KEY: e2e-altcha-hmac-key-0000000000000000000000
             SESSION_SECRET: e2e-session-secret-00000000000000000000000
             PROTECTION_LOG_KEY: e2e-protection-log-key-0000000000000000000
-            ALTCHA_MAX_NUMBER: '1000'
+            ALTCHA_COST: '1'
+            ALTCHA_COUNTER_MAX: '10'
             RATE_LIMIT_MAX: '100000'
             TRUSTED_PROXY_CIDR: 172.30.0.0/24
 

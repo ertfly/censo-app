@@ -17,7 +17,8 @@ describe('loadProtectionConfig', () => {
             rateLimitMax: 120,
             rateLimitWindowSeconds: 60,
             rateLimitBanSeconds: 60,
-            altchaMaxNumber: 50000,
+            altchaCost: 5000,
+            altchaCounterMax: 200,
             protectionLogRetentionDays: 7,
             protectionLogDir: '/var/lib/censo/protection-log',
         })
@@ -50,11 +51,13 @@ describe('loadProtectionConfig', () => {
             ...SECRETS,
             SESSION_TTL_SECONDS: '60',
             RATE_LIMIT_MAX: '100000',
-            ALTCHA_MAX_NUMBER: '1000',
+            ALTCHA_COST: '1',
+            ALTCHA_COUNTER_MAX: '10',
         })
         expect(config.sessionTtlSeconds).toBe(60)
         expect(config.rateLimitMax).toBe(100000)
-        expect(config.altchaMaxNumber).toBe(1000)
+        expect(config.altchaCost).toBe(1)
+        expect(config.altchaCounterMax).toBe(10)
     })
 
     it.each(['0', '-5', 'abc', '1.5', ''])('refuses the invalid number "%s"', (value) => {
