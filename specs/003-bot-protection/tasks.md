@@ -57,7 +57,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 ### Tests for User Story 1
 
-- [ ] T013 [P] [US1] Teste unitário `backend/test/unit/infra/challenge-store.test.ts`: assinatura usada é recusada até expirar; entradas expiradas saem; limite de tamanho respeitado
+- [X] T013 [P] [US1] Teste unitário `backend/test/unit/infra/challenge-store.test.ts`: assinatura usada é recusada até expirar; entradas expiradas saem; limite de tamanho respeitado
 - [ ] T014 [P] [US1] Teste de integração `backend/test/integration/http/session.test.ts` com `fastify.inject()` e uma rota protegida registrada só no teste: `GET /api/challenge` no formato do contrato; `POST /api/session` com solução válida grava `censo_session` (`HttpOnly`, `SameSite=Strict`, `Path=/api`, sem `Secure`) e responde `expiresAt` 30 minutos à frente; solução inválida, desafio expirado e solução repetida → `400 VERIFICATION_FAILED` com evento `verification_failed` e o motivo correto; rota protegida sem cookie, com cookie adulterado ou expirado (relógio simulado) → `401 SESSION_REQUIRED`; `/api/health` sem cookie → `200`
 - [ ] T015 [P] [US1] Teste unitário `frontend/test/unit/shared/session.test.ts`: uma única verificação em andamento mesmo com várias consultas simultâneas; `SESSION_REQUIRED` refaz a verificação uma vez e repete a consulta; segunda recusa seguida não entra em repetição infinita
 - [ ] T016 [P] [US1] Teste de componente `frontend/test/unit/widgets/verification-status.test.ts`: "Verificando o navegador" durante a verificação, nada após concluir, "Verificação não concluída" com aviso e botão "Tentar de novo" em falha, texto de navegador sem suporte sem botão, região `aria-live="polite"`
