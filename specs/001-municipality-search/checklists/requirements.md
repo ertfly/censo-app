@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -32,5 +32,5 @@
 ## Notes
 
 - Iteração 1: 1 item corrigido (menção à ferramenta de design nas premissas, trocada por "plano de design").
-- Pendentes 3 marcadores [NEEDS CLARIFICATION]: FR-004 (modo de correspondência da busca), FR-010 (divisão urbano/rural por setores, população ou ambos) e cenário 4 da User Story 2 (exibição da população sem informação de sexo).
+- Iteração 2: 3 marcadores [NEEDS CLARIFICATION] resolvidos com o responsável (Q1: C, Q2: A, Q3: B), registrados em Clarifications. Todos os itens passam.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`

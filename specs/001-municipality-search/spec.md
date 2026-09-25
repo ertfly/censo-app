@@ -41,7 +41,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 1. **Given** um município escolhido, **When** os indicadores são exibidos, **Then** aparecem população total, quantidade de setores, área total em km², densidade demográfica em habitantes por km², divisão urbano/rural e distribuição por sexo.
 2. **Given** um município escolhido, **When** os indicadores são exibidos, **Then** todos os números seguem o formato brasileiro (separador de milhar ".", decimal ",").
 3. **Given** um município com setores sem classificação urbano/rural, **When** a divisão urbano/rural é exibida, **Then** esses setores aparecem como uma categoria própria, "Sem classificação", e não são somados a urbano nem a rural.
-4. **Given** um município com parte da população sem informação de sexo, **When** a distribuição por sexo é exibida, **Then** a tela deixa claro que parte da população não tem essa informação. [NEEDS CLARIFICATION: como exibir a parte da população sem informação de sexo? Ver pergunta Q2]
+4. **Given** um município com parte da população sem informação de sexo, **When** a distribuição por sexo é exibida, **Then** a distribuição mostra três categorias (homens, mulheres e "Sem informação"), com percentuais sobre a população total que somam 100%.
 5. **Given** um município exibido, **When** o visitante escolhe outro município na busca, **Then** os indicadores são substituídos pelos do novo município.
 
 ---
@@ -64,14 +64,14 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - **FR-001**: O sistema DEVE oferecer um campo de busca de município por nome na tela "Busca de cidades".
 - **FR-002**: O sistema DEVE sugerir municípios enquanto o visitante digita, a partir de 2 caracteres.
 - **FR-003**: A busca DEVE ignorar diferenças de acento e de maiúsculas/minúsculas.
-- **FR-004**: A busca DEVE encontrar municípios pelo termo digitado [NEEDS CLARIFICATION: o termo deve corresponder ao início do nome, ao início de qualquer palavra do nome, ou a qualquer parte do nome? Ver pergunta Q3].
+- **FR-004**: A busca DEVE encontrar municípios cujo nome tenha alguma palavra começando pelo termo digitado ("paulo" encontra "São Paulo" e "Paulo Afonso"; "aulo" não encontra nenhum).
 - **FR-005**: Cada sugestão DEVE exibir o nome do município e a sigla da UF.
 - **FR-006**: O sistema DEVE exibir no máximo 10 sugestões por vez, priorizando nomes que começam com o termo digitado e, em seguida, a ordem alfabética.
 - **FR-007**: O sistema DEVE informar quando nenhum município corresponde ao termo digitado.
 - **FR-008**: O sistema NÃO DEVE sugerir registros de município sem nome.
 - **FR-009**: Ao escolher um município, o sistema DEVE exibir: população total; quantidade de setores censitários; área total em km²; densidade demográfica (população total dividida pela área total) em hab/km²; divisão urbano/rural; distribuição da população por sexo.
-- **FR-010**: A divisão urbano/rural DEVE apresentar [NEEDS CLARIFICATION: a quantidade de setores, a população ou os dois? Ver pergunta Q1], com os setores sem classificação em categoria própria ("Sem classificação").
-- **FR-011**: A distribuição por sexo DEVE exibir homens e mulheres e tornar explícita a parte da população sem informação de sexo, quando houver.
+- **FR-010**: A divisão urbano/rural DEVE apresentar, para cada categoria (Urbano, Rural e "Sem classificação"), a quantidade de setores e a população, cada uma com seu percentual sobre o total do município.
+- **FR-011**: A distribuição por sexo DEVE exibir três categorias (Homens, Mulheres e "Sem informação"), com quantidade e percentual sobre a população total; a categoria "Sem informação" é exibida apenas quando for maior que zero.
 - **FR-012**: Todos os números exibidos DEVEM seguir o formato brasileiro: população e contagens sem casas decimais; área e densidade com 2 casas decimais; percentuais com 1 casa decimal.
 - **FR-013**: Todos os textos da tela DEVEM estar em português do Brasil.
 - **FR-014**: Ao escolher outro município, o sistema DEVE substituir os indicadores exibidos pelos do novo município.
@@ -95,6 +95,14 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - **SC-003**: Os indicadores aparecem em até 1 segundo após a escolha do município.
 - **SC-004**: 100% dos indicadores exibidos coincidem com os valores calculados diretamente a partir dos dados de origem, em uma amostra de municípios que inclui: capitais, municípios com nome repetido, com setores sem classificação e com população sem informação de sexo.
 - **SC-005**: O fluxo completo (digitar, escolher, ver indicadores) funciona apenas com teclado e em tela de celular.
+
+## Clarifications
+
+### Session 2026-09-25
+
+- Q: A divisão urbano/rural mostra a quantidade de setores, a população ou os dois? → A: Os dois, com percentuais, incluindo "Sem classificação".
+- Q: Como exibir a população sem informação de sexo? → A: Três categorias (homens, mulheres, "Sem informação") com percentuais sobre a população total.
+- Q: Como o termo digitado corresponde ao nome? → A: Início de qualquer palavra do nome.
 
 ## Assumptions
 
