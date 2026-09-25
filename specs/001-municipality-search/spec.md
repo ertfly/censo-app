@@ -20,11 +20,12 @@ O visitante abre a tela "Busca de cidades" e começa a digitar o nome de um muni
 
 **Acceptance Scenarios**:
 
-1. **Given** a tela de busca aberta, **When** o visitante digita "sao pau", **Then** "São Paulo (SP)" aparece entre as sugestões.
-2. **Given** a tela de busca aberta, **When** o visitante digita "BOM JESUS", **Then** aparecem sugestões distintas para cada UF que tem um município com esse nome, cada uma identificada pela sigla da UF.
-3. **Given** a tela de busca aberta, **When** o visitante digita um termo que não corresponde a nenhum município, **Then** a tela informa que nenhum município foi encontrado.
-4. **Given** sugestões exibidas, **When** o visitante escolhe uma delas, **Then** o campo passa a mostrar o município escolhido com a UF e os indicadores desse município são exibidos (User Story 2).
-5. **Given** a tela de busca aberta, **When** o visitante digita apenas 1 letra, **Then** nenhuma sugestão é exibida ainda.
+1. **Given** o visitante abre o endereço principal da aplicação, **When** a página carrega, **Then** a tela "Busca de cidades" é exibida, com o menu no topo indicando essa tela.
+2. **Given** a tela de busca aberta, **When** o visitante digita "sao pau", **Then** "São Paulo (SP)" aparece entre as sugestões.
+3. **Given** a tela de busca aberta, **When** o visitante digita "BOM JESUS", **Then** aparecem sugestões distintas para cada UF que tem um município com esse nome, cada uma identificada pela sigla da UF.
+4. **Given** a tela de busca aberta, **When** o visitante digita um termo que não corresponde a nenhum município, **Then** a tela informa que nenhum município foi encontrado.
+5. **Given** sugestões exibidas, **When** o visitante escolhe uma delas, **Then** o campo passa a mostrar o município escolhido com a UF e os indicadores desse município são exibidos (User Story 2).
+6. **Given** a tela de busca aberta, **When** o visitante digita apenas 1 letra, **Then** nenhuma sugestão é exibida ainda.
 
 ---
 
@@ -43,6 +44,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 3. **Given** um município com setores sem classificação urbano/rural, **When** a divisão urbano/rural é exibida, **Then** esses setores aparecem como uma categoria própria, "Sem classificação", e não são somados a urbano nem a rural.
 4. **Given** um município com parte da população sem informação de sexo, **When** a distribuição por sexo é exibida, **Then** a distribuição mostra três categorias (homens, mulheres e "Sem informação"), com percentuais sobre a população total que somam 100%.
 5. **Given** um município exibido, **When** o visitante escolhe outro município na busca, **Then** os indicadores são substituídos pelos do novo município.
+6. **Given** um município exibido, **When** o visitante copia o endereço da página e o abre em outra aba ou recarrega a página, **Then** vê o mesmo município e os mesmos indicadores, sem digitar nada.
 
 ---
 
@@ -56,6 +58,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - **População sem informação de sexo**: em 2.229 municípios, homens + mulheres é menor que a população total (519.640 pessoas no total, provavelmente por sigilo na origem).
 - **Faixa de valores**: densidades vão de cerca de 0,15 a 13.417 hab/km²; o formato de exibição precisa ser legível nos dois extremos.
 - **Falha ao carregar**: se os indicadores não puderem ser carregados, a tela informa o problema e permite tentar de novo, sem perder o município escolhido.
+- **Endereço inválido**: um endereço que identifica um município inexistente mostra a busca vazia e informa que o município não foi encontrado.
 
 ## Requirements *(mandatory)*
 
@@ -77,6 +80,10 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - **FR-014**: Ao escolher outro município, o sistema DEVE substituir os indicadores exibidos pelos do novo município.
 - **FR-015**: Em caso de falha ao buscar sugestões ou indicadores, o sistema DEVE informar o problema em linguagem simples e permitir nova tentativa.
 - **FR-016**: A tela DEVE ser utilizável por teclado (navegar pelas sugestões e escolher uma sem mouse) e em telas de celular.
+- **FR-017**: Ao escolher um município, o endereço da página DEVE passar a identificá-lo; abrir esse endereço (por link compartilhado, favorito ou recarga) DEVE exibir diretamente o município com a UF no campo de busca e seus indicadores.
+- **FR-018**: Um endereço que identifique um município inexistente DEVE exibir a busca vazia com a mensagem de que o município não foi encontrado.
+- **FR-019**: O endereço principal da aplicação DEVE abrir a tela "Busca de cidades".
+- **FR-020**: A tela DEVE ter um menu fixo no topo, igual nas duas telas, com acesso à "Busca de cidades" e à "Busca por estado", indicando a tela atual.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -103,6 +110,8 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - Q: A divisão urbano/rural mostra a quantidade de setores, a população ou os dois? → A: Os dois, com percentuais, incluindo "Sem classificação".
 - Q: Como exibir a população sem informação de sexo? → A: Três categorias (homens, mulheres, "Sem informação") com percentuais sobre a população total.
 - Q: Como o termo digitado corresponde ao nome? → A: Início de qualquer palavra do nome.
+- Q: O endereço da página deve identificar o município escolhido, permitindo compartilhar o link e recarregar sem perder o resultado? → A: Sim; abrir esse endereço mostra direto os indicadores do município.
+- Q: Qual tela o visitante vê ao abrir o endereço principal, e como passa de uma para a outra? → A: O endereço principal abre a "Busca de cidades"; um menu fixo no topo, nas duas telas, leva a qualquer uma delas.
 
 ## Assumptions
 
