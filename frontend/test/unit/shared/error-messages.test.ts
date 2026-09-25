@@ -1,6 +1,7 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { errorMessage } from '@/shared/api/error-messages'
 import { ApiError, getJson } from '@/shared/api/http-client'
+import { resetSessionForTests } from '@/shared/api/session'
 
 function mockFetch(response: Response | Error): void {
     vi.stubGlobal(
@@ -10,6 +11,12 @@ function mockFetch(response: Response | Error): void {
         ),
     )
 }
+
+// As consultas exigem sessão (spec 003); aqui a sessão já está válida.
+beforeEach(() => {
+    resetSessionForTests()
+    localStorage.setItem('censo:session-expires-at', String(Date.now() + 60_000))
+})
 
 afterEach(() => {
     vi.unstubAllGlobals()

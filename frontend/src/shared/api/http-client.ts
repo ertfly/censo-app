@@ -1,34 +1,20 @@
-import type { ErrorResponse } from '@censo/contracts'
+import { ApiError, request } from './request'
+import { ensureSession, invalidateSession } from './session'
 
-// Erro da API com o código em inglês; a mensagem ao visitante vem de error-messages.ts.
-export class ApiError extends Error {
-    constructor(
-        readonly code: string,
-        readonly status: number,
-        readonly retryAfterSeconds?: number,
-    ) {
-        super(code)
-    }
-}
+export { ApiError } from './request'
 
-interface ErrorBody extends ErrorResponse {
-    retryAfterSeconds?: number
-}
-
+// Consulta à API com sessão: espera a verificação e, se o servidor recusar a
+// sessão, verifica de novo uma vez e repete a consulta (spec 003 FR-005).
 export async function getJson<T>(path: string, init: RequestInit = {}): Promise<T> {
-    let response: Response
+    await ensureSession()
     try {
-        response = await fetch(`/api${path}`, {
-            ...init,
-            headers: { accept: 'application/json', ...init.headers },
-        })
-    } catch {
-        throw new ApiError('NETWORK_ERROR', 0)
+        return await request<T>(path, init)
+    } catch (error) {
+        if (error instanceof ApiError && error.code === 'SESSION_REQUIRED') {
+            invalidateSession()
+            await ensureSession()
+            return request<T>(path, init)
+        }
+        throw error
     }
-
-    if (!response.ok) {
-        const body = (await response.json().catch(() => null)) as ErrorBody | null
-        throw new ApiError(body?.code ?? 'INTERNAL_ERROR', response.status, body?.retryAfterSeconds)
-    }
-    return (await response.json()) as T
 }
