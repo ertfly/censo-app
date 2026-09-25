@@ -15,6 +15,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito |
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito |
+| [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
 
 ## Modelo
 

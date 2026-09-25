@@ -1,6 +1,6 @@
 # Stack
 
-> Status: em definição
+> Status: definida
 
 | Camada | Tecnologia | Versão | ADR |
 |---|---|---|---|
@@ -20,6 +20,8 @@
 | Infraestrutura | Docker Compose (`compose.yaml` prod, `compose.dev.yaml` dev) | Compose v2 | [0005](decisions/0005-docker-compose.md) |
 | Imagem Node | `node:24.21.0-slim` | 24.21.0 | [0005](decisions/0005-docker-compose.md) |
 | Servidor web | `nginx:1.30.5-alpine` | 1.30.5 | [0005](decisions/0005-docker-compose.md) |
-| Testes | _a definir_ | | |
+| Testes unitários e integração | Vitest | 5.0.2 | [0009](decisions/0009-testes.md) |
+| Testes de componentes Vue | @vue/test-utils | 2.5.1 | [0009](decisions/0009-testes.md) |
+| Testes E2E | Playwright | 1.63.0 | [0009](decisions/0009-testes.md) |
 
 Regra: somente versões estáveis (tag `latest` do npm, Node.js LTS).
