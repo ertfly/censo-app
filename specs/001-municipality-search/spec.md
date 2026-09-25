@@ -21,7 +21,7 @@ O visitante abre a tela "Busca de cidades" e começa a digitar o nome de um muni
 **Acceptance Scenarios**:
 
 1. **Given** o visitante abre o endereço principal da aplicação, **When** a página carrega, **Then** a tela "Busca de cidades" é exibida, com o menu no topo indicando essa tela.
-2. **Given** a tela de busca aberta, **When** o visitante digita "sao pau", **Then** "São Paulo (SP)" aparece entre as sugestões.
+2. **Given** a tela de busca aberta, **When** o visitante digita "sao pau", **Then** "São Paulo/SP" aparece entre as sugestões.
 3. **Given** a tela de busca aberta, **When** o visitante digita "BOM JESUS", **Then** aparecem sugestões distintas para cada UF que tem um município com esse nome, cada uma identificada pela sigla da UF.
 4. **Given** a tela de busca aberta, **When** o visitante digita um termo que não corresponde a nenhum município, **Then** a tela informa que nenhum município foi encontrado.
 5. **Given** sugestões exibidas, **When** o visitante escolhe uma delas, **Then** o campo passa a mostrar o município escolhido com a UF e os indicadores desse município são exibidos (User Story 2).
@@ -51,39 +51,47 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 ### Edge Cases
 
 - **Termo muito curto**: com menos de 2 caracteres, nenhuma sugestão é buscada.
-- **Espaços e pontuação**: espaços no início e no fim são ignorados; hífen e apóstrofo fazem parte do nome ("Pau-d'Arco").
+- **Espaços e pontuação**: espaços no início e no fim são ignorados e espaços repetidos contam como um só; espaço, hífen e apóstrofo separam palavras para a busca ("arco" encontra "Pau D'Arco").
 - **Nomes repetidos**: 232 nomes existem em mais de uma UF; a sigla da UF sempre acompanha o nome, na sugestão e no município escolhido.
 - **Registro sem nome**: existe um registro de município sem nome (código ".", RS, população 0); ele nunca aparece nas sugestões.
 - **Setores sem classificação urbano/rural**: 1.103 setores, em 555 municípios, não têm classificação; entram na contagem total de setores e na área total, e aparecem como "Sem classificação" na divisão urbano/rural.
 - **População sem informação de sexo**: em 2.229 municípios, homens + mulheres é menor que a população total (519.640 pessoas no total, provavelmente por sigilo na origem).
 - **Faixa de valores**: densidades vão de cerca de 0,15 a 13.417 hab/km²; o formato de exibição precisa ser legível nos dois extremos.
 - **Falha ao carregar**: se os indicadores não puderem ser carregados, a tela informa o problema e permite tentar de novo, sem perder o município escolhido.
-- **Endereço inválido**: um endereço que identifica um município inexistente mostra a busca vazia e informa que o município não foi encontrado.
+- **Endereço inválido**: um endereço com código de município inexistente ou em formato inválido (letras, tamanho errado) mostra a busca vazia e informa que o endereço não corresponde a nenhum município.
+- **Respostas fora de ordem**: se o visitante digita rápido, só as sugestões do termo atual do campo são exibidas.
+- **Município com uma só categoria de área**: Urbano e Rural aparecem sempre, mesmo com zero.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
 - **FR-001**: O sistema DEVE oferecer um campo de busca de município por nome na tela "Busca de cidades".
-- **FR-002**: O sistema DEVE sugerir municípios enquanto o visitante digita, a partir de 2 caracteres.
+- **FR-002**: O sistema DEVE sugerir municípios enquanto o visitante digita, a partir de 2 caracteres, contados após remover os espaços das pontas; termos com mais de 60 caracteres não são buscados.
 - **FR-003**: A busca DEVE ignorar diferenças de acento e de maiúsculas/minúsculas.
-- **FR-004**: A busca DEVE encontrar municípios cujo nome tenha alguma palavra começando pelo termo digitado ("paulo" encontra "São Paulo" e "Paulo Afonso"; "aulo" não encontra nenhum).
-- **FR-005**: Cada sugestão DEVE exibir o nome do município e a sigla da UF.
-- **FR-006**: O sistema DEVE exibir no máximo 10 sugestões por vez, priorizando nomes que começam com o termo digitado e, em seguida, a ordem alfabética.
+- **FR-004**: A busca DEVE encontrar municípios cujo nome tenha alguma palavra começando pelo termo digitado, considerando espaço, hífen e apóstrofo como separadores de palavras ("paulo" encontra "São Paulo" e "Paulo Afonso"; "aulo" não encontra nenhum; "arco" encontra "Pau D'Arco").
+- **FR-005**: Cada sugestão DEVE exibir o nome do município e a sigla da UF no formato "Nome/SIGLA" (ex.: "São Paulo/SP"); o mesmo formato é usado no município escolhido.
+- **FR-006**: O sistema DEVE exibir no máximo 10 sugestões por vez, primeiro os nomes que começam com o termo digitado e depois os demais; dentro de cada grupo, em ordem alfabética pela regra do português (acentos ordenados como a letra base) e, em nomes iguais, pela sigla da UF.
 - **FR-007**: O sistema DEVE informar quando nenhum município corresponde ao termo digitado.
 - **FR-008**: O sistema NÃO DEVE sugerir registros de município sem nome.
-- **FR-009**: Ao escolher um município, o sistema DEVE exibir: população total; quantidade de setores censitários; área total em km²; densidade demográfica (população total dividida pela área total) em hab/km²; divisão urbano/rural; distribuição da população por sexo.
-- **FR-010**: A divisão urbano/rural DEVE apresentar, para cada categoria (Urbano, Rural e "Sem classificação"), a quantidade de setores e a população, cada uma com seu percentual sobre o total do município.
+- **FR-009**: Ao escolher um município, o sistema DEVE exibir: população total (soma da população dos setores do município); quantidade de setores censitários; área total em km²; densidade demográfica (população total dividida pela área total) em hab/km²; divisão urbano/rural; distribuição da população por sexo.
+- **FR-010**: A divisão urbano/rural DEVE apresentar, para cada categoria (Urbano, Rural e "Sem classificação"), a quantidade de setores e a população, cada uma com seu percentual sobre o total do município; Urbano e Rural aparecem sempre, mesmo com zero, e "Sem classificação" só quando houver setores sem classificação.
 - **FR-011**: A distribuição por sexo DEVE exibir três categorias (Homens, Mulheres e "Sem informação"), com quantidade e percentual sobre a população total; a categoria "Sem informação" é exibida apenas quando for maior que zero.
-- **FR-012**: Todos os números exibidos DEVEM seguir o formato brasileiro: população e contagens sem casas decimais; área e densidade com 2 casas decimais; percentuais com 1 casa decimal.
+- **FR-012**: Todos os números exibidos DEVEM seguir o formato brasileiro: população e contagens sem casas decimais; área e densidade com 2 casas decimais; percentuais com 1 casa decimal; os percentuais de cada distribuição somam exatamente 100,0%.
 - **FR-013**: Todos os textos da tela DEVEM estar em português do Brasil.
 - **FR-014**: Ao escolher outro município, o sistema DEVE substituir os indicadores exibidos pelos do novo município.
-- **FR-015**: Em caso de falha ao buscar sugestões ou indicadores, o sistema DEVE informar o problema em linguagem simples e permitir nova tentativa.
-- **FR-016**: A tela DEVE ser utilizável por teclado (navegar pelas sugestões e escolher uma sem mouse) e em telas de celular.
+- **FR-015**: Em caso de falha ao buscar sugestões ou indicadores, o sistema DEVE informar o problema em linguagem simples e permitir nova tentativa, sem perder o termo digitado nem o município escolhido.
+- **FR-016**: A tela DEVE ser utilizável por teclado (setas percorrem as sugestões; Enter escolhe a sugestão destacada ou, sem destaque, a primeira; Esc fecha a lista), em telas a partir de 360px de largura e com leitores de tela (quantidade de sugestões anunciada; valores das barras de proporção disponíveis em texto), com foco visível e contraste de texto no nível AA.
 - **FR-017**: Ao escolher um município, o endereço da página DEVE passar a identificá-lo; abrir esse endereço (por link compartilhado, favorito ou recarga) DEVE exibir diretamente o município com a UF no campo de busca e seus indicadores.
-- **FR-018**: Um endereço que identifique um município inexistente DEVE exibir a busca vazia com a mensagem de que o município não foi encontrado.
+- **FR-018**: Um endereço com código de município inexistente ou em formato inválido DEVE exibir a busca vazia com a mensagem de que o endereço não corresponde a nenhum município.
 - **FR-019**: O endereço principal da aplicação DEVE abrir a tela "Busca de cidades".
 - **FR-020**: A tela DEVE ter um menu fixo no topo, igual nas duas telas, com acesso à "Busca de cidades" e à "Busca por estado", indicando a tela atual.
+- **FR-021**: Enquanto sugestões ou indicadores carregam, a tela DEVE indicar o carregamento, mantendo visíveis os rótulos dos indicadores.
+- **FR-022**: As sugestões exibidas DEVEM corresponder sempre ao termo atual do campo; resultados de termos anteriores são descartados.
+- **FR-023**: A tela DEVE seguir os estados de verificação, falha de verificação e bloqueio definidos na funcionalidade 003 (spec 003, FR-006, FR-007 e FR-009): campos desabilitados, com a explicação correspondente, enquanto a verificação acontece ou o bloqueio dura.
+- **FR-024**: A tela DEVE exibir a fonte dos dados: "Fonte: IBGE, Censo Demográfico 2022".
+- **FR-025**: Escolher outro município DEVE substituir o endereço atual no histórico do navegador; o botão voltar leva à página visitada antes da busca, não a cada município consultado.
+- **FR-026**: O título da aba do navegador DEVE incluir o município escolhido (ex.: "São Paulo/SP - Censo 2022").
 
 ### Key Entities *(include if feature involves data)*
 
@@ -97,9 +105,9 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 
 ### Measurable Outcomes
 
-- **SC-001**: O visitante encontra e escolhe um município conhecido digitando no máximo 5 caracteres em pelo menos 90% dos casos testados (excluídos nomes repetidos, que exigem escolher a UF).
-- **SC-002**: As sugestões aparecem em até 1 segundo após o visitante parar de digitar.
-- **SC-003**: Os indicadores aparecem em até 1 segundo após a escolha do município.
+- **SC-001**: Em pelo menos 25 das 27 capitais, a capital aparece entre as sugestões digitando no máximo 5 caracteres do início do nome.
+- **SC-002**: As sugestões aparecem em até 1 segundo após o visitante parar de digitar (um quarto de segundo sem nova tecla), com a aplicação rodando localmente como definido para a v1.
+- **SC-003**: Os indicadores aparecem em até 1 segundo após a escolha do município, nas mesmas condições do SC-002.
 - **SC-004**: 100% dos indicadores exibidos coincidem com os valores calculados diretamente a partir dos dados de origem, em uma amostra de municípios que inclui: capitais, municípios com nome repetido, com setores sem classificação e com população sem informação de sexo.
 - **SC-005**: O fluxo completo (digitar, escolher, ver indicadores) funciona apenas com teclado e em tela de celular.
 
@@ -113,12 +121,18 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - Q: O endereço da página deve identificar o município escolhido, permitindo compartilhar o link e recarregar sem perder o resultado? → A: Sim; abrir esse endereço mostra direto os indicadores do município.
 - Q: Qual tela o visitante vê ao abrir o endereço principal, e como passa de uma para a outra? → A: O endereço principal abre a "Busca de cidades"; um menu fixo no topo, nas duas telas, leva a qualquer uma delas.
 
+### Session 2026-09-25 (revisão dos checklists)
+
+- Q: Como exibir município e UF juntos? → A: "Nome/SIGLA" (ex.: "São Paulo/SP").
+- Q: A tela identifica a fonte dos dados? → A: Sim: "Fonte: IBGE, Censo Demográfico 2022".
+
 ## Assumptions
 
-- A verificação contra bots e o limite de consultas são tratados na funcionalidade 003 (proteção contra bots); esta spec assume uma sessão já verificada.
+- A verificação contra bots e o limite de consultas são tratados na funcionalidade 003; os estados que eles produzem nesta tela estão no FR-023.
 - Os dados são somente leitura e não mudam durante o uso; não há atualização de dados nesta funcionalidade.
 - O código do município e o código dos setores não são exibidos ao visitante, a menos que o plano de design indique o contrário.
-- A sigla da UF é derivada do código da UF (por exemplo, 35 → SP), já que a origem traz apenas código e nome.
+- A sigla da UF é derivada do código da UF (por exemplo, 35 → SP) para os 27 códigos, já que a origem traz apenas código e nome.
+- A fonte dos dados é o Censo Demográfico 2022 do IBGE: o total de população da base (203.080.756) coincide com o resultado oficial, e a fonte foi confirmada pelo responsável.
 - A área total do município é a soma das áreas de seus setores; a densidade usa essa área total.
 - O visual da tela é definido no plano de design da funcionalidade; esta spec define apenas conteúdo e comportamento.
 - O fluxo desta tela é validado por um teste de ponta a ponta próprio.
