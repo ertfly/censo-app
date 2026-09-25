@@ -16,7 +16,8 @@
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "test": "npm run test --workspaces --if-present",
-        "build": "npm run build --workspaces --if-present"
+        "build": "npm run build --workspaces --if-present",
+        "typecheck": "npm run typecheck --workspaces --if-present"
     },
     "devDependencies": {
         "@vue/eslint-config-typescript": "14.9.0",

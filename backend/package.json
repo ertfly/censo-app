@@ -20,6 +20,7 @@
     "scripts": {
         "dev": "tsx watch --conditions=development src/main.ts",
         "build": "tsc -b",
+        "typecheck": "tsc -p tsconfig.test.json",
         "start": "node dist/main.js",
         "test": "vitest run --passWithNoTests",
         "migrate": "tsx --conditions=development src/infra/database/migrate.ts",
