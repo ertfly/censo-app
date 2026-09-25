@@ -70,3 +70,11 @@ do banco), percorrendo as 27 capitais:
 | SC-001 | 25 de 27; com 5 caracteres, "Campo" e "Porto" ainda não trazem Campo Grande/MS e Porto Velho/RO entre as 10 sugestões |
 | SC-002 | pior caso 336 ms do fim da digitação às sugestões (inclui a espera de 250 ms) |
 | SC-003 | pior caso 93 ms da escolha aos indicadores |
+
+## Validação final (T082, 2026-09-25)
+
+Lint, formatação e tipos sem erros; backend 169 testes, frontend 70, E2E 34
+na stack geral e 3 na de proteção, com o relatório de proteção conferido e
+nenhum endereço de rede nos logs. Os cenários manuais 1 a 13 estão cobertos
+pelos testes (E2E: 1, 3, 5 a 13; unitários e de integração: 2 e 4). Nenhum
+desvio a registrar em `.harness/`.
