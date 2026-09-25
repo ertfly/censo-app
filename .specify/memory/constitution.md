@@ -64,7 +64,7 @@ Motivo: tipos duplicados à mão divergem.
   [ADR 0009](../../.harness/decisions/0009-testes.md): unitário para Value
   Objects, QueryHandlers e lógica do frontend; integração para readers e
   rotas; E2E para os fluxos das histórias de usuário.
-- Nenhum teste usa `data/censo.sqlite`.
+- Nenhum teste usa `censo.sqlite`.
 - Cada feature do spec-kit entrega seus testes junto com o código; uma tarefa
   de implementação não está concluída sem eles.
 
@@ -121,7 +121,8 @@ Motivo: evitar interface com aparência de template.
 
 - Stack completa e versões: [stack.md](../../.harness/stack.md).
 - Arquitetura consolidada: [architecture.md](../../.harness/architecture.md).
-- Banco: SQLite em `data/censo.sqlite`, versionado com Git LFS, sem senha e
+- Banco: SQLite em `censo.sqlite`, na raiz do repositório
+  ([ADR 0018](../../.harness/decisions/0018-banco-na-raiz.md)), versionado com Git LFS, sem senha e
   sem acesso externo; só o nginx publica porta no host.
 - Mudanças de schema só via migration, aplicadas em desenvolvimento e
   commitadas de forma deliberada; nunca executadas em produção
@@ -160,4 +161,4 @@ Motivo: evitar interface com aparência de template.
   `/speckit-analyze` aponta violações; violações não justificadas por ADR
   bloqueiam a implementação.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25
+**Version**: 1.0.1 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25
