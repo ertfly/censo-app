@@ -1,8 +1,10 @@
 import type { Writable } from 'node:stream'
 import type { Kysely } from 'kysely'
+import { GetMunicipalityIndicatorsHandler } from '#application/queries/get-municipality-indicators/get-municipality-indicators.handler.js'
 import { SearchMunicipalitiesHandler } from '#application/queries/search-municipalities/search-municipalities.handler.js'
 import type { ProtectionConfig } from '../config/protection-config.js'
 import type { Database } from '../database/database.types.js'
+import { KyselyMunicipalityIndicatorsReader } from '../database/readers/kysely-municipality-indicators.reader.js'
 import { InMemoryMunicipalitySearchReader } from '../database/readers/in-memory-municipality-search.reader.js'
 import { ProtectionEventLog } from '../logging/protection-event-log.js'
 import { registerErrorHandler } from './error-handler.js'
@@ -59,6 +61,9 @@ export async function buildApp(dependencies: AppDependencies) {
     const municipalitySearch = await InMemoryMunicipalitySearchReader.load(dependencies.db)
     await app.register(municipalityRoutes, {
         searchMunicipalities: new SearchMunicipalitiesHandler(municipalitySearch),
+        getMunicipalityIndicators: new GetMunicipalityIndicatorsHandler(
+            new KyselyMunicipalityIndicatorsReader(dependencies.db),
+        ),
     })
 
     return app
