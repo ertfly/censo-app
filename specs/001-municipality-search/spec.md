@@ -26,6 +26,7 @@ O visitante abre a tela "Busca de cidades" e começa a digitar o nome de um muni
 4. **Given** a tela de busca aberta, **When** o visitante digita um termo que não corresponde a nenhum município, **Then** a tela informa que nenhum município foi encontrado.
 5. **Given** sugestões exibidas, **When** o visitante escolhe uma delas, **Then** o campo passa a mostrar o município escolhido com a UF e os indicadores desse município são exibidos (User Story 2).
 6. **Given** a tela de busca aberta, **When** o visitante digita apenas 1 letra, **Then** nenhuma sugestão é exibida ainda.
+7. **Given** a tela de busca aberta, **When** o visitante digita qualquer termo válido, **Then** nenhuma sugestão sem nome de município aparece (o registro sem nome da base nunca é sugerido).
 
 ---
 
@@ -45,6 +46,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 4. **Given** um município com parte da população sem informação de sexo, **When** a distribuição por sexo é exibida, **Then** a distribuição mostra três categorias (homens, mulheres e "Sem informação"), com percentuais sobre a população total que somam 100%.
 5. **Given** um município exibido, **When** o visitante escolhe outro município na busca, **Then** os indicadores são substituídos pelos do novo município.
 6. **Given** um município exibido, **When** o visitante copia o endereço da página e o abre em outra aba ou recarrega a página, **Then** vê o mesmo município e os mesmos indicadores, sem digitar nada.
+7. **Given** um município escolhido, **When** a densidade é exibida, **Then** ela aparece como número e também numa escala visual que situa o município entre densidades muito baixas e muito altas, a mesma escala usada no ranking da tela "Busca por estado".
 
 ---
 
@@ -92,6 +94,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 - **FR-024**: A tela DEVE exibir a fonte dos dados: "Fonte: IBGE, Censo Demográfico 2022".
 - **FR-025**: Escolher outro município DEVE substituir o endereço atual no histórico do navegador; o botão voltar leva à página visitada antes da busca, não a cada município consultado.
 - **FR-026**: O título da aba do navegador DEVE incluir o município escolhido (ex.: "São Paulo/SP - Censo 2022").
+- **FR-027**: A densidade DEVE ser acompanhada de uma escala visual que situa o município entre densidades muito baixas e muito altas; a escala é a mesma do ranking da funcionalidade 002, é complementar e não substitui o valor numérico.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -125,6 +128,7 @@ Depois de escolher um município, o visitante vê abaixo da busca os números ag
 
 - Q: Como exibir município e UF juntos? → A: "Nome/SIGLA" (ex.: "São Paulo/SP").
 - Q: A tela identifica a fonte dos dados? → A: Sim: "Fonte: IBGE, Censo Demográfico 2022".
+- Q: A escala visual de densidade também é requisito nesta tela? → A: Sim, a mesma escala do ranking da 002, complementar ao número.
 
 ## Assumptions
 
