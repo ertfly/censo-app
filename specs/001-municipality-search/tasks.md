@@ -88,7 +88,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 - [X] T030 [P] Criar `packages/contracts/src/common/error-response.contract.ts` (`{ code: string }`) e exportar em `packages/contracts/src/index.ts`
 - [X] T031 Criar `backend/src/infra/http/server.ts`: Fastify com `@fastify/type-provider-typebox`, logger com serializador de requisição sem endereço e porta de origem ([ADR 0019](../../.harness/decisions/0019-registros-de-protecao.md)), `trustProxy` lido de `TRUSTED_PROXY_CIDR` (padrão `172.28.0.0/24`)
 - [X] T032 Criar `backend/src/infra/http/error-handler.ts`: `DomainError` → status pelo tipo do erro (`invalid` → 400, `not_found` → 404; o domínio não conhece HTTP) e corpo `{ code }`; erro de validação de schema → `400` com o código declarado pela rota; qualquer outro erro → `500` com `{ code: "INTERNAL_ERROR" }` sem detalhes internos
-- [ ] T033 [P] Criar `backend/src/infra/http/routes/health.routes.ts` com `GET /api/health` → `{ status: "ok" }`
+- [X] T033 [P] Criar `backend/src/infra/http/routes/health.routes.ts` com `GET /api/health` → `{ status: "ok" }`
 - [ ] T034 Criar `backend/src/main.ts` (composition root): valida o arquivo do banco (T019), abre a conexão, com `NODE_ENV=production` recusa subir se `listPendingMigrations` não estiver vazio (informando quais), cria o servidor, registra error handler e rotas, escuta em `PORT` (padrão `3000`)
 - [X] T035 [P] Teste de integração `backend/test/integration/http/health.test.ts` com `fastify.inject()`: `200 { status: "ok" }`; erro não tratado vira `500 INTERNAL_ERROR`; o log de uma requisição não contém o endereço de origem
 
