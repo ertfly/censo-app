@@ -9,15 +9,23 @@ nos pacotes `altcha-lib` 2.5.0 e `altcha` 3.2.3 em 2026-09-25.
 
 **Decisão**:
 
-- `GET /api/challenge`: `createChallenge` do `altcha-lib`, assinado com
-  `ALTCHA_HMAC_KEY`, validade de 5 minutos.
-- `POST /api/session`: `verifySolution` confere a solução e a assinatura.
+- Protocolo **v2** do ALTCHA (o `altcha-lib` 2.5.0 exporta o v2 por padrão;
+  conferido no pacote durante a implementação, T008).
+- `GET /api/challenge`: `createChallenge` com algoritmo `PBKDF2/SHA-256`
+  (`deriveKey` de `altcha-lib/algorithms/pbkdf2`), em modo determinístico:
+  contador sorteado entre `ALTCHA_COUNTER_MAX / 2` e `ALTCHA_COUNTER_MAX`,
+  `cost` = `ALTCHA_COST` iterações de PBKDF2 por tentativa, assinado com
+  `ALTCHA_HMAC_KEY` (e um segundo segredo derivado dele, por HMAC, para a
+  assinatura das chaves derivadas), validade de 5 minutos.
+- `POST /api/session`: decodifica o payload (base64 de `{ challenge, solution }`)
+  e confere com `verifySolution` (assinatura, expiração e solução).
 - **Proteção contra reúso**: a assinatura de cada desafio resolvido fica em
   memória (mapa com limite de tamanho e expiração igual à do desafio); a
   mesma solução não abre duas sessões.
-- **Dificuldade**: `ALTCHA_MAX_NUMBER` configurável. O valor padrão é
-  calibrado na implementação para que a verificação termine em ~1 s num
-  celular intermediário, cumprindo o SC-001 (até 3 s em 95% dos casos).
+- **Dificuldade**: `ALTCHA_COST` × número de tentativas até o contador
+  sorteado (limitado por `ALTCHA_COUNTER_MAX`). Os padrões são calibrados na
+  implementação (T041) para que a verificação termine em ~1 s num celular
+  intermediário, cumprindo o SC-001 (até 3 s em 95% dos casos).
 
 **Motivo**: API confirmada no pacote; sem serviço externo.
 
@@ -127,7 +135,8 @@ de uma única verificação evita várias sessões em paralelo.
 | `RATE_LIMIT_MAX` | 120 | FR-008 |
 | `RATE_LIMIT_WINDOW_SECONDS` | 60 | FR-008 |
 | `RATE_LIMIT_BAN_SECONDS` | 60 | FR-008 |
-| `ALTCHA_MAX_NUMBER` | calibrado | R1 |
+| `ALTCHA_COST` | calibrado (T041) | R1 |
+| `ALTCHA_COUNTER_MAX` | calibrado (T041) | R1 |
 | `PROTECTION_LOG_RETENTION_DAYS` | 7 | FR-017 |
 
 Os três segredos devem ser diferentes entre si. O backend não sobe se algum
@@ -138,7 +147,7 @@ reais.
 
 **Decisão**: não existe modo que desligue a proteção. Testes de rota (001,
 002, 003) e E2E obtêm sessão resolvendo o desafio com `solveChallenge` do
-`altcha-lib`, com `ALTCHA_MAX_NUMBER` baixo no ambiente de teste.
+`altcha-lib`, com `ALTCHA_COST` e `ALTCHA_COUNTER_MAX` baixos no ambiente de teste.
 
 **Motivo**: um interruptor de desligar é um risco se chegar à produção.
 

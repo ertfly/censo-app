@@ -13,15 +13,21 @@ packages/contracts/src/common/error-response.contract.ts   # + campo opcional re
 
 Gera um desafio. Não exige sessão; sujeito ao limite de consultas.
 
-**200** (formato do ALTCHA)
+**200** (formato v2 do ALTCHA, conferido no `altcha-lib` 2.5.0)
 
 ```json
 {
-    "algorithm": "SHA-256",
-    "challenge": "4d5e…",
-    "maxnumber": 50000,
-    "salt": "a1b2…?expires=1790000000",
-    "signature": "9f8e…"
+    "parameters": {
+        "algorithm": "PBKDF2/SHA-256",
+        "nonce": "4d5e…",
+        "salt": "a1b2…",
+        "cost": 5000,
+        "keyLength": 32,
+        "keyPrefix": "9f8e…",
+        "keySignature": "…",
+        "expiresAt": 1790000000
+    },
+    "signature": "7c6b…"
 }
 ```
 
@@ -36,7 +42,7 @@ limite.
 { "payload": "eyJhbGdvcml0aG0iOi…" }
 ```
 
-`payload`: solução em base64 produzida pelo widget ALTCHA.
+`payload`: base64 de `{ challenge, solution }` produzido pelo widget ALTCHA (protocolo v2), em que `solution` é `{ counter, derivedKey, time? }`.
 
 **200**: grava o cookie `censo_session` e responde
 

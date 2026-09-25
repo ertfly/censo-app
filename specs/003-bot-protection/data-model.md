@@ -8,7 +8,7 @@ backend, cookie no navegador e arquivos de registro em volume próprio
 
 | Campo | Descrição |
 |---|---|
-| `algorithm`, `challenge`, `maxnumber`, `salt`, `signature` | formato do ALTCHA; assinado com `ALTCHA_HMAC_KEY` |
+| `parameters` (`algorithm`, `nonce`, `salt`, `cost`, `keyLength`, `keyPrefix`, `keySignature`, `expiresAt`) e `signature` | formato v2 do ALTCHA; assinado com `ALTCHA_HMAC_KEY` |
 | validade | 5 minutos |
 
 Ciclo: criado → resolvido pelo navegador → verificado uma vez → assinatura
