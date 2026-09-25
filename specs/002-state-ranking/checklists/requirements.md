@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -32,5 +32,5 @@
 ## Notes
 
 - Iteração 1: nenhum item de conteúdo falhou.
-- Pendentes 3 marcadores [NEEDS CLARIFICATION]: FR-006 (exibição de todos os municípios, paginação ou top N), FR-009 (área do registro sem nome nos totais da UF) e FR-010 (navegação do ranking para a tela de município).
+- Iteração 2: 3 marcadores [NEEDS CLARIFICATION] resolvidos com o responsável (Q1: A, Q2: A, Q3: B), registrados em Clarifications. Todos os itens passam.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`

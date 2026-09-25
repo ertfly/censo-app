@@ -49,7 +49,7 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 
 - **UF com um município**: o Distrito Federal tem um único município; o ranking mostra uma linha e os totais da UF coincidem com os dele.
 - **UF com muitos municípios**: Minas Gerais tem 853 municípios; a tela precisa continuar legível e navegável.
-- **Registro sem nome**: o registro de município sem nome (RS, população 0) não entra como linha do ranking.
+- **Registro sem nome**: o registro de município sem nome (RS, população 0) não entra como linha do ranking, mas sua área entra na área total do RS (FR-009). Por isso, no RS, a soma das áreas do ranking é menor que a área total da UF.
 - **Densidades iguais na exibição**: 181 pares de municípios da mesma UF têm a mesma densidade quando arredondada para 2 casas; a ordem segue o valor não arredondado e, em empate exato, o nome em ordem alfabética.
 - **Faixa de valores**: densidades de cerca de 0,15 a 13.417 hab/km² na mesma tabela; a formatação precisa ser legível nos dois extremos.
 - **Falha ao carregar**: se o ranking ou os totais não puderem ser carregados, a tela informa o problema e permite tentar de novo, sem perder a UF escolhida.
@@ -63,11 +63,11 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - **FR-003**: A densidade de cada município DEVE ser a população total dividida pela área total, ambas somadas a partir dos setores do município (mesma regra da funcionalidade 001).
 - **FR-004**: Em empate exato de densidade, a ordem DEVE seguir o nome do município em ordem alfabética.
 - **FR-005**: Cada linha do ranking DEVE exibir: posição, nome do município, população, área em km² e densidade em hab/km².
-- **FR-006**: O ranking DEVE apresentar os municípios da UF [NEEDS CLARIFICATION: todos de uma vez, paginados ou apenas os N primeiros? Ver pergunta Q1].
+- **FR-006**: O ranking DEVE apresentar todos os municípios da UF de uma vez, em lista com rolagem, sem paginação.
 - **FR-007**: O sistema NÃO DEVE exibir registros de município sem nome como linhas do ranking.
 - **FR-008**: O sistema DEVE exibir, para a UF escolhida: população total, área total em km² e densidade (população total dividida pela área total).
-- **FR-009**: A área total da UF DEVE [NEEDS CLARIFICATION: incluir ou excluir a área dos setores do registro sem nome (cerca de 13.085 km² no RS)? Ver pergunta Q2].
-- **FR-010**: Ao escolher o nome de um município no ranking, o sistema DEVE [NEEDS CLARIFICATION: levar o visitante aos indicadores desse município na tela "Busca de cidades" ou não ter ação? Ver pergunta Q3].
+- **FR-009**: A área total e a população total da UF DEVEM somar todos os setores da UF, inclusive os do registro sem nome (área total do RS: 281.707,15 km², igual à área oficial divulgada pelo IBGE).
+- **FR-010**: As linhas do ranking são apenas para leitura; escolher um município no ranking NÃO leva a outra tela. As telas "Busca por estado" e "Busca de cidades" são independentes.
 - **FR-011**: Todos os números DEVEM seguir o formato brasileiro, com as mesmas regras da funcionalidade 001: população e posições sem casas decimais; área e densidade com 2 casas decimais.
 - **FR-012**: Todos os textos da tela DEVEM estar em português do Brasil.
 - **FR-013**: Ao escolher outra UF, o sistema DEVE substituir o ranking e os totais pelos da nova UF.
@@ -91,6 +91,14 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - **SC-003**: 100% dos totais exibidos (população, área, densidade) coincidem com os valores calculados diretamente a partir dos dados de origem, em todas as 27 UFs.
 - **SC-004**: O visitante encontra a posição de um município específico no ranking de Minas Gerais em até 30 segundos.
 - **SC-005**: O fluxo completo (escolher UF, ler totais, percorrer o ranking) funciona apenas com teclado e em tela de celular.
+
+## Clarifications
+
+### Session 2026-09-25
+
+- Q: O ranking mostra todos os municípios, paginado ou só os N primeiros? → A: Todos de uma vez, com rolagem.
+- Q: A área total da UF inclui a área do registro sem nome? → A: Inclui; totais da UF somam todos os setores (RS = 281.707,15 km², igual ao dado oficial).
+- Q: O município do ranking leva à tela "Busca de cidades"? → A: Não; o ranking é só leitura e as telas são independentes.
 
 ## Assumptions
 
