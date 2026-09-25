@@ -71,7 +71,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 ### Implementation for User Story 1
 
 - [X] T018 [P] [US1] Criar `frontend/src/shared/lib/text-search.ts`: normaliza (NFD sem diacríticos, minúsculas, espaços colapsados) e encontra o termo no início de qualquer palavra, com espaço, hífen e apóstrofo como separadores (research R4)
-- [ ] T019 [P] [US1] Criar `frontend/src/pages/state-ranking/api/states.ts` (`useStates()`) e `density-ranking.ts` (`useStateDensityRanking(code)`), com os tipos de `@censo/contracts`
+- [X] T019 [P] [US1] Criar `frontend/src/pages/state-ranking/api/states.ts` (`useStates()`) e `density-ranking.ts` (`useStateDensityRanking(code)`), com os tipos de `@censo/contracts`
 - [ ] T020 [US1] Criar `frontend/src/pages/state-ranking/model/use-selected-state.ts`: código na URL `/states/:stateCode`; toda escolha usa `router.replace`, como na 001 (FR-028); endereço inválido tratado pela resposta `INVALID_STATE_CODE`
 - [ ] T021 [US1] Criar `frontend/src/pages/state-ranking/model/use-ranking-filter.ts` (usa `text-search`, preserva posição, contagem, limpa ao trocar de UF)
 - [ ] T022 [US1] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/StateSelect.vue` com o Select do shadcn-vue (rótulo "Unidade federativa", opções "Nome/SIGLA")

@@ -10,6 +10,8 @@ const MESSAGES: Record<string, string> = {
     INVALID_SEARCH_TERM: 'Digite pelo menos 2 letras.',
     INVALID_MUNICIPALITY_CODE: INVALID_MUNICIPALITY_ADDRESS,
     MUNICIPALITY_NOT_FOUND: INVALID_MUNICIPALITY_ADDRESS,
+    INVALID_STATE_CODE:
+        'Este endereço não corresponde a nenhuma unidade federativa. Escolha uma na lista.',
 }
 
 export function errorMessage(error: unknown): string {
