@@ -90,7 +90,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 - [ ] T032 Criar `backend/src/infra/http/error-handler.ts`: `DomainError` → status definido pelo erro e corpo `{ code }`; erro de validação de schema → `400` com o código declarado pela rota; qualquer outro erro → `500` com `{ code: "INTERNAL_ERROR" }` sem detalhes internos
 - [ ] T033 [P] Criar `backend/src/infra/http/routes/health.routes.ts` com `GET /api/health` → `{ status: "ok" }`
 - [ ] T034 Criar `backend/src/main.ts` (composition root): valida o arquivo do banco (T019), abre a conexão, com `NODE_ENV=production` recusa subir se `listPendingMigrations` não estiver vazio (informando quais), cria o servidor, registra error handler e rotas, escuta em `PORT` (padrão `3000`)
-- [ ] T035 [P] Teste de integração `backend/test/integration/http/health.test.ts` com `fastify.inject()`: `200 { status: "ok" }`; erro não tratado vira `500 INTERNAL_ERROR`; o log de uma requisição não contém o endereço de origem
+- [X] T035 [P] Teste de integração `backend/test/integration/http/health.test.ts` com `fastify.inject()`: `200 { status: "ok" }`; erro não tratado vira `500 INTERNAL_ERROR`; o log de uma requisição não contém o endereço de origem
 
 ### Frontend: casca da aplicação
 
