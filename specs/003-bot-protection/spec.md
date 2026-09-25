@@ -88,11 +88,11 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **FR-015**: A verificação e as mensagens de bloqueio DEVEM ser acessíveis por teclado e leitores de tela; a contagem regressiva do bloqueio é anunciada apenas no início e no fim, não a cada segundo.
 - **FR-016**: O sistema DEVE registrar cada bloqueio por excesso de consultas e cada falha de verificação, com data, hora, tipo do evento e um identificador embaralhado do acesso, que permite reconhecer o mesmo acesso em eventos diferentes, mas não permite recuperar o endereço de rede sem a chave secreta da aplicação.
 - **FR-017**: Os registros NÃO DEVEM conter o endereço de rede em claro nem qualquer outro dado que identifique o visitante, e DEVEM ser descartados após 7 dias, contados por dia civil em UTC.
+- **FR-018**: O responsável DEVE conseguir consultar os registros dos últimos 7 dias para avaliar se o limite está adequado.
 - **FR-019**: Nenhum outro registro da aplicação (registros de requisições do servidor e do servidor web) DEVE conter o endereço de rede do visitante.
 - **FR-020**: Uma falha ao gravar os registros NÃO DEVE interromper a verificação nem o limite de consultas.
 - **FR-021**: Após o fim do bloqueio, os campos voltam a funcionar sem recarregar a página; a consulta recusada não é repetida automaticamente.
 - **FR-022**: Com JavaScript desativado, a página DEVE informar que a consulta exige JavaScript.
-- **FR-018**: O responsável DEVE conseguir consultar os registros dos últimos 7 dias para avaliar se o limite está adequado.
 
 ### Key Entities *(include if feature involves data)*
 

@@ -8,7 +8,7 @@ description: "Tarefas da feature 003 (Proteção contra bots)"
 
 **Prerequisites**: fases 1 e 2 de [specs/001-municipality-search/tasks.md](../001-municipality-search/tasks.md) (fundação do projeto)
 
-**Tests**: obrigatórios por camada (Princípio V). Não existe modo que desligue a proteção: os testes obtêm sessão resolvendo o desafio com `solveChallenge` e dificuldade baixa (research R8).
+**Tests**: obrigatórios por camada (Princípio V). Não existe modo que desligue a proteção: os testes obtêm sessão resolvendo o desafio com `solveChallenge` e dificuldade baixa (research R8). E2E: fluxos gerais na stack `compose.e2e.yaml`; limite e expiração na stack `compose.e2e-protection.yaml`, com os valores reais ([ADR 0020](../../.harness/decisions/0020-stacks-de-e2e.md)).
 
 **Posição na ordem do projeto**: implementada logo após a fundação, antes das user stories da 001 e da 002. O helper de sessão criado aqui (T023) é usado pelos testes de rota da 001 e da 002.
 
@@ -61,7 +61,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 - [ ] T014 [P] [US1] Teste de integração `backend/test/integration/http/session.test.ts` com `fastify.inject()` e uma rota protegida registrada só no teste: `GET /api/challenge` no formato do contrato; `POST /api/session` com solução válida grava `censo_session` (`HttpOnly`, `SameSite=Strict`, `Path=/api`, sem `Secure`) e responde `expiresAt` 30 minutos à frente; solução inválida, desafio expirado e solução repetida → `400 VERIFICATION_FAILED` com evento `verification_failed` e o motivo correto; rota protegida sem cookie, com cookie adulterado ou expirado (relógio simulado) → `401 SESSION_REQUIRED`; `/api/health` sem cookie → `200`
 - [ ] T015 [P] [US1] Teste unitário `frontend/test/unit/shared/session.test.ts`: uma única verificação em andamento mesmo com várias consultas simultâneas; `SESSION_REQUIRED` refaz a verificação uma vez e repete a consulta; segunda recusa seguida não entra em repetição infinita
 - [ ] T016 [P] [US1] Teste de componente `frontend/test/unit/widgets/verification-status.test.ts`: "Verificando o navegador" durante a verificação, nada após concluir, "Verificação não concluída" com aviso e botão "Tentar de novo" em falha, texto de navegador sem suporte sem botão, região `aria-live="polite"`
-- [ ] T017 [P] [US1] Teste E2E `e2e/tests/verification.spec.ts`: quickstart cenários 1, 3 e 4 (com `SESSION_TTL_SECONDS=60` no ambiente de E2E) e cenário 5 via requisição direta sem cookie
+- [ ] T017 [P] [US1] Testes E2E: `e2e/tests/verification.spec.ts` na stack `compose.e2e.yaml` (quickstart cenários 1 e 3, cenário 5 via requisição direta sem cookie, e página com `javaScriptEnabled: false` mostrando a mensagem de JavaScript, FR-022) e `e2e/tests/protection/session-expiry.spec.ts` na stack `compose.e2e-protection.yaml` (quickstart cenário 4, com `SESSION_TTL_SECONDS=60`)
 
 ### Implementation for User Story 1
 
@@ -73,7 +73,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 - [ ] T023 [US1] Criar `backend/test/helpers/create-session.ts`: pede `/api/challenge`, resolve com `solveChallenge` do `altcha-lib`, envia a `/api/session` e devolve o cabeçalho `cookie` pronto para as requisições dos testes da 001 e da 002; e `e2e/helpers/api-session.ts` com o mesmo fluxo para testes E2E feitos por requisição direta
 - [ ] T024 [US1] Criar `frontend/src/shared/api/session.ts`: estado da verificação (`idle`, `verifying`, `verified`, `failed`, `unsupported`), uma única verificação em andamento, função `ensureSession()` usada pelo cliente HTTP
 - [ ] T025 [US1] Integrar `frontend/src/shared/api/http-client.ts` com `session.ts`: aguarda `ensureSession()` antes de consultar; em `401 SESSION_REQUIRED` refaz a verificação uma vez e repete a consulta, sem alterar o estado das páginas (FR-005)
-- [ ] T026 [US1] Invocar a skill `frontend-design` e criar `frontend/src/widgets/app-header/ui/VerificationStatus.vue`: widget `altcha` com `auto="onload"`, `language="pt-br"` e web workers, apresentado como status discreto no menu fixo, com os estados de [design.md](design.md#menu-fixo-com-status); ligar ao `session.ts` e expor o estado para as páginas (campos desabilitados com `aria-disabled` e explicação durante a verificação, FR-006)
+- [ ] T026 [US1] Invocar a skill `frontend-design` e criar `frontend/src/widgets/app-header/ui/VerificationStatus.vue`: widget `altcha` com `auto="onload"`, `language="pt-br"` e web workers, ouvindo o evento de verificação concluída do widget para enviar o `payload` a `POST /api/session` via `session.ts`, apresentado como status discreto no menu fixo, com os estados de [design.md](design.md#menu-fixo-com-status); ligar ao `session.ts` e expor o estado para as páginas (campos desabilitados com `aria-disabled` e explicação durante a verificação, FR-006)
 - [ ] T027 [US1] Criar o aviso de falha em `frontend/src/widgets/app-header/ui/ProtectionNotice.vue` ("A verificação automática não foi concluída." + "Tentar de novo"; navegador sem suporte com texto explicativo e sem botão; `role="alert"`) e renderizá-lo em `frontend/src/app/ui/AppLayout.vue` acima do conteúdo
 - [ ] T028 [P] [US1] Adicionar `<noscript>` em `frontend/index.html`: "Esta consulta precisa de JavaScript ativado no navegador." (FR-022)
 
@@ -89,10 +89,10 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 ### Tests for User Story 2
 
-- [ ] T029 [P] [US2] Teste de integração `backend/test/integration/http/rate-limit.test.ts` com relógio simulado: 120 requisições passam; a 121ª recebe `429 RATE_LIMIT_EXCEEDED` com `Retry-After` e `retryAfterSeconds`; o bloqueio dura 60 s a partir do excesso, e não até o fim da janela; `/api/challenge` e `/api/session` contam no limite e são recusados durante o bloqueio; `/api/health` fica fora; acessos diferentes não se afetam; IPv6 do mesmo `/64` compartilha o limite; exatamente um evento `rate_limit_blocked` por início de bloqueio
+- [ ] T029 [P] [US2] Teste de integração `backend/test/integration/http/rate-limit.test.ts` com relógio simulado: 120 requisições passam; a 121ª recebe `429 RATE_LIMIT_EXCEEDED` com `Retry-After` e `retryAfterSeconds`; o bloqueio dura 60 s a partir do excesso, e não até o fim da janela; `/api/challenge` e `/api/session` contam no limite e são recusados durante o bloqueio; `/api/health` fica fora; acessos diferentes não se afetam; uso normal (30 requisições por minuto durante 10 minutos simulados) nunca bloqueia (SC-002); 3 visitantes na mesma rede somando 90 por minuto não são bloqueados (US2 cenário 7); IPv6 do mesmo `/64` compartilha o limite; exatamente um evento `rate_limit_blocked` por início de bloqueio
 - [ ] T030 [P] [US2] Teste de integração `backend/test/integration/http/trusted-proxy.test.ts`: com `X-Forwarded-For` vindo de endereço dentro de `TRUSTED_PROXY_CIDR`, a chave do acesso usa o valor do cabeçalho; vindo de fora, o cabeçalho é ignorado
 - [ ] T031 [P] [US2] Teste unitário `frontend/test/unit/shared/rate-limit-notice.test.ts`: `429` mostra "Você fez muitas consultas em pouco tempo. Aguarde {n} segundos para consultar de novo." com contagem regressiva a partir de `retryAfterSeconds`; campos desabilitados durante o bloqueio; ao terminar, o aviso some e a consulta recusada não é repetida sozinha (FR-021); anúncio a leitores de tela só no início e no fim
-- [ ] T032 [P] [US2] Teste E2E `e2e/tests/rate-limit.spec.ts`: quickstart cenários 7 e 8 por requisição direta com sessão (`e2e/helpers/api-session.ts`) e aviso de bloqueio no navegador
+- [ ] T032 [P] [US2] Teste E2E `e2e/tests/protection/rate-limit.spec.ts` na stack `compose.e2e-protection.yaml`: quickstart cenários 7 e 8 por requisição direta com sessão (`e2e/helpers/api-session.ts`) e aviso de bloqueio no navegador
 - [ ] T033 [P] [US2] Teste E2E `e2e/tests/ai-bots.spec.ts`: User-Agents `GPTBot` e `ClaudeBot` recebem `403` em `/` e em `/api/health`; `/robots.txt` contém `Disallow: /api/` para todos e `Disallow: /` para os robôs de IA (quickstart cenários 10 e 11)
 
 ### Implementation for User Story 2
@@ -109,8 +109,8 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T039 [P] Teste E2E `e2e/tests/protection-report.spec.ts`: após provocar um bloqueio e uma falha de verificação, `docker compose exec backend npm run protection:report` lista os dois eventos sem endereço de rede (quickstart cenário 12)
-- [ ] T040 [P] Conferir os logs do backend e do nginx após os testes E2E e garantir que nenhum contém endereço de rede (quickstart cenário 13, FR-019); automatizar a busca por padrões de IPv4/IPv6 nos logs em `e2e/tests/no-ip-in-logs.spec.ts`
+- [ ] T039 [P] Criar `e2e/scripts/check-protection-report.sh`, executado no host após a stack de proteção: roda `docker compose exec backend npm run protection:report` e confere que o bloqueio e a falha de verificação provocados pelos testes aparecem, sem endereço de rede (quickstart cenário 12)
+- [ ] T040 [P] Criar `e2e/scripts/check-no-ip-in-logs.sh`, executado no host após as duas stacks: busca padrões de IPv4 e IPv6 em `docker compose logs backend frontend` e falha se encontrar algum (quickstart cenário 13, FR-019); incluir no `e2e/scripts/run.sh`
 - [ ] T041 Calibrar `ALTCHA_MAX_NUMBER` para a verificação terminar em cerca de 1 s num celular intermediário e em até 3 s em 95% das aberturas (SC-001); registrar o valor em `.env.example` e em `research.md`
 - [ ] T042 Rodar lint, formatação, todos os testes e o quickstart manual ([quickstart.md](quickstart.md)); registrar desvios em `.harness/` se houver
 
