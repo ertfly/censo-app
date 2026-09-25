@@ -1,4 +1,5 @@
 import { loadProtectionConfig, ProtectionConfigError } from '#infra/config/protection-config.js'
+import { withStoredSecrets } from '#infra/config/stored-secrets.js'
 import { openDatabase } from '#infra/database/connection.js'
 import { checkDatabaseFile, DatabaseFileError } from '#infra/database/database-file-check.js'
 import { listPendingMigrations } from '#infra/database/migrator.js'
@@ -11,6 +12,7 @@ const databasePath = process.env['DATABASE_PATH'] ?? '../censo.sqlite'
 const port = Number(process.env['PORT'] ?? 3000)
 const trustedProxyCidr = process.env['TRUSTED_PROXY_CIDR'] ?? '172.28.0.0/24'
 const isProduction = process.env['NODE_ENV'] === 'production'
+const secretsDir = process.env['SECRETS_DIR'] ?? '/var/lib/censo/secrets'
 
 function exitWith(message: string): never {
     console.error(message)
@@ -20,7 +22,8 @@ function exitWith(message: string): never {
 let protection
 try {
     checkDatabaseFile(databasePath)
-    protection = loadProtectionConfig(process.env)
+    // Sem as variáveis, os segredos vêm do volume ou são gerados (ADR 0024).
+    protection = loadProtectionConfig(withStoredSecrets(process.env, secretsDir))
 } catch (error) {
     if (error instanceof DatabaseFileError || error instanceof ProtectionConfigError) {
         exitWith(error.message)

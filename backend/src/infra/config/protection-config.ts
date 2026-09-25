@@ -1,5 +1,6 @@
 // Configuração da proteção contra bots (spec 003, research R7). Sem os três
-// segredos válidos, o backend não sobe.
+// segredos válidos, o backend não sobe; os ausentes são completados antes por
+// stored-secrets.ts (ADR 0024).
 
 export class ProtectionConfigError extends Error {}
 
