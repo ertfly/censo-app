@@ -4,7 +4,13 @@ import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    plugins: [vue(), tailwindcss()],
+    plugins: [
+        vue({
+            // Web component do ALTCHA (spec 003).
+            template: { compilerOptions: { isCustomElement: (tag) => tag === 'altcha-widget' } },
+        }),
+        tailwindcss(),
+    ],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),

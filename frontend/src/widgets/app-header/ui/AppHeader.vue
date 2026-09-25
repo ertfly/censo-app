@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
+import VerificationStatus from './VerificationStatus.vue'
 
 const route = useRoute()
 
@@ -38,8 +39,8 @@ function isCurrent(to: string): boolean {
                     {{ link.label }}
                 </RouterLink>
             </nav>
-            <div class="ml-auto text-sm text-ink-muted">
-                <slot name="status" />
+            <div class="ml-auto">
+                <VerificationStatus />
             </div>
         </div>
     </header>

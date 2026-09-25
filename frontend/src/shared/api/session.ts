@@ -40,6 +40,10 @@ function writeExpiry(expiresAtMs: number | null): void {
     }
 }
 
+function currentState(): VerificationState {
+    return state.value
+}
+
 function waitForVerifier(): Promise<Verifier> {
     if (verifier) {
         return Promise.resolve(verifier)
@@ -72,7 +76,8 @@ async function verify(): Promise<void> {
         writeExpiry(Date.parse(response.expiresAt))
         state.value = 'verified'
     } catch (error) {
-        if (state.value !== 'unsupported') {
+        // markUnsupported() pode ter rodado durante a verificação.
+        if (currentState() !== 'unsupported') {
             state.value = 'failed'
         }
         throw error
