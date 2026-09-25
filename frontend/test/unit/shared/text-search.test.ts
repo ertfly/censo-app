@@ -1,6 +1,6 @@
-import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { matchesWordStart, normalizeText } from '@/shared/lib/text-search'
+import cases from '../../../../test/shared/text-search.cases.json'
 
 // Mesma tabela de casos do SearchTerm do backend (research R4 da 002).
 interface TextSearchCase {
@@ -8,12 +8,7 @@ interface TextSearchCase {
     matches: string[]
 }
 
-const CASES = JSON.parse(
-    readFileSync(
-        new URL('../../../../test/shared/text-search.cases.json', import.meta.url),
-        'utf8',
-    ),
-) as TextSearchCase[]
+const CASES: TextSearchCase[] = cases
 
 const NAMES = ['São Paulo', 'Paulo Afonso', 'Bom Jesus', "Pau D'Arco", 'Santo Antônio']
 
