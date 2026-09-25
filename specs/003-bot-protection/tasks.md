@@ -101,7 +101,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 - [X] T035 [US2] Registrar o plugin de rate limit em `backend/src/infra/http/server.ts` antes do plugin de sessão
 - [X] T036 [US2] Invocar a skill `frontend-design` e estender `frontend/src/widgets/app-header/ui/ProtectionNotice.vue` e `frontend/src/shared/api/http-client.ts` com o estado de bloqueio: aviso com contagem regressiva ([design.md](design.md#aviso-de-bloqueio)), campos desabilitados enquanto durar, sem repetição automática
 - [X] T037 [P] [US2] Criar `frontend/nginx/ai-bots.conf` com um `map $http_user_agent $is_ai_bot` para GPTBot, ChatGPT-User, OAI-SearchBot, ClaudeBot, Claude-User, Claude-SearchBot, anthropic-ai, CCBot, PerplexityBot, Perplexity-User, Bytespider, Amazonbot, meta-externalagent, cohere-ai e Diffbot, e incluí-lo em `frontend/nginx.conf` respondendo `403` quando `$is_ai_bot` for verdadeiro (research R5); copiar o arquivo no `frontend/Dockerfile`
-- [ ] T038 [P] [US2] Criar `frontend/public/robots.txt`: `User-agent: *` com `Disallow: /api/`; e, para cada robô de IA da T037 mais `Google-Extended` e `Applebot-Extended`, `Disallow: /`
+- [X] T038 [P] [US2] Criar `frontend/public/robots.txt`: `User-agent: *` com `Disallow: /api/`; e, para cada robô de IA da T037 mais `Google-Extended` e `Applebot-Extended`, `Disallow: /`
 
 **Checkpoint**: proteção completa.
 
