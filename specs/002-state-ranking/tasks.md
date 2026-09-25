@@ -35,7 +35,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 ### Tests
 
-- [ ] T002 [P] Teste unitário `backend/test/unit/application/list-states.handler.test.ts` com reader falso: repassa a lista
+- [X] T002 [P] Teste unitário `backend/test/unit/application/list-states.handler.test.ts` com reader falso: repassa a lista
 - [ ] T003 [P] Teste unitário `backend/test/unit/application/get-state-density-ranking.handler.test.ts` com reader falso: código fora do formato ou fora dos 27 → `InvalidStateCodeError`
 - [ ] T004 [P] Teste de integração `backend/test/integration/infra/kysely-states.reader.test.ts`: UFs com `code`, `abbreviation` e `name`, ordenadas pelo nome com a regra pt-BR
 - [ ] T005 [P] Teste de integração `backend/test/integration/infra/kysely-state-ranking.reader.test.ts`: invariantes de [data-model.md](data-model.md) ("soma de `items[].population` = `totals.population`"; "soma de `items[].areaKm2` + `areaOutsideMunicipalitiesKm2` = `totals.areaKm2`"; "`position` sem repetição nem lacuna"); densidade decrescente; empate exato ordenado pelo nome pt-BR; registro `.` fora de `items` e com área em `totals` e em `areaOutsideMunicipalitiesKm2`; DF com um item; `areaOutsideMunicipalitiesKm2 = 0` nas UFs sem o registro `.`
