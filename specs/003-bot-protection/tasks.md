@@ -65,7 +65,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Criar `backend/src/infra/http/protection/challenge-store.ts`: mapa em memória de assinaturas usadas com expiração igual à do desafio (5 minutos) e limite de tamanho (research R1)
+- [X] T018 [P] [US1] Criar `backend/src/infra/http/protection/challenge-store.ts`: mapa em memória de assinaturas usadas com expiração igual à do desafio (5 minutos) e limite de tamanho (research R1)
 - [ ] T019 [US1] Criar `backend/src/infra/http/protection/session.routes.ts`: `GET /api/challenge` com `createChallenge` do `altcha-lib` v2 (`PBKDF2/SHA-256`, `ALTCHA_HMAC_KEY`, `ALTCHA_COST`, contador sorteado até `ALTCHA_COUNTER_MAX`, validade de 5 minutos) e `POST /api/session` com `verifySolution`, recusa de reúso pelo `challenge-store`, registro de falhas com motivo (T009) e gravação do cookie `censo_session` assinado com `SESSION_SECRET` contendo expiração e identificador aleatório (research R2)
 - [ ] T020 [US1] Criar `backend/src/infra/http/protection/session.plugin.ts`: registra `@fastify/cookie` e um hook `onRequest` que exige sessão válida em todas as rotas `/api/*`, exceto `/api/challenge`, `/api/session` e `/api/health`; ausência, assinatura inválida ou expiração → `401 SESSION_REQUIRED`; validade de 30 minutos fixos, sem renovação pelo uso (FR-004)
 - [ ] T021 [US1] Registrar configuração, retenção de registros, plugin de sessão e rotas de sessão em `backend/src/main.ts` e `backend/src/infra/http/server.ts`
