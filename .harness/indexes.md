@@ -3,6 +3,16 @@
 > Ponto de partida para criar índices quando o desenvolvimento pedir.
 > Estrutura do banco: [database.md](database.md).
 
+## Pendência: índices iniciais
+
+Os índices iniciais serão tratados junto com as features do spec-kit:
+
+| Etapa | O que acontece |
+|---|---|
+| `/speckit-specify` | Nada de índice: a spec descreve só o quê e o porquê |
+| `/speckit-plan` | Cada `plan.md` lista as consultas da feature e define os índices, com base neste guia |
+| `/speckit-implement` | Os índices são criados via migration, com ADR contendo as medições |
+
 ## Situação atual
 
 - Nenhum índice secundário. Só as chaves primárias, que são clusterizadas
