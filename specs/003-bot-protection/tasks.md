@@ -75,7 +75,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 - [X] T025 [US1] Integrar `frontend/src/shared/api/http-client.ts` com `session.ts`: aguarda `ensureSession()` antes de consultar; em `401 SESSION_REQUIRED` refaz a verificação uma vez e repete a consulta, sem alterar o estado das páginas (FR-005)
 - [X] T026 [US1] Invocar a skill `frontend-design` e criar `frontend/src/widgets/app-header/ui/VerificationStatus.vue`: widget `altcha` com `auto="onload"`, `language="pt-br"` e web workers, ouvindo o evento de verificação concluída do widget para enviar o `payload` a `POST /api/session` via `session.ts`, apresentado como status discreto no menu fixo, com os estados de [design.md](design.md#menu-fixo-com-status); ligar ao `session.ts` e expor o estado para as páginas (campos desabilitados com `aria-disabled` e explicação durante a verificação, FR-006)
 - [X] T027 [US1] Criar o aviso de falha em `frontend/src/widgets/app-header/ui/ProtectionNotice.vue` ("A verificação automática não foi concluída." + "Tentar de novo"; navegador sem suporte com texto explicativo e sem botão; `role="alert"`) e renderizá-lo em `frontend/src/app/ui/AppLayout.vue` acima do conteúdo
-- [ ] T028 [P] [US1] Adicionar `<noscript>` em `frontend/index.html`: "Esta consulta precisa de JavaScript ativado no navegador." (FR-022)
+- [X] T028 [P] [US1] Adicionar `<noscript>` em `frontend/index.html`: "Esta consulta precisa de JavaScript ativado no navegador." (FR-022)
 
 **Checkpoint**: consultas só com sessão; verificação transparente para o visitante.
 
