@@ -1,10 +1,14 @@
 import type { Writable } from 'node:stream'
 import type { Kysely } from 'kysely'
 import { GetMunicipalityIndicatorsHandler } from '#application/queries/get-municipality-indicators/get-municipality-indicators.handler.js'
+import { GetStateDensityRankingHandler } from '#application/queries/get-state-density-ranking/get-state-density-ranking.handler.js'
+import { ListStatesHandler } from '#application/queries/list-states/list-states.handler.js'
 import { SearchMunicipalitiesHandler } from '#application/queries/search-municipalities/search-municipalities.handler.js'
 import type { ProtectionConfig } from '../config/protection-config.js'
 import type { Database } from '../database/database.types.js'
 import { KyselyMunicipalityIndicatorsReader } from '../database/readers/kysely-municipality-indicators.reader.js'
+import { KyselyStateRankingReader } from '../database/readers/kysely-state-ranking.reader.js'
+import { KyselyStatesReader } from '../database/readers/kysely-states.reader.js'
 import { InMemoryMunicipalitySearchReader } from '../database/readers/in-memory-municipality-search.reader.js'
 import { ProtectionEventLog } from '../logging/protection-event-log.js'
 import { registerErrorHandler } from './error-handler.js'
@@ -15,6 +19,7 @@ import { registerSessionGuard } from './protection/session.plugin.js'
 import { sessionRoutes } from './protection/session.routes.js'
 import { healthRoutes } from './routes/health.routes.js'
 import { municipalityRoutes } from './routes/municipality.routes.js'
+import { stateRoutes } from './routes/state.routes.js'
 import { createServer } from './server.js'
 
 export interface AppDependencies {
@@ -63,6 +68,14 @@ export async function buildApp(dependencies: AppDependencies) {
         searchMunicipalities: new SearchMunicipalitiesHandler(municipalitySearch),
         getMunicipalityIndicators: new GetMunicipalityIndicatorsHandler(
             new KyselyMunicipalityIndicatorsReader(dependencies.db),
+        ),
+    })
+
+    // Ranking por estado (feature 002).
+    await app.register(stateRoutes, {
+        listStates: new ListStatesHandler(new KyselyStatesReader(dependencies.db)),
+        getStateDensityRanking: new GetStateDensityRankingHandler(
+            new KyselyStateRankingReader(dependencies.db),
         ),
     })
 

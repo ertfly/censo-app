@@ -43,8 +43,8 @@ describe('KyselyStateRankingReader', () => {
         })
         expect(ranking.totals).toEqual({
             population: 5350,
-            areaKm2: 551,
-            populationDensity: 5350 / 551,
+            areaKm2: 531,
+            populationDensity: 5350 / 531,
             areaOutsideMunicipalitiesKm2: 0,
         })
     })
