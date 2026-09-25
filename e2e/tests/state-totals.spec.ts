@@ -70,7 +70,9 @@ test('shows the area outside the municipalities of Rio Grande do Sul (US2 scenar
             'Inclui 13.085,86 km² fora dos municípios, registrados sem município na base do Censo.',
         ),
     ).toBeVisible()
-    await expect(page.locator('[data-ranking] tbody tr th')).not.toContainText([''])
+    const names = await page.locator('[data-ranking] tbody tr th').allTextContents()
+    expect(names.length).toBeGreaterThan(0)
+    expect(names.filter((name) => name.trim() === '' || name.trim() === '.')).toEqual([])
 })
 
 for (const code of stateCodes()) {
