@@ -16,7 +16,36 @@
     /* Tipografia: uma família; a largura codifica o papel do texto. */
     --font-sans: 'Archivo Variable', system-ui, sans-serif;
 
-    --radius-field: 4px;
+    /* Forma: raio único de 4px e nenhuma sombra projetada. */
+    --radius-xs: 4px;
+    --radius-sm: 4px;
+    --radius-md: 4px;
+    --radius-lg: 4px;
+    --shadow-xs: none;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+
+    /* Variáveis esperadas pelos componentes shadcn-vue, mapeadas para a paleta. */
+    --color-background: var(--color-paper);
+    --color-foreground: var(--color-ink);
+    --color-card: var(--color-sheet);
+    --color-card-foreground: var(--color-ink);
+    --color-popover: var(--color-sheet);
+    --color-popover-foreground: var(--color-ink);
+    --color-primary: var(--color-marker);
+    --color-primary-foreground: var(--color-sheet);
+    --color-secondary: var(--color-sheet);
+    --color-secondary-foreground: var(--color-ink);
+    --color-muted: var(--color-paper);
+    --color-muted-foreground: var(--color-ink-muted);
+    --color-accent: #dfe8e3;
+    --color-accent-foreground: var(--color-ink);
+    /* Sem vermelho de alarme: erros informam o que fazer (design-system.md). */
+    --color-destructive: var(--color-ink);
+    --color-border: rgb(18 49 58 / 0.15);
+    --color-input: rgb(18 49 58 / 0.3);
+    --color-ring: var(--color-marker);
 }
 
 @layer base {

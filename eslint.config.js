@@ -186,5 +186,13 @@ export default defineConfigWithVueTs(
             ],
         },
     },
+    {
+        // Componentes copiados do shadcn-vue: mantêm os nomes e props do projeto de origem.
+        files: ['frontend/src/shared/ui/**/*.vue'],
+        rules: {
+            'vue/multi-word-component-names': 'off',
+            'vue/require-default-prop': 'off',
+        },
+    },
     prettier,
 )
