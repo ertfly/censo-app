@@ -57,7 +57,7 @@ docker compose -f compose.dev.yaml run --rm deps npm run lint
 docker compose -f compose.dev.yaml run --rm deps npm run format:check
 docker compose -f compose.dev.yaml run --rm deps npm run typecheck
 docker compose -f compose.dev.yaml run --rm deps npm test      # unitários e integração
-./e2e/scripts/run.sh                                            # E2E (Playwright) nas duas stacks
+./e2e/scripts/run.sh    # E2E: Playwright roda em container, nada a instalar no host (só bash e Docker)
 ```
 
 O E2E sobe a aplicação com as imagens de produção sobre uma cópia do banco
