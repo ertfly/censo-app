@@ -50,19 +50,14 @@ const description = computed(
 </script>
 
 <template>
+    <!-- Linha e marcas desenhadas no fundo: cada potência de dez ocupa 1/6 da
+         régua, e o ranking da 002 tem até 853 réguas. -->
     <div
         v-if="compact"
         aria-hidden="true"
-        class="relative h-4 w-full min-w-24"
+        class="compact-ruler relative h-4 w-full min-w-24"
         data-density-scale="compact"
     >
-        <span class="absolute inset-x-0 top-1/2 h-px bg-ink/30" />
-        <span
-            v-for="tick in DENSITY_TICKS"
-            :key="tick"
-            class="absolute top-1/2 h-1.5 w-px -translate-y-1/2 bg-ink/30"
-            :style="{ left: `${densityPosition(tick) * 100}%` }"
-        />
         <span
             v-if="referencePosition !== null"
             data-density-reference
@@ -119,3 +114,22 @@ const description = computed(
         </div>
     </figure>
 </template>
+
+<style scoped>
+.compact-ruler {
+    background-image:
+        linear-gradient(rgb(18 49 58 / 0.3), rgb(18 49 58 / 0.3)),
+        repeating-linear-gradient(
+            to right,
+            rgb(18 49 58 / 0.3) 0 1px,
+            transparent 1px calc(100% / 6)
+        );
+    background-repeat: no-repeat;
+    background-size:
+        100% 1px,
+        100% 6px;
+    background-position:
+        0 50%,
+        0 50%;
+}
+</style>
