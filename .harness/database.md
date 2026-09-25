@@ -13,7 +13,7 @@
 | Page size | 4096 bytes (8.593 páginas, 0 livres) |
 | `journal_mode` | `delete` (padrão) |
 | `auto_vacuum` | 0 (desligado) |
-| `user_version` | 0 (sem controle de versão de schema) |
+| `user_version` | 0 (não usado; ver [ADR 0015](decisions/0015-migrations.md)) |
 | `integrity_check` | ok |
 | `foreign_key_check` | 0 violações |
 | Índices secundários | nenhum |
@@ -125,17 +125,30 @@ Totais: 203.080.756 pessoas somando `setor.populacao`.
 | 8 | `moradores = homens + mulheres` | 0 divergências | Consistente |
 | 9 | Prefixo de setor diferente do município | 2 | Apenas os setores do achado 1 |
 
+## Controle de migrations
+
+Definido no [ADR 0015](decisions/0015-migrations.md). Ao aplicar a primeira
+migration, o `Migrator` do Kysely cria duas tabelas de controle em
+`censo.sqlite`:
+
+| Tabela | Conteúdo |
+|---|---|
+| `kysely_migration` | Nome e data de cada migration aplicada |
+| `kysely_migration_lock` | Trava contra execução simultânea |
+
+As tabelas de controle não fazem parte do domínio e não são expostas pela API.
+
 ## Melhorias identificadas
 
-Nenhuma foi aplicada. Cada uma, se adotada, vira um ADR e é aplicada via
-migration.
+Cada melhoria, se adotada, é aplicada via migration
+([ADR 0015](decisions/0015-migrations.md)).
 
-| Melhoria | Motivo |
-|---|---|
-| `PRAGMA foreign_keys = ON` em toda conexão | O SQLite não valida FKs por padrão; com escrita pela aplicação, dados órfãos passariam |
-| `PRAGMA journal_mode = WAL` | Permite leituras simultâneas a uma escrita; recomendado para aplicação com leitura e escrita |
-| Usar `user_version` para versionar o schema | Hoje é 0; base para migrations |
-| `CHECK (situacao IN ('Urbana','Rural'))` | Restringe valores; exige recriar a tabela no SQLite |
-| Tratar o município `.` (achado 1) | Definir se é mantido, renomeado ou marcado como área especial |
-| Rodar `ANALYZE` após criar índices | Dá estatísticas ao otimizador de consultas |
-| Decidir sobre a redundância `populacao`/`moradores` | Com escrita, os dois valores podem divergir |
+| Melhoria | Motivo | Situação |
+|---|---|---|
+| `PRAGMA foreign_keys = ON` em toda conexão | O SQLite não valida FKs por padrão | Adotada no [ADR 0006](decisions/0006-acesso-a-dados.md) |
+| `PRAGMA journal_mode = WAL` | Leituras simultâneas a uma escrita | Não se aplica na v1 somente leitura ([ADR 0007](decisions/0007-primeira-versao-somente-leitura.md)) |
+| Usar `user_version` para versionar o schema | Hoje é 0 | Substituída pelas tabelas de controle do Kysely ([ADR 0015](decisions/0015-migrations.md)) |
+| `CHECK (situacao IN ('Urbana','Rural'))` | Restringe valores; exige recriar a tabela no SQLite | Pendente; relevante só com escrita |
+| Tratar o município `.` (achado 1) | Definir se é mantido, renomeado ou marcado como área especial | Pendente |
+| Rodar `ANALYZE` após criar índices | Dá estatísticas ao otimizador de consultas | Pendente; junto com os índices ([indexes.md](indexes.md)) |
+| Decidir sobre a redundância `populacao`/`moradores` | Com escrita, os dois valores podem divergir | Pendente; relevante só com escrita |
