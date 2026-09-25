@@ -7,15 +7,16 @@ Cada decisão técnica relevante é registrada em um arquivo
 
 | # | Título | Status |
 |---|---|---|
-| [0001](0001-banco-de-dados-sqlite.md) | Banco de dados SQLite em data/ versionado com Git LFS | Aceito |
-| [0002](0002-runtime-e-backend.md) | Runtime Node.js LTS com TypeScript e backend em Fastify | Aceito |
+| [0001](0001-banco-de-dados-sqlite.md) | Banco de dados SQLite em data/ versionado com Git LFS | Aceito (revisto pelo 0007) |
+| [0002](0002-runtime-e-backend.md) | Runtime Node.js LTS com TypeScript e backend em Fastify | Aceito (revisto pelo 0010) |
 | [0003](0003-frontend-vue.md) | Frontend em Vue 3 com Composition API e Vite | Aceito |
 | [0004](0004-ui-tailwind-shadcn-vue.md) | UI com Tailwind CSS, shadcn-vue e Reka UI | Aceito |
-| [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito |
+| [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito (revisto pelo 0007) |
 | [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito |
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
+| [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
 
 ## Modelo
 

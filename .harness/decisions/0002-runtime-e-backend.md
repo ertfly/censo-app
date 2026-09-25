@@ -1,6 +1,6 @@
 # 0002. Runtime Node.js LTS com TypeScript e backend em Fastify
 
-- Status: Aceito
+- Status: Aceito (versão do TypeScript revista pelo [ADR 0010](0010-typescript-6.md))
 - Data: 2026-09-25
 
 ## Contexto

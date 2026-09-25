@@ -5,7 +5,7 @@
 | Camada | Tecnologia | Versão | ADR |
 |---|---|---|---|
 | Runtime | Node.js LTS "Krypton" | 24.21.0 | [0002](decisions/0002-runtime-e-backend.md) |
-| Linguagem | TypeScript | 7.0.2 | [0002](decisions/0002-runtime-e-backend.md) |
+| Linguagem | TypeScript | 6.0.3 | [0010](decisions/0010-typescript-6.md) |
 | Backend | Fastify | 5.12.5 | [0002](decisions/0002-runtime-e-backend.md) |
 | Frontend | Vue 3 (Composition API) | 3.5.43 | [0003](decisions/0003-frontend-vue.md) |
 | Build | Vite | 8.3.1 | [0003](decisions/0003-frontend-vue.md) |
