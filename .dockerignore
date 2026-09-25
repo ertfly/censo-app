@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+.git
+*.sqlite
+.harness
+specs
+docs
+.specify
+.claude
+.env
+coverage
+e2e/*
+!e2e/package.json
