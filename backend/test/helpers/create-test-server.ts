@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { loadProtectionConfig, type ProtectionConfig } from '#infra/config/protection-config.js'
 import { type App, buildApp } from '#infra/http/build-app.js'
+import { systemClock } from '#infra/http/protection/clock.js'
 import { createTestDatabase } from './create-test-database.js'
 
 // Relógio controlado pelo teste, para simular expiração e bloqueio. Parte da hora
@@ -31,6 +32,9 @@ export interface TestServerOptions {
     env?: Record<string, string>
     // Rota protegida só para testes, antes de existirem as rotas das features.
     withProtectedRoute?: boolean
+    // Usa Date.now (para testes com vi.useFakeTimers, junto com o @fastify/rate-limit).
+    useSystemClock?: boolean
+    trustedProxyCidr?: string
 }
 
 // Servidor completo (mesma montagem do main.ts) sobre o banco de teste, com
@@ -49,7 +53,12 @@ export async function createTestServer(options: TestServerOptions = {}): Promise
     })
     const clock = new TestClock()
     const db = await createTestDatabase()
-    const app = await buildApp({ db, protection: config, trustedProxyCidr: '127.0.0.1', clock })
+    const app = await buildApp({
+        db,
+        protection: config,
+        trustedProxyCidr: options.trustedProxyCidr ?? '127.0.0.1',
+        clock: options.useSystemClock ? systemClock : clock,
+    })
     if (options.withProtectedRoute) {
         app.get('/api/test-protected', () => ({ ok: true }))
     }
