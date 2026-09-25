@@ -166,6 +166,11 @@ describe('MunicipalityCombobox', () => {
         const chosen = wrapper!.emitted('select')?.[0]?.[0] as { stateAbbreviation: string }
         expect(chosen.stateAbbreviation).toBe('PB')
         expect(wrapper!.get('input').element.value).toBe('Bom Jesus/PB')
+        vi.advanceTimersByTime(250)
+        await settle()
+        // O rótulo escolhido não vira nova busca.
+        expect(fetch).toHaveBeenCalledTimes(1)
+        expect(options()).toHaveLength(0)
     })
 
     it('closes the list with Esc', async () => {

@@ -22,9 +22,13 @@ const emit = defineEmits<{ select: [municipality: MunicipalitySuggestion] }>()
 const inputId = useId()
 const explanationId = useId()
 
-const { term, status, items, retry } = useMunicipalitySuggestions(text)
-
 const selected = ref<MunicipalitySuggestion | null>(null)
+
+// O rótulo do município escolhido ("São Paulo/SP") não é um termo de busca.
+const searchText = computed(() =>
+    selected.value && text.value === label(selected.value) ? '' : text.value,
+)
+const { term, status, items, retry } = useMunicipalitySuggestions(searchText)
 const open = ref(false)
 const highlighted = ref<MunicipalitySuggestion | null>(null)
 
@@ -79,6 +83,13 @@ function onEnter(event: KeyboardEvent): void {
 function onRetry(): void {
     retry()
 }
+
+// Coloca o cursor no campo (exemplos do estado vazio).
+function focus(): void {
+    document.getElementById(inputId)?.focus()
+}
+
+defineExpose({ focus })
 </script>
 
 <template>
