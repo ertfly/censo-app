@@ -7,10 +7,10 @@
 | Contexto | Idioma |
 |---|---|
 | Código: classes, interfaces, tipos, funções, variáveis, arquivos, pastas | Inglês |
-| Rotas da API e campos do JSON | Inglês |
+| Todas as rotas (API e URLs das páginas do frontend) e campos do JSON | Inglês |
 | Tabelas e colunas do banco | Português, como entregue (ver [database.md](database.md)) |
 | Documentação (`.harness/`, specs), ADRs e mensagens de commit | Português |
-| Tudo que é visual para o usuário: textos da interface, mensagens, rótulos | Português (pt-BR) por padrão |
+| Tudo que é visual para o usuário (textos da interface, mensagens, rótulos), exceto URLs | Português (pt-BR) por padrão |
 
 ### Textos para o usuário
 
@@ -67,6 +67,7 @@ código.
 | Arquivos e pastas | kebab-case, com sufixo do papel | `municipality-code.vo.ts`, `list-municipalities.handler.ts` |
 | Componentes Vue | PascalCase | `MunicipalityList.vue` |
 | Rotas da API | kebab-case, substantivos no plural, prefixo `/api` | `/api/states/:stateCode/municipalities` |
+| URLs das páginas | kebab-case, substantivos no plural, sem prefixo | `/states/:stateCode/municipalities` |
 | Campos do JSON | camelCase | `{ "censusTractCode": "..." }` |
 
 Interfaces não usam prefixo `I` (`MunicipalityReader`, não
