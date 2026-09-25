@@ -14,11 +14,11 @@ class StaticMigrationProvider implements MigrationProvider {
     }
 }
 
-function createMigrator(db: Kysely<unknown>): Migrator {
+function createMigrator<DB>(db: Kysely<DB>): Migrator {
     return new Migrator({ db, provider: new StaticMigrationProvider() })
 }
 
-export async function migrateToLatest(db: Kysely<unknown>): Promise<string[]> {
+export async function migrateToLatest<DB>(db: Kysely<DB>): Promise<string[]> {
     const { error, results } = await createMigrator(db).migrateToLatest()
     if (error) {
         throw error instanceof Error ? error : new Error(String(error))
@@ -26,7 +26,7 @@ export async function migrateToLatest(db: Kysely<unknown>): Promise<string[]> {
     return (results ?? []).map((result) => result.migrationName)
 }
 
-export async function migrateDown(db: Kysely<unknown>): Promise<string[]> {
+export async function migrateDown<DB>(db: Kysely<DB>): Promise<string[]> {
     const { error, results } = await createMigrator(db).migrateDown()
     if (error) {
         throw error instanceof Error ? error : new Error(String(error))
@@ -34,7 +34,7 @@ export async function migrateDown(db: Kysely<unknown>): Promise<string[]> {
     return (results ?? []).map((result) => result.migrationName)
 }
 
-export async function listPendingMigrations(db: Kysely<unknown>): Promise<string[]> {
+export async function listPendingMigrations<DB>(db: Kysely<DB>): Promise<string[]> {
     const migrations = await createMigrator(db).getMigrations()
     return migrations
         .filter((migration) => migration.executedAt === undefined)
