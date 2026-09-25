@@ -153,7 +153,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 
 ### Tests for User Story 2
 
-- [ ] T064 [P] [US2] Teste unitário `backend/test/unit/application/get-municipality-indicators.handler.test.ts` com reader falso: `MunicipalityCode` inválido → `InvalidMunicipalityCodeError`; reader retorna `null` → `MunicipalityNotFoundError`
+- [X] T064 [P] [US2] Teste unitário `backend/test/unit/application/get-municipality-indicators.handler.test.ts` com reader falso: `MunicipalityCode` inválido → `InvalidMunicipalityCodeError`; reader retorna `null` → `MunicipalityNotFoundError`
 - [ ] T065 [P] [US2] Teste de integração `backend/test/integration/infra/kysely-municipality-indicators.reader.test.ts` contra o banco de teste: invariantes de [data-model.md](data-model.md) (`men + women + unknown = population`, `unknown ≥ 0`, somas de `areaTypeBreakdown` iguais aos totais); `urban` e `rural` sempre presentes; `unclassified` só com setores sem classificação; registro `.` retorna `null`
 - [ ] T066 [P] [US2] Teste de integração `backend/test/integration/http/municipality-indicators.test.ts`: `200` no formato do contrato; `400 INVALID_MUNICIPALITY_CODE` (`abc`, `123`, código com UF inexistente); `404 MUNICIPALITY_NOT_FOUND` (código válido inexistente); `401` sem sessão
 - [ ] T067 [P] [US2] Teste unitário `frontend/test/unit/pages/municipality-search/municipality-record.test.ts`: percentuais de urbano/rural e sexo somam 100,0; "Sem classificação" e "Sem informação" só quando > 0; nota de "Sem informação"; texto equivalente das barras para leitor de tela
