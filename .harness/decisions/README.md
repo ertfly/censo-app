@@ -12,6 +12,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0003](0003-frontend-vue.md) | Frontend em Vue 3 com Composition API e Vite | Aceito |
 | [0004](0004-ui-tailwind-shadcn-vue.md) | UI com Tailwind CSS, shadcn-vue e Reka UI | Aceito |
 | [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito |
+| [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito |
 
 ## Modelo
 

@@ -14,7 +14,8 @@
 | Estilo | Tailwind CSS | 4.3.3 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Componentes | shadcn-vue + Reka UI | 2.8.2 / 2.10.5 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Banco de dados | SQLite (`data/censo.sqlite`) | 3 | [0001](decisions/0001-banco-de-dados-sqlite.md) |
-| Acesso a dados | _a definir_ | | |
+| Driver SQLite | better-sqlite3 | 13.0.3 | [0006](decisions/0006-acesso-a-dados.md) |
+| Acesso a dados e migrations | Kysely | 0.29.6 | [0006](decisions/0006-acesso-a-dados.md) |
 | Infraestrutura | Docker Compose (`compose.yaml` prod, `compose.dev.yaml` dev) | Compose v2 | [0005](decisions/0005-docker-compose.md) |
 | Imagem Node | `node:24.21.0-slim` | 24.21.0 | [0005](decisions/0005-docker-compose.md) |
 | Servidor web | `nginx:1.30.5-alpine` | 1.30.5 | [0005](decisions/0005-docker-compose.md) |
