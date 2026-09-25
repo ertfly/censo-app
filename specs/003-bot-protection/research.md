@@ -26,6 +26,16 @@ nos pacotes `altcha-lib` 2.5.0 e `altcha` 3.2.3 em 2026-09-25.
   sorteado (limitado por `ALTCHA_COUNTER_MAX`). Os padrões são calibrados na
   implementação (T041) para que a verificação termine em ~1 s num celular
   intermediário, cumprindo o SC-001 (até 3 s em 95% dos casos).
+- **Calibragem (T041, 2026-09-25, Ryzen 5 6600H, Chromium do Playwright)**:
+  verificação completa, da abertura da página à sessão aberta, com mediana de
+  ~590 ms de custo fixo (página e widget, medido com dificuldade mínima). Com
+  `ALTCHA_COST=5000`: `COUNTER_MAX=200` somou ~0 ms (cálculo irrelevante, sem
+  custo para robôs); `COUNTER_MAX=2000` levou a mediana a 1,06 s. Cálculo puro
+  no Node, em uma thread (custo de um robô por sessão): 0,1–0,2 s com 200;
+  0,9–1,7 s com 2000. Escolhido **`ALTCHA_COST=5000` e `ALTCHA_COUNTER_MAX=1000`**:
+  cerca de 0,8 s de cálculo estimado num celular intermediário (3,5× mais
+  lento), com folga para o SC-001. A estimativa de celular não foi medida em
+  aparelho real; os valores são configuráveis.
 
 **Motivo**: API confirmada no pacote; sem serviço externo.
 

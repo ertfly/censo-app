@@ -111,7 +111,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 
 - [X] T039 [P] Criar `e2e/scripts/check-protection-report.sh`, executado no host após a stack de proteção: roda `docker compose exec backend npm run protection:report` e confere que o bloqueio e a falha de verificação provocados pelos testes aparecem, sem endereço de rede (quickstart cenário 12)
 - [X] T040 [P] Criar `e2e/scripts/check-no-ip-in-logs.sh`, executado no host após as duas stacks: busca padrões de IPv4 e IPv6 em `docker compose logs backend frontend` e falha se encontrar algum (quickstart cenário 13, FR-019); incluir no `e2e/scripts/run.sh`
-- [ ] T041 Calibrar `ALTCHA_COST` e `ALTCHA_COUNTER_MAX` para a verificação terminar em cerca de 1 s num celular intermediário e em até 3 s em 95% das aberturas (SC-001); registrar o valor em `.env.example` e em `research.md`
+- [X] T041 Calibrar `ALTCHA_COST` e `ALTCHA_COUNTER_MAX` para a verificação terminar em cerca de 1 s num celular intermediário e em até 3 s em 95% das aberturas (SC-001); registrar o valor em `.env.example` e em `research.md`
 - [ ] T042 Rodar lint, formatação, todos os testes e o quickstart manual ([quickstart.md](quickstart.md)); registrar desvios em `.harness/` se houver
 
 ---

@@ -18,7 +18,7 @@ describe('loadProtectionConfig', () => {
             rateLimitWindowSeconds: 60,
             rateLimitBanSeconds: 60,
             altchaCost: 5000,
-            altchaCounterMax: 200,
+            altchaCounterMax: 1000,
             protectionLogRetentionDays: 7,
             protectionLogDir: '/var/lib/censo/protection-log',
         })

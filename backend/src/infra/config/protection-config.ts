@@ -64,7 +64,7 @@ export function loadProtectionConfig(env: Env): ProtectionConfig {
         rateLimitWindowSeconds: readPositiveInteger(env, 'RATE_LIMIT_WINDOW_SECONDS', 60),
         rateLimitBanSeconds: readPositiveInteger(env, 'RATE_LIMIT_BAN_SECONDS', 60),
         altchaCost: readPositiveInteger(env, 'ALTCHA_COST', 5000),
-        altchaCounterMax: readPositiveInteger(env, 'ALTCHA_COUNTER_MAX', 200),
+        altchaCounterMax: readPositiveInteger(env, 'ALTCHA_COUNTER_MAX', 1000),
         protectionLogRetentionDays: readPositiveInteger(env, 'PROTECTION_LOG_RETENTION_DAYS', 7),
         protectionLogDir: env['PROTECTION_LOG_DIR'] ?? '/var/lib/censo/protection-log',
     }
