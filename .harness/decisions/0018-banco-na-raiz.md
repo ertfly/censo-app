@@ -1,6 +1,6 @@
 # 0018. Banco de dados na raiz do repositório
 
-- Status: Aceito
+- Status: Aceito (versionamento revisto pelo [ADR 0025](0025-banco-fora-do-git-lfs.md))
 - Data: 2026-09-25
 - Substitui: a localização definida no [ADR 0001](0001-banco-de-dados-sqlite.md)
 - Revisa: [ADR 0005](0005-docker-compose.md) e
