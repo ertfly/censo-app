@@ -93,7 +93,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução): um co
 - [X] T030 [P] [US2] Teste de integração `backend/test/integration/http/trusted-proxy.test.ts`: com `X-Forwarded-For` vindo de endereço dentro de `TRUSTED_PROXY_CIDR`, a chave do acesso usa o valor do cabeçalho; vindo de fora, o cabeçalho é ignorado
 - [X] T031 [P] [US2] Teste unitário `frontend/test/unit/shared/rate-limit-notice.test.ts`: `429` mostra "Você fez muitas consultas em pouco tempo. Aguarde {n} segundos para consultar de novo." com contagem regressiva a partir de `retryAfterSeconds`; campos desabilitados durante o bloqueio; ao terminar, o aviso some e a consulta recusada não é repetida sozinha (FR-021); anúncio a leitores de tela só no início e no fim
 - [X] T032 [P] [US2] Teste E2E `e2e/tests/protection/rate-limit.spec.ts` na stack `compose.e2e-protection.yaml`: quickstart cenários 7 e 8 por requisição direta com sessão (`e2e/helpers/api-session.ts`) e aviso de bloqueio no navegador
-- [ ] T033 [P] [US2] Teste E2E `e2e/tests/ai-bots.spec.ts`: User-Agents `GPTBot` e `ClaudeBot` recebem `403` em `/` e em `/api/health`; `/robots.txt` contém `Disallow: /api/` para todos e `Disallow: /` para os robôs de IA (quickstart cenários 10 e 11)
+- [X] T033 [P] [US2] Teste E2E `e2e/tests/ai-bots.spec.ts`: User-Agents `GPTBot` e `ClaudeBot` recebem `403` em `/` e em `/api/health`; `/robots.txt` contém `Disallow: /api/` para todos e `Disallow: /` para os robôs de IA (quickstart cenários 10 e 11)
 
 ### Implementation for User Story 2
 
