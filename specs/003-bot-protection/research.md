@@ -139,9 +139,9 @@ de uma única verificação evita várias sessões em paralelo.
 
 | Variável | Padrão | Regra |
 |---|---|---|
-| `ALTCHA_HMAC_KEY` | — | obrigatória, ≥ 32 caracteres |
-| `SESSION_SECRET` | — | obrigatória, ≥ 32 caracteres |
-| `PROTECTION_LOG_KEY` | — | obrigatória, ≥ 32 caracteres (ADR 0019) |
+| `ALTCHA_HMAC_KEY` | gerado na primeira subida | ≥ 32 caracteres |
+| `SESSION_SECRET` | gerado na primeira subida | ≥ 32 caracteres |
+| `PROTECTION_LOG_KEY` | gerado na primeira subida | ≥ 32 caracteres (ADR 0019) |
 | `SESSION_TTL_SECONDS` | 1800 | FR-004 |
 | `RATE_LIMIT_MAX` | 120 | FR-008 |
 | `RATE_LIMIT_WINDOW_SECONDS` | 60 | FR-008 |
@@ -150,9 +150,11 @@ de uma única verificação evita várias sessões em paralelo.
 | `ALTCHA_COUNTER_MAX` | calibrado (T041) | R1 |
 | `PROTECTION_LOG_RETENTION_DAYS` | 7 | FR-017 |
 
-Os três segredos devem ser diferentes entre si. O backend não sobe se algum
-faltar, for curto ou repetido. `.env.example` traz os nomes, sem valores
-reais.
+Os três segredos devem ser diferentes entre si. Sem a variável, o backend
+usa o valor guardado no volume `secrets` ou gera um novo na primeira subida
+([ADR 0024](../../.harness/decisions/0024-segredos-gerados-na-primeira-subida.md));
+um valor curto ou repetido vindo da variável impede a subida. `.env.example`
+traz os nomes, sem valores reais.
 
 ## R8. Testes sem desligar a proteção
 
