@@ -19,6 +19,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
 | [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito |
 | [0012](0012-comunicacao-entre-consultas-e-contextos.md) | Comunicação entre consultas e entre contextos | Aceito |
+| [0013](0013-organizacao-do-repositorio.md) | Monorepo com npm workspaces e pacote de contratos | Aceito |
 
 ## Modelo
 

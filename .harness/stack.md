@@ -14,6 +14,8 @@
 | Estilo | Tailwind CSS | 4.3.3 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Componentes | shadcn-vue + Reka UI | 2.8.2 / 2.10.5 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Banco de dados | SQLite (`data/censo.sqlite`) | 3 | [0001](decisions/0001-banco-de-dados-sqlite.md) |
+| Repositório | Monorepo com npm workspaces | npm do Node 24.21.0 | [0013](decisions/0013-organizacao-do-repositorio.md) |
+| Contratos da API | `@censo/contracts` (schemas TypeBox) | — | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Validação e DTOs | TypeBox + `@fastify/type-provider-typebox` | 1.3.34 / 6.1.0 | [0008](decisions/0008-arquitetura-backend.md) |
 | Driver SQLite | better-sqlite3 | 13.0.3 | [0006](decisions/0006-acesso-a-dados.md) |
 | Acesso a dados e migrations | Kysely | 0.29.6 | [0006](decisions/0006-acesso-a-dados.md) |
