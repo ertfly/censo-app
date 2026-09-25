@@ -61,8 +61,9 @@ reinício, sem ganho).
 
 **Decisão**:
 
-- `@fastify/rate-limit` conta as requisições por acesso: 120 por janela de
-  60 s (`RATE_LIMIT_MAX`, `RATE_LIMIT_WINDOW_SECONDS`).
+- Contagem num hook global próprio (ADR 0022, que substituiu o
+  `@fastify/rate-limit`): 120 por janela de 60 s (`RATE_LIMIT_MAX`,
+  `RATE_LIMIT_WINDOW_SECONDS`), antes da exigência de sessão.
 - Ao ultrapassar, o acesso entra num mapa de bloqueio em memória por 60 s a
   partir daquele momento (`RATE_LIMIT_BAN_SECONDS`), verificado antes de
   qualquer rota `/api/*` (inclusive `/api/challenge` e `/api/session`).
