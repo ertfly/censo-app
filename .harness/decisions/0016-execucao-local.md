@@ -1,6 +1,6 @@
 # 0016. Execução local na primeira versão
 
-- Status: Aceito
+- Status: Aceito (ambiente de acesso revisto pelo [ADR 0023](0023-v1-somente-localhost.md))
 - Data: 2026-09-25
 - Complementa: [ADR 0005](0005-docker-compose.md)
 

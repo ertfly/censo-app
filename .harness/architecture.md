@@ -1,6 +1,6 @@
 # Arquitetura
 
-> Visão consolidada das decisões [0001 a 0020](decisions/README.md).
+> Visão consolidada das decisões [0001 a 0023](decisions/README.md).
 > Em caso de divergência, vale o ADR.
 
 ## Visão geral
@@ -14,7 +14,7 @@ recebido pronto.
 | Tipo | Aplicação web acessada pelo navegador | [0003](decisions/0003-frontend-vue.md) |
 | Modo de dados | Somente leitura na v1; escrita em aberto | [0007](decisions/0007-primeira-versao-somente-leitura.md) |
 | Execução | Docker Compose, um comando, máquina só com Docker | [0005](decisions/0005-docker-compose.md) |
-| Ambiente | Local na v1 (máquina ou rede interna); internet exige novo ADR | [0016](decisions/0016-execucao-local.md) |
+| Ambiente | Local na v1, acesso só por `http://localhost` (a verificação contra bots exige contexto seguro); rede interna e internet exigem HTTPS, em novo ADR | [0016](decisions/0016-execucao-local.md), [0023](decisions/0023-v1-somente-localhost.md) |
 | Proteção | Rate limit por IP + desafio ALTCHA local + cookie de sessão; sem terceiros | [0017](decisions/0017-protecao-contra-bots.md) |
 | Acesso | Sem acesso externo ao banco; só o nginx publica porta | [0001](decisions/0001-banco-de-dados-sqlite.md), [0005](decisions/0005-docker-compose.md) |
 | Idioma | Código e rotas em inglês; interface em pt-BR; banco em português | [conventions.md](conventions.md) |
@@ -204,4 +204,3 @@ Nenhum teste usa `censo.sqlite`.
 | Retorno ao TypeScript 7 | Quando o typescript-eslint estável suportar |
 | Exposição na internet (servidor, domínio, HTTPS) | Novo ADR ([0016](decisions/0016-execucao-local.md)) |
 | Valores do rate limit, da sessão e do desafio | `plan.md` da feature de proteção contra bots |
-| **Acesso pela rede interna exige HTTPS**: a verificação contra bots usa a Web Crypto, que o navegador só libera em contexto seguro (HTTPS ou `localhost`). Por `http://<IP da máquina>` a verificação não funciona. Contraria a premissa do [ADR 0016](decisions/0016-execucao-local.md) ("rede interna, sem HTTPS") | Decisão do responsável (encontrado na T017 da 003) |
