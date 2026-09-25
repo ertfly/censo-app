@@ -86,7 +86,7 @@ fica em `@censo/contracts`, que só contém schemas (ADR 0013).
   estado sem UF escolhida com aviso (FR-018).
 - O filtro não entra na URL (é transitório e é limpo ao trocar de UF,
   FR-022).
-- Mesma regra de `push`/`replace` da 001.
+- Toda escolha de UF usa `router.replace`, como na 001 (FR-028).
 
 ## R6. Tabela com 853 linhas
 

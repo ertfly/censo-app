@@ -8,7 +8,7 @@ description: "Tarefas da feature 002 (Ranking por estado)"
 
 **Prerequisites**: fundação (fases 1 e 2 da [001](../001-municipality-search/tasks.md)), feature [003](../003-bot-protection/tasks.md) e feature 001 concluídas.
 
-**Tests**: obrigatórios por camada (Princípio V). Testes de rota e E2E obtêm sessão com os helpers da 003 (`backend/test/helpers/create-session.ts`, `e2e/helpers/api-session.ts`).
+**Tests**: obrigatórios por camada (Princípio V). Os E2E rodam na stack `compose.e2e.yaml` ([ADR 0020](../../.harness/decisions/0020-stacks-de-e2e.md)). Testes de rota e E2E obtêm sessão com os helpers da 003 (`backend/test/helpers/create-session.ts`, `e2e/helpers/api-session.ts`).
 
 **Reuso**: `StateCode`, `DensityScale`, `format.ts`, `document-title.ts`, `app-header`, `http-client`, `create-test-database.ts` e o fixture de dados de teste.
 
@@ -64,19 +64,19 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 - [ ] T013 [P] [US1] Teste unitário `frontend/test/unit/shared/text-search.test.ts` com os casos de `test/shared/text-search.cases.json` (mesma tabela usada pelo `SearchTerm` do backend)
 - [ ] T014 [P] [US1] Teste unitário `frontend/test/unit/pages/state-ranking/ranking-filter.test.ts`: filtra a partir do primeiro caractere; linhas mantêm a posição do ranking completo; contagem "853 municípios" e "3 de 853 municípios"; filtro limpo ao trocar de UF
-- [ ] T015 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/ranking-table.test.ts`: colunas Posição, Município, População, Área (km²), Densidade (hab/km²) e Escala; números no formato pt-BR; linha de referência da densidade da UF na escala; `<th scope="col">`; mensagem "Nenhum município de Minas Gerais corresponde a "xyz"."
-- [ ] T016 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/state-select.test.ts`: 27 opções no formato "Nome/SIGLA" na ordem recebida; seleção por teclado com busca por digitação
+- [ ] T015 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/ranking-table.test.ts`: colunas Posição, Município, População, Área (km²), Densidade (hab/km²) e Escala; números no formato pt-BR; linha de referência da densidade da UF na escala; `<th scope="col">`; linhas sem ação de clique nem link (FR-010); mensagem "Nenhum município de Minas Gerais corresponde a "xyz"."
+- [ ] T016 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/state-select.test.ts`: 27 opções no formato "Nome/SIGLA" na ordem recebida; seleção por teclado com busca por digitação; seleção desabilitada com explicação durante a verificação e o bloqueio (FR-026)
 - [ ] T017 [P] [US1] Teste E2E `e2e/tests/state-ranking.spec.ts`: quickstart cenários 1, 2, 3, 4, 6, 7, 8, 9 e 10; cenário 11 da US1 da spec ("Águas Vermelhas" antes de "Luminárias" em MG)
 
 ### Implementation for User Story 1
 
 - [ ] T018 [P] [US1] Criar `frontend/src/shared/lib/text-search.ts`: normaliza (NFD sem diacríticos, minúsculas, espaços colapsados) e encontra o termo no início de qualquer palavra, com espaço, hífen e apóstrofo como separadores (research R4)
 - [ ] T019 [P] [US1] Criar `frontend/src/pages/state-ranking/api/states.ts` (`useStates()`) e `density-ranking.ts` (`useStateDensityRanking(code)`), com os tipos de `@censo/contracts`
-- [ ] T020 [US1] Criar `frontend/src/pages/state-ranking/model/use-selected-state.ts`: código na URL `/states/:stateCode`; primeira escolha com `router.push`, trocas com `router.replace` (FR-028); endereço inválido tratado pela resposta `INVALID_STATE_CODE`
+- [ ] T020 [US1] Criar `frontend/src/pages/state-ranking/model/use-selected-state.ts`: código na URL `/states/:stateCode`; toda escolha usa `router.replace`, como na 001 (FR-028); endereço inválido tratado pela resposta `INVALID_STATE_CODE`
 - [ ] T021 [US1] Criar `frontend/src/pages/state-ranking/model/use-ranking-filter.ts` (usa `text-search`, preserva posição, contagem, limpa ao trocar de UF)
 - [ ] T022 [US1] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/StateSelect.vue` com o Select do shadcn-vue (rótulo "Unidade federativa", opções "Nome/SIGLA")
-- [ ] T023 [US1] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/RankingTable.vue`: tabela semântica com cabeçalho fixo ao rolar, largura condensada e algarismos tabulares, coluna Escala com `DensityScale` compacta e marca de referência da UF (decorativa para leitores de tela), layout de celular em duas linhas por item ([design.md](design.md#estrutura-celular--640px)), filtro "Filtrar municípios" com contagem anunciada a leitores de tela
-- [ ] T024 [US1] Criar `frontend/src/pages/state-ranking/ui/StateRankingPage.vue` e `index.ts`: orientação antes da escolha (FR-024), carregamento com rótulos e 10 linhas cinza estáticas (FR-025), erro com "Tentar de novo" sem perder UF e filtro (FR-014), volta ao início ao trocar de UF (FR-022), título da aba "Nome/SIGLA - Censo 2022" (FR-028), foco programático no título; substituir o placeholder de `/states` em `frontend/src/app/router.ts`
+- [ ] T023 [US1] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/RankingTable.vue`: tabela semântica com cabeçalho fixo ao rolar, largura condensada e algarismos tabulares, coluna Escala com a variante `compact` de `DensityScale` e marca de referência da UF (decorativa para leitores de tela), layout de celular em duas linhas por item ([design.md](design.md#estrutura-celular--640px)), filtro "Filtrar municípios" com contagem anunciada a leitores de tela
+- [ ] T024 [US1] Criar `frontend/src/pages/state-ranking/ui/StateRankingPage.vue` e `index.ts`: orientação antes da escolha (FR-024), carregamento com rótulos e 10 linhas cinza estáticas (FR-025), erro com "Tentar de novo" sem perder UF e filtro (FR-014), volta ao início ao trocar de UF (FR-022), título da aba "Nome/SIGLA - Censo 2022" (FR-028), foco programático no título, seleção e filtro desabilitados com explicação enquanto o estado de proteção da 003 indicar verificação ou bloqueio (FR-026); substituir o placeholder de `/states` em `frontend/src/app/router.ts`
 
 **Checkpoint**: ranking utilizável de ponta a ponta.
 
