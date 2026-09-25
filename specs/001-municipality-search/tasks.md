@@ -131,7 +131,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 
 ### Implementation for User Story 1
 
-- [ ] T055 [P] [US1] Criar `packages/contracts/src/municipalities/search-municipalities.contract.ts` (`SearchMunicipalitiesQuery { q: string }`; `SearchMunicipalitiesResponse { items: { code, name, stateCode, stateAbbreviation }[] }`) e exportar no `index.ts`
+- [X] T055 [P] [US1] Criar `packages/contracts/src/municipalities/search-municipalities.contract.ts` (`SearchMunicipalitiesQuery { q: string }`; `SearchMunicipalitiesResponse { items: { code, name, stateCode, stateAbbreviation }[] }`) e exportar no `index.ts`
 - [ ] T056 [P] [US1] Criar `backend/src/domain/errors/invalid-municipality-code.error.ts` (`INVALID_MUNICIPALITY_CODE`, 400) e `invalid-search-term.error.ts` (`INVALID_SEARCH_TERM`, 400)
 - [ ] T057 [P] [US1] Criar `backend/src/domain/value-objects/municipality-code.vo.ts` ("exatamente 7 dígitos; os 2 primeiros formam um `StateCode` válido") e `search-term.vo.ts` ("texto após remover espaços das pontas e colapsar espaços internos; 2 a 60 caracteres; expõe `normalized` (NFD sem diacríticos, minúsculas)")
 - [ ] T058 [US1] Criar `backend/src/application/queries/search-municipalities/municipality-search.reader.ts` (porta `search(term: SearchTerm, limit: number): Promise<MunicipalitySuggestion[]>`) e `search-municipalities.handler.ts`
