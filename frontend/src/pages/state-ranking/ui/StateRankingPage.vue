@@ -6,6 +6,7 @@ import { useStateDensityRanking } from '../api/density-ranking'
 import { useStates } from '../api/states'
 import { useSelectedState } from '../model/use-selected-state'
 import RankingTable from './RankingTable.vue'
+import StateRecord from './StateRecord.vue'
 import StateSelect from './StateSelect.vue'
 
 // Tela "Busca por estado" (spec 002; design.md): seleção de UF e, abaixo, o
@@ -15,7 +16,7 @@ const { stateCode, selectState } = useSelectedState()
 const { states } = useStates()
 const { status, ranking, error, retry } = useStateDensityRanking(stateCode)
 
-const titleElement = useTemplateRef<HTMLHeadingElement>('title')
+const record = useTemplateRef<InstanceType<typeof StateRecord>>('record')
 
 // "Nome/SIGLA" da UF escolhida, conhecido pela lista antes do ranking chegar.
 const stateLabel = computed(() => {
@@ -38,7 +39,7 @@ watch(
         if (current === 'success' && loaded) {
             setDocumentTitle(`${loaded.state.name}/${loaded.state.abbreviation}`)
             await nextTick()
-            titleElement.value?.focus()
+            record.value?.focusTitle()
         } else if (current === 'idle' || current === 'invalid-address') {
             setDocumentTitle()
         }
@@ -69,20 +70,17 @@ watch(
             v-if="status === 'loading' || status === 'error' || status === 'success'"
             class="mt-10"
         >
-            <h2
-                v-if="stateLabel"
-                ref="title"
-                tabindex="-1"
-                class="font-expanded text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05] font-bold tracking-tight text-ink outline-none"
-            >
-                {{ stateLabel }}
-            </h2>
-            <div v-else aria-hidden="true" class="h-12 w-72 max-w-full rounded-xs bg-ink/10" />
+            <StateRecord
+                v-if="status !== 'error'"
+                ref="record"
+                :ranking="status === 'success' ? ranking : null"
+                :label="stateLabel"
+            />
 
             <div
                 v-if="status === 'error'"
                 role="alert"
-                class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-sm border border-border bg-sheet px-5 py-4 text-ink"
+                class="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-sm border border-border bg-sheet px-5 py-4 text-ink"
             >
                 <p>
                     {{
