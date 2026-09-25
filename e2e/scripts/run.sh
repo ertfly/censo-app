@@ -12,7 +12,7 @@ run_stack() {
     local compose=(docker compose -p "$project" -f compose.yaml -f "$file")
     "${compose[@]}" up -d --build --wait frontend
     local status=0
-    "${compose[@]}" run --rm e2e npx playwright test --project="$playwright_project" --pass-with-no-tests || status=$?
+    "${compose[@]}" run --rm --build e2e npx playwright test --project="$playwright_project" --pass-with-no-tests || status=$?
     "${compose[@]}" down --volumes
     return "$status"
 }
