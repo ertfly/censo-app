@@ -39,52 +39,62 @@ export default defineConfigWithVueTs(
     pluginVue.configs['flat/recommended'],
     vueTsConfigs.recommended,
     {
-        files: ['backend/src/**/*.ts', 'packages/contracts/src/**/*.ts', 'frontend/src/**/*.{ts,vue}'],
+        files: [
+            'backend/src/**/*.ts',
+            'packages/contracts/src/**/*.ts',
+            'frontend/src/**/*.{ts,vue}',
+        ],
         plugins: { boundaries },
         settings: {
             'import/resolver': {
                 typescript: {
+                    // frontend/tsconfig.lint.json só existe para o resolvedor: ele não resolve
+                    // `paths` sem `baseUrl`, e o `baseUrl` está depreciado no TypeScript 6.
                     project: [
                         'backend/tsconfig.json',
-                        'frontend/tsconfig.json',
+                        'frontend/tsconfig.lint.json',
                         'packages/contracts/tsconfig.json',
                     ],
+                    noWarnOnMultipleProjects: true,
                     conditionNames: ['development', 'types', 'import', 'default'],
                 },
             },
             'boundaries/root-path': import.meta.dirname,
             'boundaries/elements': [
-                { type: 'be-domain', pattern: 'backend/src/domain/**', mode: 'full' },
-                { type: 'be-application', pattern: 'backend/src/application/**', mode: 'full' },
-                { type: 'be-infra', pattern: 'backend/src/infra/**', mode: 'full' },
-                { type: 'be-main', pattern: 'backend/src/main.ts', mode: 'full' },
-                { type: 'contracts', pattern: 'packages/contracts/**', mode: 'full' },
-                { type: 'fe-app', pattern: 'frontend/src/app/**', mode: 'full' },
+                { type: 'be-domain', pattern: 'backend/src/domain/**', partialMatch: false },
+                {
+                    type: 'be-application',
+                    pattern: 'backend/src/application/**',
+                    partialMatch: false,
+                },
+                { type: 'be-infra', pattern: 'backend/src/infra/**', partialMatch: false },
+                { type: 'contracts', pattern: 'packages/contracts/**', partialMatch: false },
+                { type: 'fe-app', pattern: 'frontend/src/app/**', partialMatch: false },
                 {
                     type: 'fe-page',
                     pattern: 'frontend/src/pages/*/**',
-                    mode: 'full',
+                    partialMatch: false,
                     capture: ['slice'],
                 },
                 {
                     type: 'fe-widget',
                     pattern: 'frontend/src/widgets/*/**',
-                    mode: 'full',
+                    partialMatch: false,
                     capture: ['slice'],
                 },
                 {
                     type: 'fe-feature',
                     pattern: 'frontend/src/features/*/**',
-                    mode: 'full',
+                    partialMatch: false,
                     capture: ['slice'],
                 },
                 {
                     type: 'fe-entity',
                     pattern: 'frontend/src/entities/*/**',
-                    mode: 'full',
+                    partialMatch: false,
                     capture: ['slice'],
                 },
-                { type: 'fe-shared', pattern: 'frontend/src/shared/**', mode: 'full' },
+                { type: 'fe-shared', pattern: 'frontend/src/shared/**', partialMatch: false },
             ],
         },
         rules: {
@@ -92,6 +102,8 @@ export default defineConfigWithVueTs(
                 2,
                 {
                     default: 'allow',
+                    // Verifica também pacotes externos e módulos nativos do Node.
+                    checkAllOrigins: true,
                     policies: [
                         // Backend (ADR 0008, 0011, 0013)
                         {
@@ -100,7 +112,7 @@ export default defineConfigWithVueTs(
                                 to: {
                                     element: {
                                         types: {
-                                            anyOf: ['be-application', 'be-infra', 'be-main', 'contracts'],
+                                            anyOf: ['be-application', 'be-infra', 'contracts'],
                                         },
                                     },
                                 },
@@ -108,25 +120,34 @@ export default defineConfigWithVueTs(
                         },
                         {
                             from: { element: { type: 'be-domain' } },
-                            disallow: { to: { module: { origin: { anyOf: ['external', 'core'] } } } },
+                            disallow: { to: { module: { origin: 'external' } } },
                         },
                         {
-                            from: { element: { type: 'be-application' } },
-                            disallow: { to: { element: { types: { anyOf: ['be-infra', 'be-main'] } } } },
+                            from: { element: { type: 'be-domain' } },
+                            disallow: { to: { module: { origin: 'core' } } },
                         },
                         {
                             from: { element: { type: 'be-application' } },
                             disallow: {
-                                to: { module: { origin: 'external', source: '!{typebox,@censo/contracts}' } },
+                                to: { element: { types: { anyOf: ['be-infra'] } } },
                             },
                         },
                         {
-                            from: { element: { type: 'be-infra' } },
-                            disallow: { to: { element: { type: 'be-main' } } },
+                            from: { element: { type: 'be-application' } },
+                            disallow: {
+                                to: {
+                                    module: {
+                                        origin: 'external',
+                                        source: '!{typebox,@censo/contracts}',
+                                    },
+                                },
+                            },
                         },
                         {
                             from: { element: { type: 'contracts' } },
-                            disallow: { to: { module: { origin: 'external', source: '!typebox' } } },
+                            disallow: {
+                                to: { module: { origin: 'external', source: '!typebox' } },
+                            },
                         },
                         {
                             from: { element: { type: 'contracts' } },
@@ -138,7 +159,6 @@ export default defineConfigWithVueTs(
                                                 'be-domain',
                                                 'be-application',
                                                 'be-infra',
-                                                'be-main',
                                                 ...FRONTEND_LAYERS,
                                             ],
                                         },
@@ -155,7 +175,7 @@ export default defineConfigWithVueTs(
                                 to: {
                                     element: {
                                         types: {
-                                            anyOf: ['be-domain', 'be-application', 'be-infra', 'be-main'],
+                                            anyOf: ['be-domain', 'be-application', 'be-infra'],
                                         },
                                     },
                                 },

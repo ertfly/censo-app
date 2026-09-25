@@ -1,0 +1,8 @@
+{
+    "//": "Usado só pelo resolvedor de imports do ESLint (ver eslint.config.js). Não é compilado.",
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "ignoreDeprecations": "6.0"
+    }
+}

@@ -10,6 +10,12 @@ COPY e2e/package.json e2e/
 
 # Desenvolvimento: o código é montado pelo compose.dev.yaml.
 FROM manifests AS dev
+# Pastas de node_modules criadas como usuário node: os volumes nomeados herdam o dono,
+# e os arquivos gravados no repositório montado ficam com o UID do host (1000).
+RUN mkdir -p node_modules packages/contracts/node_modules backend/node_modules \
+    frontend/node_modules e2e/node_modules \
+    && chown -R node:node /app
+USER node
 CMD ["npm", "run", "dev", "--workspace", "@censo/frontend"]
 
 FROM manifests AS build
