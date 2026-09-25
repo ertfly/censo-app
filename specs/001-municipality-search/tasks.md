@@ -84,7 +84,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 
 - [ ] T027 [P] Criar `backend/src/domain/errors/domain-error.ts` (classe base com `code` em inglês) e `backend/src/domain/errors/invalid-state-code.error.ts` (`INVALID_STATE_CODE`)
 - [ ] T028 [P] Criar `backend/src/domain/value-objects/state-code.vo.ts`: construtor privado, `StateCode.create(value)` aceita só 2 dígitos entre os 27 códigos de UF, expõe `value` e `abbreviation` (tabela fixa: 11 RO, 12 AC, 13 AM, 14 RR, 15 PA, 16 AP, 17 TO, 21 MA, 22 PI, 23 CE, 24 RN, 25 PB, 26 PE, 27 AL, 28 SE, 29 BA, 31 MG, 32 ES, 33 RJ, 35 SP, 41 PR, 42 SC, 43 RS, 50 MS, 51 MT, 52 GO, 53 DF), `equals()` e `Object.freeze(this)`; lança `InvalidStateCodeError`
-- [ ] T029 [P] Teste unitário `backend/test/unit/domain/state-code.vo.test.ts`: os 27 códigos e siglas, formato inválido, código fora da lista, `equals`
+- [X] T029 [P] Teste unitário `backend/test/unit/domain/state-code.vo.test.ts`: os 27 códigos e siglas, formato inválido, código fora da lista, `equals`
 - [ ] T030 [P] Criar `packages/contracts/src/common/error-response.contract.ts` (`{ code: string }`) e exportar em `packages/contracts/src/index.ts`
 - [ ] T031 Criar `backend/src/infra/http/server.ts`: Fastify com `@fastify/type-provider-typebox`, logger com serializador de requisição sem endereço e porta de origem ([ADR 0019](../../.harness/decisions/0019-registros-de-protecao.md)), `trustProxy` lido de `TRUSTED_PROXY_CIDR` (padrão `172.28.0.0/24`)
 - [ ] T032 Criar `backend/src/infra/http/error-handler.ts`: `DomainError` → status definido pelo erro e corpo `{ code }`; erro de validação de schema → `400` com o código declarado pela rota; qualquer outro erro → `500` com `{ code: "INTERNAL_ERROR" }` sem detalhes internos
