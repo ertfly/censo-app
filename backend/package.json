@@ -24,7 +24,9 @@
         "start": "node dist/main.js",
         "test": "vitest run --passWithNoTests",
         "migrate": "tsx --conditions=development src/infra/database/migrate.ts",
-        "migrate:down": "tsx --conditions=development src/infra/database/migrate-down.ts"
+        "migrate:down": "tsx --conditions=development src/infra/database/migrate-down.ts",
+        "protection:report": "node dist/infra/logging/protection-report-cli.js",
+        "protection:report:dev": "tsx --conditions=development src/infra/logging/protection-report-cli.ts"
     },
     "dependencies": {
         "@censo/contracts": "0.0.0",
