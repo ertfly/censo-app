@@ -20,12 +20,13 @@ O visitante abre a tela "Busca por estado", escolhe uma UF em uma lista e vê os
 
 **Acceptance Scenarios**:
 
-1. **Given** a tela aberta, **When** o visitante abre a lista de UFs, **Then** as 27 UFs aparecem em ordem alfabética, cada uma com nome e sigla.
-2. **Given** uma UF escolhida, **When** o ranking é exibido, **Then** os municípios aparecem do maior para o menor em densidade demográfica.
-3. **Given** o ranking exibido, **When** o visitante lê uma linha, **Then** vê a posição, o nome do município, a população, a área em km² e a densidade em hab/km².
-4. **Given** uma UF exibida, **When** o visitante escolhe outra UF, **Then** o ranking e os totais são substituídos pelos da nova UF.
-5. **Given** a UF Rio Grande do Sul escolhida, **When** o ranking é exibido, **Then** o registro de município sem nome não aparece como linha do ranking.
-6. **Given** o Distrito Federal escolhido, **When** o ranking é exibido, **Then** aparece uma única linha, na posição 1.
+1. **Given** qualquer uma das telas aberta, **When** o visitante escolhe "Busca por estado" no menu do topo, **Then** esta tela é exibida, com o menu indicando a tela atual.
+2. **Given** a tela aberta, **When** o visitante abre a lista de UFs, **Then** as 27 UFs aparecem em ordem alfabética, cada uma com nome e sigla.
+3. **Given** uma UF escolhida, **When** o ranking é exibido, **Then** os municípios aparecem do maior para o menor em densidade demográfica.
+4. **Given** o ranking exibido, **When** o visitante lê uma linha, **Then** vê a posição, o nome do município, a população, a área em km² e a densidade em hab/km².
+5. **Given** uma UF exibida, **When** o visitante escolhe outra UF, **Then** o ranking e os totais são substituídos pelos da nova UF.
+6. **Given** a UF Rio Grande do Sul escolhida, **When** o ranking é exibido, **Then** o registro de município sem nome não aparece como linha do ranking.
+7. **Given** o Distrito Federal escolhido, **When** o ranking é exibido, **Then** aparece uma única linha, na posição 1.
 
 ---
 
@@ -73,6 +74,7 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - **FR-013**: Ao escolher outra UF, o sistema DEVE substituir o ranking e os totais pelos da nova UF.
 - **FR-014**: Em caso de falha ao carregar o ranking ou os totais, o sistema DEVE informar o problema em linguagem simples e permitir nova tentativa.
 - **FR-015**: A tela DEVE ser utilizável por teclado e em telas de celular, inclusive a leitura do ranking.
+- **FR-016**: A tela DEVE ter o mesmo menu fixo no topo da tela "Busca de cidades", com acesso às duas telas e indicando a tela atual.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -99,6 +101,7 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - Q: O ranking mostra todos os municípios, paginado ou só os N primeiros? → A: Todos de uma vez, com rolagem.
 - Q: A área total da UF inclui a área do registro sem nome? → A: Inclui; totais da UF somam todos os setores (RS = 281.707,15 km², igual ao dado oficial).
 - Q: O município do ranking leva à tela "Busca de cidades"? → A: Não; o ranking é só leitura e as telas são independentes.
+- Q: Como o visitante chega a esta tela e passa para a outra? → A: Por um menu fixo no topo, igual nas duas telas (decidido no clarify da spec 001; o endereço principal abre a "Busca de cidades").
 
 ## Assumptions
 
