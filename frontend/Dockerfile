@@ -28,5 +28,6 @@ RUN npm run build --workspace @censo/contracts \
 
 FROM nginx:1.30.5-alpine AS prod
 COPY frontend/nginx.conf /etc/nginx/conf.d/default.conf
+COPY frontend/nginx/ai-bots.conf /etc/nginx/ai-bots.conf
 COPY --from=build /app/frontend/dist /usr/share/nginx/html
 EXPOSE 80
