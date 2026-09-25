@@ -204,3 +204,4 @@ Nenhum teste usa `censo.sqlite`.
 | Retorno ao TypeScript 7 | Quando o typescript-eslint estável suportar |
 | Exposição na internet (servidor, domínio, HTTPS) | Novo ADR ([0016](decisions/0016-execucao-local.md)) |
 | Valores do rate limit, da sessão e do desafio | `plan.md` da feature de proteção contra bots |
+| **Acesso pela rede interna exige HTTPS**: a verificação contra bots usa a Web Crypto, que o navegador só libera em contexto seguro (HTTPS ou `localhost`). Por `http://<IP da máquina>` a verificação não funciona. Contraria a premissa do [ADR 0016](decisions/0016-execucao-local.md) ("rede interna, sem HTTPS") | Decisão do responsável (encontrado na T017 da 003) |

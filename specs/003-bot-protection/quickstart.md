@@ -32,3 +32,20 @@ três segredos (research R7).
 
 Os testes obtêm sessão resolvendo o desafio com `solveChallenge` e dificuldade
 baixa; não existe modo que desligue a proteção (research R8).
+
+## Cobertura automatizada (T042, 2026-09-25)
+
+| Cenário | Como é verificado |
+|---|---|
+| 1, 3, 5 | E2E `verification.spec.ts` |
+| 2, 9 | Integração (`session.test.ts`, `rate-limit.test.ts`: uso normal por 10 minutos) |
+| 4 | E2E `protection/session-expiry.spec.ts` (expiração ao recarregar); a expiração durante a digitação fica no E2E da busca (001) |
+| 6 | Integração (`session.test.ts`: solução repetida) |
+| 7, 8 | E2E `protection/rate-limit.spec.ts` |
+| 10, 11 | E2E `ai-bots.spec.ts` |
+| 12 | `e2e/scripts/check-protection-report.sh` |
+| 13 | `e2e/scripts/check-no-ip-in-logs.sh` |
+
+Todos os cenários só funcionam por `http://localhost` ou HTTPS: a verificação
+usa a Web Crypto, que exige contexto seguro (pendência em `.harness/architecture.md`).
+
