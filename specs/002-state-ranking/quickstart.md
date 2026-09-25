@@ -54,3 +54,11 @@ produção, cópia do banco):
 |---|---|
 | SC-001 | MG (853 municípios): 516 a 831 ms da escolha ao ranking e totais em 4 execuções; a API responde em cerca de 30 ms e o restante é a montagem das linhas no navegador. A régua compacta passou a ser desenhada com fundo em CSS (antes: 935 ms) |
 | SC-004 | 5 municípios sorteados, posição encontrada pelo filtro em no máximo 187 ms cada |
+
+## Validação final (T031, 2026-09-25)
+
+Lint, formatação e tipos sem erros; backend 199 testes, frontend 100, E2E 73
+na stack geral e 3 na de proteção (as três features), com o relatório de
+proteção conferido e nenhum endereço de rede nos logs. Os cenários manuais 1 a
+11 estão cobertos pelos E2E (`state-ranking.spec.ts`, `state-totals.spec.ts`)
+e pela revisão da T030. Nenhum desvio a registrar em `.harness/`.
