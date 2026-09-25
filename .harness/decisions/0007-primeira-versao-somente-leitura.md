@@ -1,6 +1,6 @@
 # 0007. Primeira versão somente leitura, escrita em aberto
 
-- Status: Aceito
+- Status: Aceito (montagem do banco revista pelo [ADR 0018](0018-banco-na-raiz.md))
 - Data: 2026-09-25
 - Revisa: [ADR 0001](0001-banco-de-dados-sqlite.md) (modo de uso) e
   [ADR 0005](0005-docker-compose.md) (montagem do banco)

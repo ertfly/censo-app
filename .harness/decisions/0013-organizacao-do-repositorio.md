@@ -1,6 +1,6 @@
 # 0013. Monorepo com npm workspaces e pacote de contratos
 
-- Status: Aceito
+- Status: Aceito (`.dockerignore` revisto pelo [ADR 0018](0018-banco-na-raiz.md))
 - Data: 2026-09-25
 - Revisa: [ADR 0005](0005-docker-compose.md) (contexto de build),
   [ADR 0008](0008-arquitetura-backend.md) (local dos DTOs) e
