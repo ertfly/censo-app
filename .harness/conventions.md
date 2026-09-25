@@ -57,6 +57,18 @@ db.selectFrom('municipio')
 Termos novos do domínio entram neste glossário antes de serem usados no
 código.
 
+### Termos com mais de um sentido
+
+| Termo | Onde | Sentido |
+|---|---|---|
+| Feature | Specs (`specs/NNN-*`) | Funcionalidade do spec-kit: uma ou mais histórias de usuário |
+| Feature | Frontend (`features/`) | Camada do FSD: ação do usuário reusada em mais de uma página |
+| Entity | Backend (`domain/entities/`) | Entidade do DDD: objeto com identidade e regras (não existe na v1) |
+| Entity | Frontend (`entities/`) | Camada do FSD: representação de um conceito do domínio na interface |
+
+Em documentação, quando houver ambiguidade, qualificar: "feature do spec-kit",
+"feature do FSD", "entidade do domínio", "entity do FSD".
+
 ## Nomenclatura
 
 | Elemento | Padrão | Exemplo |
