@@ -30,7 +30,7 @@ backend/src/
 │   ├── queries/           # uma pasta por Query
 │   │   └── <query-name>/
 │   │       ├── <name>.query.ts     # movido para @censo/contracts (ADR 0013)
-│   │       ├── <name>.result.ts    # DTO de saída (schema TypeBox + tipo)
+│   │       ├── <name>.result.ts    # movido para @censo/contracts (ADR 0013)
 │   │       ├── <name>.reader.ts    # interface (porta) de leitura
 │   │       └── <name>.handler.ts   # QueryHandler
 │   └── use-cases/         # reservado para Commands (não criado na v1)
