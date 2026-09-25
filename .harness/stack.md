@@ -22,7 +22,7 @@
 | Repositório | Monorepo com npm workspaces | npm do Node 24.21.0 | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Contratos da API | `@censo/contracts` (schemas TypeBox) | — | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Validação e DTOs | TypeBox + `@fastify/type-provider-typebox` | 1.3.34 / 6.1.0 | [0008](decisions/0008-arquitetura-backend.md) |
-| Rate limit | @fastify/rate-limit | 11.2.0 | [0017](decisions/0017-protecao-contra-bots.md) |
+| Rate limit | Hook global próprio (sem biblioteca) | — | [0022](decisions/0022-limite-de-consultas-proprio.md) |
 | Anti-bot (servidor) | altcha-lib | 2.5.0 | [0017](decisions/0017-protecao-contra-bots.md) |
 | Anti-bot (navegador) | altcha | 3.2.3 | [0017](decisions/0017-protecao-contra-bots.md) |
 | Sessão | @fastify/cookie | 11.1.2 | [0017](decisions/0017-protecao-contra-bots.md) |

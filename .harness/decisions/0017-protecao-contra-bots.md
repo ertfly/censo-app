@@ -1,6 +1,6 @@
 # 0017. Proteção contra bots com rate limit e ALTCHA local
 
-- Status: Aceito (complementado pelo [ADR 0019](0019-registros-de-protecao.md))
+- Status: Aceito (complementado pelo [ADR 0019](0019-registros-de-protecao.md); ferramenta do limite revista pelo [ADR 0022](0022-limite-de-consultas-proprio.md))
 - Data: 2026-09-25
 
 ## Contexto

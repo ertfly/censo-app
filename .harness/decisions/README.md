@@ -23,11 +23,12 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0014](0014-arquitetura-frontend.md) | Arquitetura do frontend: Feature-Sliced Design enxuto | Aceito |
 | [0015](0015-migrations.md) | Migrations com o Migrator do Kysely | Aceito |
 | [0016](0016-execucao-local.md) | Execução local na primeira versão | Aceito |
-| [0017](0017-protecao-contra-bots.md) | Proteção contra bots com rate limit e ALTCHA local | Aceito (complementado pelo 0019) |
+| [0017](0017-protecao-contra-bots.md) | Proteção contra bots com rate limit e ALTCHA local | Aceito (complementado pelo 0019, revisto pelo 0022) |
 | [0018](0018-banco-na-raiz.md) | Banco de dados na raiz do repositório | Aceito |
 | [0019](0019-registros-de-protecao.md) | Registros de proteção sem endereço de rede | Aceito |
 | [0020](0020-stacks-de-e2e.md) | Stacks de E2E com a proteção ligada | Aceito |
 | [0021](0021-compilacao-do-driver-sqlite.md) | Compilação do better-sqlite3 nas imagens Docker | Aceito |
+| [0022](0022-limite-de-consultas-proprio.md) | Limite de consultas no hook global, sem @fastify/rate-limit | Aceito |
 
 ## Modelo
 
