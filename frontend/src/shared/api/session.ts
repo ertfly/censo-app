@@ -28,12 +28,27 @@ export const rateLimitRemainingSeconds = computed(() =>
 export const rateLimitInitialSeconds = readonly(rateLimitSeconds)
 export const rateLimitHasEnded = readonly(rateLimitEnded)
 
-// Consultas ficam indisponíveis durante a verificação e o bloqueio (FR-006, FR-009).
-export const queriesBlocked = computed(
-    () =>
-        (state.value !== 'verified' && state.value !== 'idle') ||
-        rateLimitRemainingSeconds.value > 0,
-)
+// Já houve sessão nesta aba: uma nova verificação (sessão expirada) não muda a
+// tela (specs/003-bot-protection/design.md, "Reverificando").
+const verifiedOnce = ref(false)
+
+// Por que as consultas estão indisponíveis agora, ou null (FR-006, FR-007, FR-009).
+export type QueryBlockReason = 'verifying' | 'verification-failed' | 'rate-limited'
+
+export const queryBlockReason = computed<QueryBlockReason | null>(() => {
+    if (rateLimitRemainingSeconds.value > 0) {
+        return 'rate-limited'
+    }
+    if (state.value === 'failed' || state.value === 'unsupported') {
+        return 'verification-failed'
+    }
+    if (state.value === 'verifying' && !verifiedOnce.value) {
+        return 'verifying'
+    }
+    return null
+})
+
+export const queriesBlocked = computed(() => queryBlockReason.value !== null)
 
 export function markRateLimited(seconds: number): void {
     currentTime.value = Date.now()
@@ -114,6 +129,7 @@ async function verify(): Promise<void> {
         })
         writeExpiry(Date.parse(response.expiresAt))
         state.value = 'verified'
+        verifiedOnce.value = true
     } catch (error) {
         if (error instanceof ApiError && error.status === 429) {
             // Bloqueado: a verificação volta a ser tentada na próxima consulta.
@@ -136,6 +152,7 @@ export function ensureSession(): Promise<void> {
     }
     if (readExpiry() > Date.now()) {
         state.value = 'verified'
+        verifiedOnce.value = true
         return Promise.resolve()
     }
     pending ??= verify().finally(() => {
@@ -164,6 +181,7 @@ export function resetSessionForTests(options: { keepStorage?: boolean } = {}): v
     verifierWaiters = []
     pending = null
     state.value = 'idle'
+    verifiedOnce.value = false
     if (rateLimitTimer) {
         clearInterval(rateLimitTimer)
     }
