@@ -60,13 +60,18 @@ Monorepo com npm workspaces ([ADR 0013](decisions/0013-organizacao-do-repositori
 ```
 censo-app/
 ├── .harness/                 # arquitetura e decisões técnicas
-├── .specify/, specs/         # spec-kit (a criar)
+├── .specify/                 # spec-kit: constituição, templates, scripts
+├── specs/                    # 001-municipality-search, 002-state-ranking, 003-bot-protection
+├── docs/user-stories.md      # histórias de usuário da v1
 ├── censo.sqlite              # banco (Git LFS), na raiz por requisito
 ├── packages/contracts/       # @censo/contracts: schemas da API
 ├── backend/                  # @censo/backend
 ├── frontend/                 # @censo/frontend
+├── e2e/                      # @censo/e2e: Playwright e scripts da stack de teste
+├── test/shared/              # casos de busca compartilhados entre backend e frontend
 ├── compose.yaml              # produção
-└── compose.dev.yaml          # desenvolvimento
+├── compose.dev.yaml          # desenvolvimento
+└── compose.e2e*.yaml         # stacks de E2E (ADR 0020)
 ```
 
 ## Backend
@@ -80,10 +85,21 @@ backend/src/
 ├── domain/          # Value Objects, erros de domínio
 ├── application/     # QueryHandlers e interfaces de leitura (portas)
 ├── infra/
-│   ├── database/    # conexão, migrations, readers Kysely (nomes em português só aqui)
-│   └── http/        # rotas Fastify, error handler
+│   ├── config/      # leitura e validação das variáveis de ambiente
+│   ├── database/    # conexão, migrations, readers (nomes em português só aqui)
+│   ├── http/        # servidor, rotas Fastify, error handler, protection/
+│   └── logging/     # registros de proteção, descarte e relatório
 └── main.ts          # composition root
 ```
+
+Readers implementados:
+
+| Porta | Implementação | Consulta |
+|---|---|---|
+| `MunicipalitySearchReader` | `InMemoryMunicipalitySearchReader` | índice em memória carregado antes de o servidor escutar |
+| `MunicipalityIndicatorsReader` | `KyselyMunicipalityIndicatorsReader` | intervalo da chave primária de `setor` |
+| `StatesReader` | `KyselyStatesReader` | tabela `uf`, ordenação pt-BR |
+| `StateRankingReader` | `KyselyStateRankingReader` | intervalo da chave primária de `setor` pelo prefixo da UF |
 
 | Camada | Pode importar |
 |---|---|
@@ -96,7 +112,8 @@ Regras principais:
 
 - Um único contexto (censo); dados relacionados vêm por join no reader.
 - Query não chama Query; domínio não chama Query.
-- Injeção de dependência manual no `main.ts`, sem container.
+- Injeção de dependência manual, sem container: `main.ts` monta a
+  configuração e o banco, e `infra/http/build-app.ts` liga handlers e readers.
 - Nenhum estado de requisição guardado em handlers ou readers.
 - Erros de domínio viram códigos em inglês na resposta HTTP.
 
@@ -109,15 +126,18 @@ Feature-Sliced Design enxuto ([ADR 0014](decisions/0014-arquitetura-frontend.md)
 
 ```
 frontend/src/
-├── app/         # router, plugins, estilos, tema
-├── pages/       # uma slice por rota
-├── entities/    # conceitos do domínio reusados em mais de uma página
-└── shared/      # ui (shadcn-vue), api (cliente HTTP), lib (formatadores pt-BR)
+├── app/         # router, plugins, estilos, tema, layout
+├── pages/       # uma slice por rota: municipality-search, state-ranking
+├── widgets/     # app-header: menu fixo, status da verificação, avisos de proteção
+└── shared/      # ui (shadcn-vue, escala de densidade, barra de proporção),
+                 # api (cliente HTTP e sessão), lib (formatação pt-BR, busca por nome)
 ```
 
 - Importação só para camadas abaixo e pela API pública (`index.ts`) de cada
   slice.
-- `features` e `widgets` entram quando houver reuso em mais de uma página.
+- `widgets` entrou com o menu fixo, usado nas duas páginas. `entities` e
+  `features` entram quando houver conceito ou ação reusados em mais de uma
+  página; até aqui não houve.
 - Dados do servidor com `@tanstack/vue-query`; Pinia só para estado do
   cliente.
 - Visual definido pela skill `frontend-design`, com Tailwind CSS, shadcn-vue e
@@ -148,20 +168,21 @@ Toda consulta /api/*:
 ## Fluxo de uma consulta
 
 ```
-1. Navegador        GET /api/states/35/municipalities (com cookie de sessão)
+1. Navegador        GET /api/states/35/density-ranking (com cookie de sessão)
 2. nginx            proxy para backend (X-Forwarded-For)
 2a. infra/http      rate limit por IP e verificação da sessão
 3. infra/http       valida params com o schema de @censo/contracts
 4. application      QueryHandler: DTO → Value Objects (StateCode.create('35'))
-5. infra/database   reader Kysely: SELECT em municipio (colunas em português
-                    traduzidas para inglês) → DTO de saída
+5. infra/database   reader Kysely: soma de setor por município, pelo intervalo
+                    da chave primária (colunas em português traduzidas para
+                    inglês) → DTO de saída
 6. infra/http       serializa a resposta pelo schema de saída
-7. frontend         entities/municipality/api (vue-query, tipo do contrato)
+7. frontend         pages/state-ranking/api (vue-query, tipo do contrato)
 8. pages            compõe a tela; textos e números em pt-BR
 ```
 
 Erro: o domínio lança erro → o error handler responde com código em inglês
-(ex.: `STATE_NOT_FOUND`) → `shared/api` traduz para mensagem em pt-BR.
+(ex.: `INVALID_STATE_CODE`) → `shared/api` traduz para mensagem em pt-BR.
 
 ## Contrato entre backend e frontend
 
@@ -173,8 +194,10 @@ quebra a compilação das duas pontas
 ## Dados
 
 - Estrutura, qualidade e melhorias: [database.md](database.md).
-- Índices: não há índices secundários; são definidos no `plan.md` de cada
-  feature do spec-kit e criados via migration ([indexes.md](indexes.md)).
+- Índices: nenhum índice secundário foi necessário na v1. As agregações usam
+  o intervalo da chave primária de `setor` e a busca de município usa índice
+  em memória (research R1 e R2 das features 001 e 002). Um índice novo segue o
+  processo de [indexes.md](indexes.md).
 - Migrations: Kysely `Migrator`, migration de base para o banco existente,
   nunca executadas em produção ([ADR 0015](decisions/0015-migrations.md)).
 
@@ -195,12 +218,5 @@ Nenhum teste usa `censo.sqlite`.
 
 | Pendência | Onde será tratada |
 |---|---|
-| Índices iniciais | `plan.md` das features do spec-kit |
-| Tratamento do município `.` | Decisão do responsável pelo produto |
-| Portas padrão e comandos (testes, lint, migrations) | Montagem do projeto |
-| Metas de cobertura e integração contínua | Decisão futura |
-| Escrita no banco | Novo ADR, a partir de história de usuário |
-| Suporte a outros idiomas na interface | Fora da v1 |
-| Retorno ao TypeScript 7 | Quando o typescript-eslint estável suportar |
-| Exposição na internet (servidor, domínio, HTTPS) | Novo ADR ([0016](decisions/0016-execucao-local.md)) |
-| Valores do rate limit, da sessão e do desafio | `plan.md` da feature de proteção contra bots |
+| Tratamento do município `.` (hoje só entra na área total da UF) | Decisão do responsável pelo produto |
+| Acesso pela rede interna ou internet (HTTPS, domínio) | Novo ADR, previsto nos ADRs 0016 e 0023 |
