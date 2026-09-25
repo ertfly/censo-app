@@ -1,4 +1,4 @@
-import { ApiError } from './http-client'
+import { ApiError } from './request'
 
 // Mensagens em pt-BR para os códigos da API (contracts/api.md das features).
 const GENERIC_MESSAGE = 'Não foi possível carregar os dados.'
