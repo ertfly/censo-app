@@ -1,0 +1,74 @@
+/* Tema do censo-app: tokens de .harness/design-system.md. */
+@import 'tailwindcss';
+@import '@fontsource-variable/archivo/standard.css';
+
+@theme {
+    /* Cor. Nomes em inglês no código; em português no design-system.md. */
+    --color-paper: #eef2ee; /* Papel cadastral: fundo da página */
+    --color-sheet: #fafbf9; /* Folha: ficha e campos */
+    --color-ink: #12313a; /* Tinta azulada: texto principal */
+    --color-ink-muted: #4a747d; /* Tinta diluída: texto secundário (AA sobre Papel e Folha) */
+    --color-marker: #0b7285; /* Ciano de marcação: único destaque, foco, links */
+    --color-urban: #b7791f; /* Ocre urbano */
+    --color-rural: #3f7d4e; /* Verde de cobertura */
+    --color-no-data: #7b8884; /* Hachura sem dado (3:1 sobre Papel e Folha) */
+
+    /* Tipografia: uma família; a largura codifica o papel do texto. */
+    --font-sans: 'Archivo Variable', system-ui, sans-serif;
+
+    --radius-field: 4px;
+}
+
+@layer base {
+    html {
+        background-color: var(--color-paper);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        font-stretch: 100%;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* Algarismos tabulares em todo número, para alinhar colunas. */
+    body {
+        font-variant-numeric: tabular-nums;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-marker);
+        outline-offset: 2px;
+    }
+
+    a {
+        color: var(--color-marker);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* Larguras do Archivo por papel (design-system.md). */
+@utility font-expanded {
+    font-stretch: 125%;
+}
+
+@utility font-condensed {
+    font-stretch: 85%;
+}
+
+/* Hachura diagonal: convenção cartográfica para "sem dado". */
+@utility bg-hatch {
+    background-image: repeating-linear-gradient(
+        45deg,
+        var(--color-no-data) 0 1.5px,
+        transparent 1.5px 6px
+    );
+    background-color: var(--color-sheet);
+}

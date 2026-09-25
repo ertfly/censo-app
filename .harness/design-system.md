@@ -26,16 +26,17 @@ Referências do próprio assunto, de onde saem as escolhas:
 | Papel cadastral | `#EEF2EE` | Fundo da página |
 | Folha | `#FAFBF9` | Fundo da ficha e dos campos |
 | Tinta azulada | `#12313A` | Texto principal, divisões da ficha (com opacidade), segmento "Mulheres" |
-| Tinta diluída | `#5E8A93` | Texto secundário, segmento "Homens" |
+| Tinta diluída | `#4A747D` | Texto secundário, segmento "Homens" |
 | Ciano de marcação | `#0B7285` | Único destaque: foco, item ativo do menu, links, marcador da escala |
 | Ocre urbano | `#B7791F` | Segmento "Urbano" |
 | Verde de cobertura | `#3F7D4E` | Segmento "Rural" |
-| Hachura sem dado | `#9AA7A3` | Linhas diagonais sobre Folha: "Sem classificação" e "Sem informação" |
+| Hachura sem dado | `#7B8884` | Linhas diagonais sobre Folha: "Sem classificação" e "Sem informação" |
 
 - Texto sempre em Tinta azulada ou Tinta diluída, nunca nas cores de
   categoria; categorias usam cor só em barras e marcadores, sempre com rótulo
   escrito ao lado (a cor nunca é a única pista).
-- Contraste mínimo AA para todo texto; conferir Tinta diluída sobre Papel.
+- Contraste mínimo AA para todo texto e 3:1 para elementos gráficos. Conferido na implementação (T036 da 001): Tinta azulada 12,17; Tinta diluída 4,55; Ciano 4,94 (texto, sobre Papel); Ocre 3,22; Verde 4,36; Hachura 3,26 (gráficos, sobre Papel). A Tinta diluída (antes #5E8A93, 3,36) e a Hachura (antes #9AA7A3, 2,20) foram escurecidas por não atingirem o mínimo.
+- Fonte: Archivo via `@fontsource-variable/archivo` (`standard.css`, eixos de peso e largura 62%–125%); o eixo de largura foi confirmado.
 - Modo escuro fora da v1.
 
 ## Tipografia
