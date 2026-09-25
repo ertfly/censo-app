@@ -27,6 +27,9 @@ O visitante abre a tela "Busca por estado", escolhe uma UF em uma lista e vê os
 5. **Given** uma UF exibida, **When** o visitante escolhe outra UF, **Then** o ranking e os totais são substituídos pelos da nova UF.
 6. **Given** a UF Rio Grande do Sul escolhida, **When** o ranking é exibido, **Then** o registro de município sem nome não aparece como linha do ranking.
 7. **Given** o Distrito Federal escolhido, **When** o ranking é exibido, **Then** aparece uma única linha, na posição 1.
+8. **Given** uma UF exibida, **When** o visitante copia o endereço da página e o abre em outra aba ou recarrega a página, **Then** vê a mesma UF, com os mesmos totais e ranking, sem escolher nada.
+9. **Given** o ranking de Minas Gerais exibido, **When** o visitante digita "juiz" no filtro, **Then** aparece apenas "Juiz de Fora", com a mesma posição que ocupa no ranking completo.
+10. **Given** um filtro aplicado, **When** o visitante apaga o termo, **Then** o ranking completo volta a ser exibido.
 
 ---
 
@@ -54,6 +57,7 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - **Densidades iguais na exibição**: 181 pares de municípios da mesma UF têm a mesma densidade quando arredondada para 2 casas; a ordem segue o valor não arredondado e, em empate exato, o nome em ordem alfabética.
 - **Faixa de valores**: densidades de cerca de 0,15 a 13.417 hab/km² na mesma tabela; a formatação precisa ser legível nos dois extremos.
 - **Falha ao carregar**: se o ranking ou os totais não puderem ser carregados, a tela informa o problema e permite tentar de novo, sem perder a UF escolhida.
+- **Endereço inválido**: um endereço que identifica uma UF inexistente mostra a tela sem UF escolhida e informa que a UF não foi encontrada.
 
 ## Requirements *(mandatory)*
 
@@ -75,6 +79,12 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - **FR-014**: Em caso de falha ao carregar o ranking ou os totais, o sistema DEVE informar o problema em linguagem simples e permitir nova tentativa.
 - **FR-015**: A tela DEVE ser utilizável por teclado e em telas de celular, inclusive a leitura do ranking.
 - **FR-016**: A tela DEVE ter o mesmo menu fixo no topo da tela "Busca de cidades", com acesso às duas telas e indicando a tela atual.
+- **FR-017**: Ao escolher uma UF, o endereço da página DEVE passar a identificá-la; abrir esse endereço (por link compartilhado, favorito ou recarga) DEVE exibir diretamente a UF escolhida, seus totais e o ranking.
+- **FR-018**: Um endereço que identifique uma UF inexistente DEVE exibir a tela sem UF escolhida, com a mensagem de que a UF não foi encontrada.
+- **FR-019**: O ranking DEVE ter um campo de filtro por nome de município que ignora acento e maiúsculas e encontra o termo no início de qualquer palavra do nome (mesma regra da busca da funcionalidade 001).
+- **FR-020**: Com o filtro aplicado, cada linha exibida DEVE manter a posição original no ranking completo da UF; os totais da UF não mudam.
+- **FR-021**: Quando o filtro não encontrar nenhum município, a tela DEVE informar que nenhum município da UF corresponde ao termo.
+- **FR-022**: Ao trocar de UF, o filtro DEVE ser limpo.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -102,6 +112,8 @@ Junto ao ranking, o visitante vê os totais da UF escolhida: população total, 
 - Q: A área total da UF inclui a área do registro sem nome? → A: Inclui; totais da UF somam todos os setores (RS = 281.707,15 km², igual ao dado oficial).
 - Q: O município do ranking leva à tela "Busca de cidades"? → A: Não; o ranking é só leitura e as telas são independentes.
 - Q: Como o visitante chega a esta tela e passa para a outra? → A: Por um menu fixo no topo, igual nas duas telas (decidido no clarify da spec 001; o endereço principal abre a "Busca de cidades").
+- Q: O endereço da página deve identificar a UF escolhida, permitindo compartilhar o link e recarregar sem perder o ranking? → A: Sim; abrir esse endereço mostra direto o ranking e os totais da UF.
+- Q: Além de rolar, o visitante deve poder filtrar o ranking pelo nome do município, mantendo a posição original? → A: Sim; filtro por nome, ignorando acento e maiúsculas, com a posição original preservada.
 
 ## Assumptions
 
