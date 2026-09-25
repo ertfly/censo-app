@@ -26,6 +26,9 @@ O visitante abre qualquer uma das telas e começa a consultar sem criar conta ne
 4. **Given** um visitante cuja verificação expirou, **When** ele faz uma nova consulta, **Then** a verificação acontece de novo automaticamente e a consulta é concluída, sem apagar o que ele tinha digitado ou escolhido.
 5. **Given** uma verificação que falhou, **When** a falha acontece, **Then** a tela explica o que houve em português e oferece uma forma de tentar de novo.
 6. **Given** um acesso que tenta consultar sem ter passado pela verificação, **When** a consulta é feita, **Then** ela é recusada.
+7. **Given** uma verificação já concluída e usada para abrir uma validade, **When** a mesma verificação é enviada de novo, **Then** ela é recusada e a falha é registrada.
+8. **Given** um visitante verificado em uma aba, **When** ele abre a outra tela em uma nova aba do mesmo navegador, **Then** consulta sem nova verificação.
+9. **Given** um visitante digitando na busca, **When** a verificação expira durante a digitação, **Then** a nova verificação acontece automaticamente e as sugestões aparecem para o texto digitado, sem apagá-lo.
 
 ---
 
@@ -45,6 +48,8 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 4. **Given** um visitante usando as telas normalmente (digitando nomes na busca, escolhendo UFs, trocando de município), **When** ele usa a aplicação por 10 minutos seguidos, **Then** nunca atinge o limite.
 5. **Given** um acesso que se identifica como robô de IA, **When** ele tenta abrir qualquer página ou consultar, **Then** é recusado.
 6. **Given** um robô de busca ou de IA que respeita as regras publicadas para robôs, **When** ele lê essas regras, **Then** encontra a indicação de que as consultas não devem ser acessadas por robôs.
+7. **Given** 3 visitantes na mesma rede, cada um fazendo até 30 consultas por minuto, **When** usam as telas ao mesmo tempo, **Then** nenhum deles é bloqueado.
+8. **Given** um acesso bloqueado, **When** ele tenta iniciar uma nova verificação, **Then** a tentativa também é recusada até o fim do bloqueio.
 
 ---
 
