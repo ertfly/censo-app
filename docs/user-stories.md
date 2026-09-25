@@ -22,6 +22,15 @@ de cada funcionalidade.
 
 Cada tela é um fluxo de teste de ponta a ponta.
 
+## Ordem de implementação
+
+Definida em 2026-09-25, depois da documentação das três funcionalidades:
+
+1. Fundação do projeto (fases 1 e 2 de `specs/001-municipality-search/tasks.md`).
+2. Funcionalidade 3, proteção contra bots: as rotas das telas já nascem protegidas.
+3. Funcionalidade 1, busca de município.
+4. Funcionalidade 2, ranking por estado.
+
 ## 1. Busca de município
 
 ### US01: Encontrar um município pelo nome
