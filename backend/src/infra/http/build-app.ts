@@ -1,7 +1,9 @@
 import type { Writable } from 'node:stream'
 import type { Kysely } from 'kysely'
+import { SearchMunicipalitiesHandler } from '#application/queries/search-municipalities/search-municipalities.handler.js'
 import type { ProtectionConfig } from '../config/protection-config.js'
 import type { Database } from '../database/database.types.js'
+import { InMemoryMunicipalitySearchReader } from '../database/readers/in-memory-municipality-search.reader.js'
 import { ProtectionEventLog } from '../logging/protection-event-log.js'
 import { registerErrorHandler } from './error-handler.js'
 import { UsedChallengeStore } from './protection/challenge-store.js'
@@ -10,6 +12,7 @@ import { registerRateLimit } from './protection/rate-limit.plugin.js'
 import { registerSessionGuard } from './protection/session.plugin.js'
 import { sessionRoutes } from './protection/session.routes.js'
 import { healthRoutes } from './routes/health.routes.js'
+import { municipalityRoutes } from './routes/municipality.routes.js'
 import { createServer } from './server.js'
 
 export interface AppDependencies {
@@ -51,6 +54,12 @@ export async function buildApp(dependencies: AppDependencies) {
         eventLog,
     })
     await app.register(healthRoutes)
+
+    // Busca de município (feature 001): índice carregado antes de o servidor escutar.
+    const municipalitySearch = await InMemoryMunicipalitySearchReader.load(dependencies.db)
+    await app.register(municipalityRoutes, {
+        searchMunicipalities: new SearchMunicipalitiesHandler(municipalitySearch),
+    })
 
     return app
 }
