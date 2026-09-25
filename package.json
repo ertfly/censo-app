@@ -17,5 +17,16 @@
         "format:check": "prettier --check .",
         "test": "npm run test --workspaces --if-present",
         "build": "npm run build --workspaces --if-present"
+    },
+    "devDependencies": {
+        "@vue/eslint-config-typescript": "14.9.0",
+        "eslint": "10.11.0",
+        "eslint-config-prettier": "10.1.8",
+        "eslint-import-resolver-typescript": "4.4.5",
+        "eslint-plugin-boundaries": "7.2.0",
+        "eslint-plugin-vue": "10.11.1",
+        "prettier": "3.9.9",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.70.1"
     }
 }

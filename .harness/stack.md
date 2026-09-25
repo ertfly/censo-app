@@ -30,6 +30,7 @@
 | Servidor web | `nginx:1.30.5-alpine` | 1.30.5 | [0005](decisions/0005-docker-compose.md) |
 | Lint | ESLint + typescript-eslint + eslint-plugin-vue | 10.11.0 / 8.70.1 / 10.11.1 | [0011](decisions/0011-lint-e-formatacao.md) |
 | Fronteiras entre camadas | eslint-plugin-boundaries | 7.2.0 | [0011](decisions/0011-lint-e-formatacao.md) |
+| Resolução de imports no lint | eslint-import-resolver-typescript | 4.4.5 | [0011](decisions/0011-lint-e-formatacao.md) |
 | Formatação | Prettier | 3.9.9 | [0011](decisions/0011-lint-e-formatacao.md) |
 | Testes unitários e integração | Vitest | 5.0.2 | [0009](decisions/0009-testes.md) |
 | Testes de componentes Vue | @vue/test-utils | 2.5.1 | [0009](decisions/0009-testes.md) |
