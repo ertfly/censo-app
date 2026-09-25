@@ -2,6 +2,9 @@
     "extends": "../tsconfig.base.json",
     "compilerOptions": {
         "composite": true,
+        // Desligado no frontend: os tipos do Reka UI e dos componentes shadcn-vue
+        // não são compatíveis com essa opção.
+        "exactOptionalPropertyTypes": false,
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "lib": ["ES2023", "DOM", "DOM.Iterable"],
