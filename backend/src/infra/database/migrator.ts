@@ -1,4 +1,5 @@
-import { type Kysely, type Migration, type MigrationProvider, Migrator } from 'kysely'
+import type { Kysely } from 'kysely'
+import { type Migration, type MigrationProvider, Migrator } from 'kysely/migration'
 import * as baseline from './migrations/0001-baseline.js'
 
 // Lista explícita: dev (.ts), build (.js) e testes carregam as mesmas migrations,
