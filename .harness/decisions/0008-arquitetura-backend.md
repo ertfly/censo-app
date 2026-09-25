@@ -1,6 +1,6 @@
 # 0008. Arquitetura do backend: DDD simplificado com CQRS de leitura
 
-- Status: Aceito (complementado pelo [ADR 0012](0012-comunicacao-entre-consultas-e-contextos.md))
+- Status: Aceito (complementado pelo [ADR 0012](0012-comunicacao-entre-consultas-e-contextos.md); local dos DTOs e serialização da resposta revistos pelo [ADR 0013](0013-organizacao-do-repositorio.md))
 - Data: 2026-09-25
 
 ## Contexto
@@ -29,7 +29,7 @@ backend/src/
 ├── application/
 │   ├── queries/           # uma pasta por Query
 │   │   └── <query-name>/
-│   │       ├── <name>.query.ts     # DTO de entrada (schema TypeBox + tipo)
+│   │       ├── <name>.query.ts     # movido para @censo/contracts (ADR 0013)
 │   │       ├── <name>.result.ts    # DTO de saída (schema TypeBox + tipo)
 │   │       ├── <name>.reader.ts    # interface (porta) de leitura
 │   │       └── <name>.handler.ts   # QueryHandler
@@ -71,7 +71,7 @@ rota Fastify (infra/http)
       → converte a entrada em Value Objects (domain)
       → chama a porta de leitura (interface em application)
   → Reader Kysely (infra/database) implementa a porta e devolve o DTO de saída
-  → rota responde com o DTO (validado pelo schema de saída)
+  → rota responde com o DTO (serializado pelo schema de saída; ver correção no ADR 0013)
 ```
 
 ### Diferenças em relação ao PHP

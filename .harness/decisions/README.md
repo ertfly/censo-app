@@ -14,7 +14,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito (revisto pelo 0007 e 0013) |
 | [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito |
-| [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012) |
+| [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012, revisto pelo 0013) |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
 | [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
 | [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito |
