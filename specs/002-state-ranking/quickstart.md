@@ -44,3 +44,13 @@ GROUP BY s.cd_mun ORDER BY densidade DESC;
 | E2E | Cenários 1, 3, 5, 6, 9 e 10 no navegador, com cópia do banco |
 
 Nenhum teste usa `censo.sqlite` diretamente.
+
+## Medições (T029, 2026-09-25)
+
+Teste `e2e/tests/state-ranking-performance.spec.ts`, na stack E2E (imagens de
+produção, cópia do banco):
+
+| Critério | Resultado |
+|---|---|
+| SC-001 | MG (853 municípios): 516 a 831 ms da escolha ao ranking e totais em 4 execuções; a API responde em cerca de 30 ms e o restante é a montagem das linhas no navegador. A régua compacta passou a ser desenhada com fundo em CSS (antes: 935 ms) |
+| SC-004 | 5 municípios sorteados, posição encontrada pelo filtro em no máximo 187 ms cada |
