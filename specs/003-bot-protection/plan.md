@@ -21,7 +21,7 @@ menu fixo e cliente HTTP que refaz a verificação sozinho.
 
 **Language/Version**: TypeScript 6.0.3 sobre Node.js 24.21.0 LTS
 
-**Primary Dependencies**: `@fastify/rate-limit` 11.2.0, `@fastify/cookie` 11.1.2, `altcha-lib` 2.5.0, `altcha` 3.2.3, nginx 1.30.5 (já na [stack.md](../../.harness/stack.md)); nenhuma dependência nova
+**Primary Dependencies**: `@fastify/cookie` 11.1.2 (o limite de consultas é próprio, ADR 0022), `altcha-lib` 2.5.0, `altcha` 3.2.3, nginx 1.30.5 (já na [stack.md](../../.harness/stack.md)); nenhuma dependência nova
 
 **Storage**: memória do backend (contador, bloqueios, desafios usados); cookie no navegador; arquivos JSONL em volume Docker `protection-log`. Nada no `censo.sqlite`
 
