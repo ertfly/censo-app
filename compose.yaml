@@ -1,4 +1,4 @@
-# Produção: docker compose up (ADR 0005, 0016, 0018).
+# Produção: docker compose up (ADR 0005, 0016, 0018, 0024), sem .env obrigatório.
 name: censo-app
 
 services:
@@ -17,6 +17,8 @@ services:
         volumes:
             - ${DATABASE_FILE:-./censo.sqlite}:/app/data/censo.sqlite:ro
             - protection-log:/var/lib/censo/protection-log
+            # Segredos gerados na primeira subida, se não vierem do .env (ADR 0024).
+            - secrets:/var/lib/censo/secrets
         healthcheck:
             # A imagem slim não tem curl nem wget; o próprio Node faz a verificação.
             test:
@@ -49,6 +51,8 @@ services:
 volumes:
     # Registros de proteção sem endereço de rede, por 7 dias (ADR 0019).
     protection-log:
+    # Segredos da proteção (ADR 0024).
+    secrets:
 
 networks:
     censo:
