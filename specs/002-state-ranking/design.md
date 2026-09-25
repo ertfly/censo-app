@@ -23,7 +23,7 @@ número.
 │ │ Minas Gerais          ▾ │                                         │
 │ └──────────────────────────┘                                         │
 │                                                                      │
-│ Minas Gerais MG                              ← título expandido      │
+│ Minas Gerais/MG                              ← título expandido      │
 │                                                                      │
 │ ┌──────────────────┬──────────────────┬────────────────────────────┐ │
 │ │ População        │ Área             │ Densidade demográfica      │ │
@@ -71,7 +71,7 @@ sob cada item em largura total.
 |---|---|
 | Sem UF escolhida | Seleção com texto de apoio: "Escolha uma unidade federativa para ver seus municípios ordenados por densidade." |
 | Carregando | Ficha com rótulos e tabela com 10 linhas cinza estáticas |
-| Erro | "Não foi possível carregar os dados de Minas Gerais (MG)." e botão "Tentar de novo" |
+| Erro | "Não foi possível carregar os dados de Minas Gerais/MG." e botão "Tentar de novo" |
 | Filtro sem resultado | "Nenhum município de Minas Gerais corresponde a "xyz"." |
 | Endereço inválido | Seleção vazia com aviso: "Este endereço não corresponde a nenhuma unidade federativa. Escolha uma na lista." |
 
@@ -80,7 +80,9 @@ sob cada item em largura total.
 | Elemento | Texto |
 |---|---|
 | Rótulo da seleção | Unidade federativa |
-| Opções | Nome e sigla (ex.: "Minas Gerais MG") |
+| Opções | "Nome/SIGLA" (ex.: "Minas Gerais/MG") |
+| Título da aba | "Minas Gerais/MG - Censo 2022" |
+| Rodapé | "Fonte: IBGE, Censo Demográfico 2022" |
 | Rótulo do filtro | Filtrar municípios |
 | Colunas | Posição · Município · População · Área (km²) · Densidade (hab/km²) · Escala |
 

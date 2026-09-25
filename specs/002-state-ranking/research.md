@@ -64,7 +64,7 @@ responde a cada tecla.
 **Consequência assumida**: a regra de normalização passa a existir em dois
 lugares (`SearchTerm` no backend e `text-search` no frontend). Mitigação: os
 dois conjuntos de testes usam a mesma tabela de casos (`sao pau`, `paulo`,
-`aulo`, `BOM JESUS`, `pau-d`), mantida em
+`aulo`, `BOM JESUS`, `arco` → "Pau D'Arco"), mantida em
 `test/shared/text-search.cases.json`, na raiz do repositório, como dado. Não
 fica em `@censo/contracts`, que só contém schemas (ADR 0013).
 

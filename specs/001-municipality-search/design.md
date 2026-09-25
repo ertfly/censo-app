@@ -26,7 +26,7 @@ Conteúdo alinhado à esquerda, largura máxima de 72rem, grade de 12 colunas.
 │ │ campinas                                 │  campo grande (8 col.)  │
 │ └──────────────────────────────────────────┘                         │
 │                                                                      │
-│ Campinas SP                          ← título, largura expandida      │
+│ Campinas/SP                          ← título, largura expandida      │
 │                                                                      │
 │ ┌─────────────────────┬─────────────────────┬──────────────────────┐ │
 │ │ População           │ Setores censitários │ Área                 │ │
@@ -69,10 +69,10 @@ rural, sexo). A escala de densidade mantém a régua inteira, com rótulos só e
 | Estado | O que aparece |
 |---|---|
 | Vazia | Campo com rótulo "Município" e texto de apoio "Digite o nome de um município. Ex.: Campinas, Bom Jesus, Paulo Afonso." Os exemplos são links que preenchem a busca |
-| Sugerindo | Lista abaixo do campo com até 10 itens "Nome UF", o trecho digitado destacado em peso 600 |
+| Sugerindo | Lista abaixo do campo com até 10 itens "Nome/SIGLA", o trecho digitado destacado em peso 600 |
 | Sem resultado | Na lista: "Nenhum município encontrado para "xyz". Confira a grafia ou digite só o começo do nome." |
 | Carregando | A ficha aparece com as divisões e os rótulos; os valores são substituídos por barras cinza estáticas (sem brilho animado) |
-| Erro | Na ficha: "Não foi possível carregar os dados de Campinas (SP)." e botão "Tentar de novo" |
+| Erro | Na ficha: "Não foi possível carregar os dados de Campinas/SP." e botão "Tentar de novo" |
 | Endereço inválido | Campo vazio com aviso: "Este endereço não corresponde a nenhum município. Busque pelo nome." |
 
 ## Texto da interface
@@ -84,6 +84,8 @@ rural, sexo). A escala de densidade mantém a régua inteira, com rótulos só e
 | Rótulo do campo | Município |
 | Rótulos da ficha | População · Setores censitários · Área · Densidade demográfica · Urbano e rural · Sexo |
 | Categorias | Urbano · Rural · Sem classificação · Mulheres · Homens · Sem informação |
+| Título da aba | "Campinas/SP - Censo 2022" |
+| Rodapé | "Fonte: IBGE, Censo Demográfico 2022" |
 | Nota sob "Sexo", quando houver "Sem informação" | "Parte da população não tem informação de sexo na base do Censo." |
 
 ## Acessibilidade
