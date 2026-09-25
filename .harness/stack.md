@@ -34,5 +34,12 @@
 | Testes unitários e integração | Vitest | 5.0.2 | [0009](decisions/0009-testes.md) |
 | Testes de componentes Vue | @vue/test-utils | 2.5.1 | [0009](decisions/0009-testes.md) |
 | Testes E2E | Playwright | 1.63.0 | [0009](decisions/0009-testes.md) |
+| Imagem E2E | `mcr.microsoft.com/playwright:v1.63.0-noble` | 1.63.0 | [0009](decisions/0009-testes.md) |
+| Plugin Vue para Vite | @vitejs/plugin-vue | 6.0.9 | [0003](decisions/0003-frontend-vue.md) |
+| Checagem de tipos `.vue` | vue-tsc | 3.3.11 | [0003](decisions/0003-frontend-vue.md) |
+| DOM nos testes de componente | jsdom | 30.1.1 | [0009](decisions/0009-testes.md) |
+| Recarga do backend em dev | tsx | 4.23.15 | [0005](decisions/0005-docker-compose.md) |
+| Tipos do Node | @types/node | 24.13.6 (linha 24, igual ao runtime) | [0002](decisions/0002-runtime-e-backend.md) |
+| Tipos do driver SQLite | @types/better-sqlite3 | 9.6.0 | [0006](decisions/0006-acesso-a-dados.md) |
 
 Regra: somente versões estáveis (tag `latest` do npm, Node.js LTS).
