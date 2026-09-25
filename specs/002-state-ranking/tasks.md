@@ -65,7 +65,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 - [X] T013 [P] [US1] Teste unitário `frontend/test/unit/shared/text-search.test.ts` com os casos de `test/shared/text-search.cases.json` (mesma tabela usada pelo `SearchTerm` do backend)
 - [X] T014 [P] [US1] Teste unitário `frontend/test/unit/pages/state-ranking/ranking-filter.test.ts`: filtra a partir do primeiro caractere; linhas mantêm a posição do ranking completo; contagem "853 municípios" e "3 de 853 municípios"; filtro limpo ao trocar de UF
 - [X] T015 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/ranking-table.test.ts`: colunas Posição, Município, População, Área (km²), Densidade (hab/km²) e Escala; números no formato pt-BR; linha de referência da densidade da UF na escala; `<th scope="col">`; linhas sem ação de clique nem link (FR-010); mensagem "Nenhum município de Minas Gerais corresponde a "xyz"."
-- [ ] T016 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/state-select.test.ts`: 27 opções no formato "Nome/SIGLA" na ordem recebida; seleção por teclado com busca por digitação; seleção desabilitada com explicação durante a verificação e o bloqueio (FR-026)
+- [X] T016 [P] [US1] Teste de componente `frontend/test/unit/pages/state-ranking/state-select.test.ts`: 27 opções no formato "Nome/SIGLA" na ordem recebida; seleção por teclado com busca por digitação; seleção desabilitada com explicação durante a verificação e o bloqueio (FR-026)
 - [ ] T017 [P] [US1] Teste E2E `e2e/tests/state-ranking.spec.ts`: quickstart cenários 1, 2, 3, 4, 6, 7, 8, 9 e 10; cenário 11 da US1 da spec ("Águas Vermelhas" antes de "Luminárias" em MG)
 
 ### Implementation for User Story 1
