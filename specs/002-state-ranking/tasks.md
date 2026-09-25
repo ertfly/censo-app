@@ -43,7 +43,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 ### Implementation
 
-- [ ] T007 [P] Criar `packages/contracts/src/states/list-states.contract.ts` (`{ items: { code, abbreviation, name }[] }`) e `get-state-density-ranking.contract.ts` (`state { code, abbreviation, name }`; `totals { population, areaKm2, populationDensity, areaOutsideMunicipalitiesKm2 }`; `items { position, code, name, population, areaKm2, populationDensity }[]`) conforme [contracts/api.md](contracts/api.md); exportar no `index.ts`
+- [X] T007 [P] Criar `packages/contracts/src/states/list-states.contract.ts` (`{ items: { code, abbreviation, name }[] }`) e `get-state-density-ranking.contract.ts` (`state { code, abbreviation, name }`; `totals { population, areaKm2, populationDensity, areaOutsideMunicipalitiesKm2 }`; `items { position, code, name, population, areaKm2, populationDensity }[]`) conforme [contracts/api.md](contracts/api.md); exportar no `index.ts`
 - [ ] T008 [P] Criar `backend/src/application/queries/list-states/states.reader.ts` (porta `listAll(): Promise<StateSummary[]>`) e `list-states.handler.ts`
 - [ ] T009 [P] Criar `backend/src/application/queries/get-state-density-ranking/state-ranking.reader.ts` (porta `findByState(code: StateCode): Promise<StateRanking>`) e `get-state-density-ranking.handler.ts`
 - [ ] T010 Criar `backend/src/infra/database/readers/kysely-states.reader.ts`: lê `uf`, completa a sigla por `StateCode`, ordena com `Intl.Collator('pt-BR')`
