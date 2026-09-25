@@ -1,6 +1,6 @@
 # Convenções
 
-> Status: em definição
+> Status: definida
 
 ## Idioma
 
