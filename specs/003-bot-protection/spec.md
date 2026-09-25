@@ -64,11 +64,11 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **FR-001**: O sistema NÃO DEVE exigir cadastro, login, e-mail ou qualquer dado pessoal para consultar.
 - **FR-002**: O sistema DEVE verificar automaticamente, ao abrir qualquer tela, que o acesso vem de um navegador em uso, sem exigir interação do visitante na maioria dos casos.
 - **FR-003**: O sistema DEVE recusar consultas de acessos que não passaram pela verificação ou cuja verificação expirou.
-- **FR-004**: A verificação DEVE valer por [NEEDS CLARIFICATION: quanto tempo a verificação vale antes de ser refeita? Ver pergunta Q1], para todas as telas e abas do mesmo navegador.
+- **FR-004**: A verificação DEVE valer por 30 minutos, para todas as telas e abas do mesmo navegador.
 - **FR-005**: Ao expirar a verificação, o sistema DEVE refazê-la automaticamente e concluir a consulta pendente, sem perder o que o visitante digitou ou escolheu.
 - **FR-006**: Durante a verificação, a tela DEVE exibir uma indicação discreta de que a verificação está em andamento.
 - **FR-007**: Em caso de falha na verificação, o sistema DEVE explicar o problema em português e oferecer uma forma de tentar de novo.
-- **FR-008**: O sistema DEVE limitar a quantidade de consultas por acesso a [NEEDS CLARIFICATION: qual o limite de consultas por período e quanto tempo dura o bloqueio? Ver pergunta Q2].
+- **FR-008**: O sistema DEVE limitar cada acesso a 120 consultas por minuto; ao ultrapassar, o acesso fica bloqueado por 1 minuto.
 - **FR-009**: Ao ultrapassar o limite, o sistema DEVE recusar as consultas do acesso até o fim do bloqueio e exibir mensagem em português informando que é preciso aguardar.
 - **FR-010**: O limite DEVE comportar o uso normal das duas telas, incluindo as sugestões exibidas durante a digitação, sem que um visitante individual o atinja.
 - **FR-011**: O sistema DEVE recusar acessos que se identificam como robôs de IA conhecidos.
@@ -94,6 +94,13 @@ O responsável pela aplicação quer que consultas em massa, feitas por programa
 - **SC-004**: 100% das consultas acima do limite são recusadas até o fim do bloqueio, e voltam a ser aceitas depois dele.
 - **SC-005**: 100% dos acessos que se identificam como os robôs de IA listados são recusados.
 - **SC-006**: Após a expiração da verificação, o visitante conclui a consulta seguinte sem redigitar nada.
+
+## Clarifications
+
+### Session 2026-09-25
+
+- Q: Por quanto tempo a verificação vale? → A: 30 minutos.
+- Q: Qual o limite de consultas e a duração do bloqueio? → A: 120 consultas por minuto por acesso; bloqueio de 1 minuto.
 
 ## Assumptions
 

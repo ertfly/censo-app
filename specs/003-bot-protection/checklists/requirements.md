@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -32,5 +32,5 @@
 ## Notes
 
 - Iteração 1: nenhum item de conteúdo falhou.
-- Pendentes 2 marcadores [NEEDS CLARIFICATION]: FR-004 (validade da verificação) e FR-008 (limite de consultas por período e duração do bloqueio).
+- Iteração 2: 2 marcadores [NEEDS CLARIFICATION] resolvidos com o responsável (Q1: B, Q2: B), registrados em Clarifications. Todos os itens passam.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`
