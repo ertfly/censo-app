@@ -1,6 +1,6 @@
 # 0009. Estratégia de testes automatizados
 
-- Status: Aceito
+- Status: Aceito (complementado pelo [ADR 0020](0020-stacks-de-e2e.md))
 - Data: 2026-09-25
 
 ## Contexto

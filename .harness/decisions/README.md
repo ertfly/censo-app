@@ -15,7 +15,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito (complementado pelo 0015) |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito (revisto pelo 0018) |
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012, revisto pelo 0013) |
-| [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
+| [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito (complementado pelo 0020) |
 | [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
 | [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito (revisto pelo 0013 e 0014) |
 | [0012](0012-comunicacao-entre-consultas-e-contextos.md) | Comunicação entre consultas e entre contextos | Aceito |
@@ -26,6 +26,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0017](0017-protecao-contra-bots.md) | Proteção contra bots com rate limit e ALTCHA local | Aceito (complementado pelo 0019) |
 | [0018](0018-banco-na-raiz.md) | Banco de dados na raiz do repositório | Aceito |
 | [0019](0019-registros-de-protecao.md) | Registros de proteção sem endereço de rede | Aceito |
+| [0020](0020-stacks-de-e2e.md) | Stacks de E2E com a proteção ligada | Aceito |
 
 ## Modelo
 
