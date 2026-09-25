@@ -12,7 +12,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0003](0003-frontend-vue.md) | Frontend em Vue 3 com Composition API e Vite | Aceito (revisto pelo 0014) |
 | [0004](0004-ui-tailwind-shadcn-vue.md) | UI com Tailwind CSS, shadcn-vue e Reka UI | Aceito |
 | [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito (revisto pelo 0007 e 0013) |
-| [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito |
+| [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito (complementado pelo 0015) |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito |
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012, revisto pelo 0013) |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
@@ -21,6 +21,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0012](0012-comunicacao-entre-consultas-e-contextos.md) | Comunicação entre consultas e entre contextos | Aceito |
 | [0013](0013-organizacao-do-repositorio.md) | Monorepo com npm workspaces e pacote de contratos | Aceito |
 | [0014](0014-arquitetura-frontend.md) | Arquitetura do frontend: Feature-Sliced Design enxuto | Aceito |
+| [0015](0015-migrations.md) | Migrations com o Migrator do Kysely | Aceito |
 
 ## Modelo
 

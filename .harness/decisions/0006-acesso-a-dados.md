@@ -1,6 +1,6 @@
 # 0006. Acesso a dados com better-sqlite3 e Kysely
 
-- Status: Aceito
+- Status: Aceito (complementado pelo [ADR 0015](0015-migrations.md))
 - Data: 2026-09-25
 
 ## Contexto
