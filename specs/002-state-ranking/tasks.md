@@ -90,7 +90,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 ### Tests for User Story 2
 
-- [ ] T025 [P] [US2] Teste de componente `frontend/test/unit/pages/state-ranking/state-record.test.ts`: População, Área e Densidade no formato pt-BR; nota "Inclui 13.085,86 km² fora dos municípios, registrados sem município na base do Censo." só quando `areaOutsideMunicipalitiesKm2 > 0`; escala com o marcador da UF
+- [X] T025 [P] [US2] Teste de componente `frontend/test/unit/pages/state-ranking/state-record.test.ts`: População, Área e Densidade no formato pt-BR; nota "Inclui 13.085,86 km² fora dos municípios, registrados sem município na base do Censo." só quando `areaOutsideMunicipalitiesKm2 > 0`; escala com o marcador da UF
 - [ ] T026 [P] [US2] Teste E2E `e2e/tests/state-totals.spec.ts`: cenário 4 da US2 (RS) e, para as 27 UFs, totais e ordem do ranking comparados com as consultas diretas de [quickstart.md](quickstart.md#conferência-dos-números-sc-002-sc-003) em `e2e/.tmp/censo.sqlite` (SC-002, SC-003)
 
 ### Implementation for User Story 2
