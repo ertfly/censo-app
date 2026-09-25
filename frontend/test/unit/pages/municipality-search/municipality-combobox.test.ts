@@ -137,6 +137,7 @@ describe('MunicipalityCombobox', () => {
             items: [
                 ['São Paulo', 'SP'],
                 ['São Carlos', 'SP'],
+                ['São Vicente', 'SP'],
             ],
         }
         mountCombobox()
@@ -149,7 +150,7 @@ describe('MunicipalityCombobox', () => {
 
         await press('Enter')
         const chosen = wrapper!.emitted('select')?.[0]?.[0] as { name: string }
-        expect(chosen.name).toBe(second === 1 ? 'São Carlos' : 'São Paulo')
+        expect(chosen.name).toBe(['São Paulo', 'São Carlos', 'São Vicente'][second])
     })
 
     it('chooses the first suggestion on Enter without a highlight', async () => {
