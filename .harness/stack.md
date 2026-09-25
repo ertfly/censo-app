@@ -18,6 +18,10 @@
 | Repositório | Monorepo com npm workspaces | npm do Node 24.21.0 | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Contratos da API | `@censo/contracts` (schemas TypeBox) | — | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Validação e DTOs | TypeBox + `@fastify/type-provider-typebox` | 1.3.34 / 6.1.0 | [0008](decisions/0008-arquitetura-backend.md) |
+| Rate limit | @fastify/rate-limit | 11.2.0 | [0017](decisions/0017-protecao-contra-bots.md) |
+| Anti-bot (servidor) | altcha-lib | 2.5.0 | [0017](decisions/0017-protecao-contra-bots.md) |
+| Anti-bot (navegador) | altcha | 3.2.3 | [0017](decisions/0017-protecao-contra-bots.md) |
+| Sessão | @fastify/cookie | 11.1.2 | [0017](decisions/0017-protecao-contra-bots.md) |
 | Driver SQLite | better-sqlite3 | 13.0.3 | [0006](decisions/0006-acesso-a-dados.md) |
 | Acesso a dados e migrations | Kysely | 0.29.6 | [0006](decisions/0006-acesso-a-dados.md) |
 | Infraestrutura | Docker Compose (`compose.yaml` prod, `compose.dev.yaml` dev) | Compose v2 | [0005](decisions/0005-docker-compose.md) |
