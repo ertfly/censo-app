@@ -1,6 +1,6 @@
 # 0008. Arquitetura do backend: DDD simplificado com CQRS de leitura
 
-- Status: Aceito
+- Status: Aceito (complementado pelo [ADR 0012](0012-comunicacao-entre-consultas-e-contextos.md))
 - Data: 2026-09-25
 
 ## Contexto
