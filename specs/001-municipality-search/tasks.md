@@ -169,7 +169,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 - [X] T074 [US2] Adicionar `GET /api/municipalities/:municipalityCode` em `backend/src/infra/http/routes/municipality.routes.ts` e registrar no `main.ts`
 - [X] T075 [P] [US2] Invocar a skill `frontend-design` e criar `frontend/src/shared/ui/density-scale/DensityScale.vue` (régua logarítmica 0,1–100.000, marcador que desliza uma vez, sem animação com `prefers-reduced-motion`, marca de referência opcional, variante `compact` para linhas de tabela, rótulo textual do valor) e `index.ts`
 - [X] T076 [P] [US2] Invocar a skill `frontend-design` e criar `frontend/src/shared/ui/proportion-bar/ProportionBar.vue` (segmentos coloridos com hachura diagonal para "sem dado", legenda escrita, texto equivalente para leitor de tela) e `index.ts`
-- [ ] T077 [US2] Criar `frontend/src/pages/municipality-search/api/indicators.ts` (`useMunicipalityIndicators(code)`)
+- [X] T077 [US2] Criar `frontend/src/pages/municipality-search/api/indicators.ts` (`useMunicipalityIndicators(code)`)
 - [ ] T078 [US2] Invocar a skill `frontend-design` e criar `frontend/src/pages/municipality-search/ui/MunicipalityRecord.vue` (ficha de [design.md](design.md#estrutura-desktop--1024px): título "Nome/SIGLA" em largura expandida, População, Setores censitários, Área, Densidade com `DensityScale`, Urbano e rural com duas `ProportionBar` (setores e população), Sexo com `ProportionBar` e nota; estados de carregamento estático e erro com "Tentar de novo")
 - [ ] T079 [US2] Integrar a ficha em `MunicipalitySearchPage.vue`: carregar pelo código da URL, endereço inválido (FR-018) mostra busca vazia com a mensagem do contrato, foco programático no título ao carregar, `setDocumentTitle("Nome/SIGLA")` (FR-026)
 
