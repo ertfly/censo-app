@@ -16,6 +16,7 @@
         "@lucide/vue": "1.48.0",
         "@tanstack/vue-query": "5.103.2",
         "@vueuse/core": "14.4.0",
+        "altcha": "3.2.3",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
         "reka-ui": "2.10.5",
