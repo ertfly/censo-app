@@ -1,9 +1,9 @@
+import { loadProtectionConfig, ProtectionConfigError } from '#infra/config/protection-config.js'
 import { openDatabase } from '#infra/database/connection.js'
 import { checkDatabaseFile, DatabaseFileError } from '#infra/database/database-file-check.js'
 import { listPendingMigrations } from '#infra/database/migrator.js'
-import { registerErrorHandler } from '#infra/http/error-handler.js'
-import { healthRoutes } from '#infra/http/routes/health.routes.js'
-import { createServer } from '#infra/http/server.js'
+import { buildApp } from '#infra/http/build-app.js'
+import { startProtectionLogRetention } from '#infra/logging/protection-log-retention.js'
 
 // Composition root: única parte que conhece todas as camadas (ADR 0008).
 
@@ -12,12 +12,18 @@ const port = Number(process.env['PORT'] ?? 3000)
 const trustedProxyCidr = process.env['TRUSTED_PROXY_CIDR'] ?? '172.28.0.0/24'
 const isProduction = process.env['NODE_ENV'] === 'production'
 
+function exitWith(message: string): never {
+    console.error(message)
+    process.exit(1)
+}
+
+let protection
 try {
     checkDatabaseFile(databasePath)
+    protection = loadProtectionConfig(process.env)
 } catch (error) {
-    if (error instanceof DatabaseFileError) {
-        console.error(error.message)
-        process.exit(1)
+    if (error instanceof DatabaseFileError || error instanceof ProtectionConfigError) {
+        exitWith(error.message)
     }
     throw error
 }
@@ -29,17 +35,19 @@ const pendingMigrations = await listPendingMigrations(db)
 if (pendingMigrations.length > 0) {
     const message = `Pending migrations: ${pendingMigrations.join(', ')}. Run "npm run migrate".`
     if (isProduction) {
-        console.error(message)
-        process.exit(1)
+        exitWith(message)
     }
     console.warn(message)
 }
 
-const app = createServer({ trustedProxyCidr })
-registerErrorHandler(app)
-await app.register(healthRoutes)
+const app = await buildApp({ db, protection, trustedProxyCidr })
+const stopRetention = startProtectionLogRetention(
+    protection.protectionLogDir,
+    protection.protectionLogRetentionDays,
+)
 
 const shutdown = async (): Promise<void> => {
+    stopRetention()
     await app.close()
     await db.destroy()
     process.exit(0)
