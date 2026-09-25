@@ -78,7 +78,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 - [X] T023 Aplicar a migration de base ao `censo.sqlite` com `docker compose -f compose.dev.yaml run --rm backend npm run migrate`, conferir que só foram criadas `kysely_migration` e `kysely_migration_lock` e commitar o banco (Git LFS)
 - [X] T024 Criar helper de testes `backend/test/helpers/create-test-database.ts`: SQLite em memória, aplica todas as migrations e carrega `backend/test/fixtures/census.fixture.ts`
 - [X] T025 Criar `backend/test/fixtures/census.fixture.ts` com dados mínimos que cobrem os casos de borda de [database.md](../../.harness/database.md#qualidade-dos-dados): UFs 22 (PI), 25 (PB), 15 (PA), 17 (TO), 29 (BA), 35 (SP), 43 (RS), 53 (DF); municípios "Bom Jesus" em PI e PB, "Pau D'Arco" em PA e TO, "Paulo Afonso" (BA), "São Paulo" (SP), "Brasília" (DF), o registro `.` do RS com 2 setores de população 0; setores urbanos, rurais e sem `situacao`; linhas de `demografia` com `homens` e `mulheres` nulos; setores com população 0 sem linha em `demografia`
-- [ ] T026 [P] Teste de integração `backend/test/integration/infra/migrations.test.ts`: a base cria o schema do zero em memória; `listPendingMigrations` retorna vazio após `migrateToLatest`; `down` da base lança erro
+- [X] T026 [P] Teste de integração `backend/test/integration/infra/migrations.test.ts`: a base cria o schema do zero em memória; `listPendingMigrations` retorna vazio após `migrateToLatest`; `down` da base lança erro
 
 ### Backend: domínio e HTTP
 
