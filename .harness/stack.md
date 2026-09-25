@@ -11,6 +11,8 @@
 | Build | Vite | 8.3.1 | [0003](decisions/0003-frontend-vue.md) |
 | Roteamento | Vue Router | 5.3.1 | [0003](decisions/0003-frontend-vue.md) |
 | Estado | Pinia | 4.0.3 | [0003](decisions/0003-frontend-vue.md) |
+| Estilo | Tailwind CSS | 4.3.3 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
+| Componentes | shadcn-vue + Reka UI | 2.8.2 / 2.10.5 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Banco de dados | SQLite (`data/censo.sqlite`) | 3 | [0001](decisions/0001-banco-de-dados-sqlite.md) |
 | Acesso a dados | _a definir_ | | |
 | Infraestrutura | _a definir_ | | |
