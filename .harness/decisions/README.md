@@ -9,6 +9,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 |---|---|---|
 | [0001](0001-banco-de-dados-sqlite.md) | Banco de dados SQLite em data/ versionado com Git LFS | Aceito |
 | [0002](0002-runtime-e-backend.md) | Runtime Node.js LTS com TypeScript e backend em Fastify | Aceito |
+| [0003](0003-frontend-vue.md) | Frontend em Vue 3 com Composition API e Vite | Aceito |
 
 ## Modelo
 
