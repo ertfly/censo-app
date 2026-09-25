@@ -14,6 +14,7 @@
 | Estado do cliente | Pinia (só se necessário) | 4.0.3 | [0014](decisions/0014-arquitetura-frontend.md) |
 | Estilo | Tailwind CSS | 4.3.3 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
 | Componentes | shadcn-vue + Reka UI | 2.8.2 / 2.10.5 | [0004](decisions/0004-ui-tailwind-shadcn-vue.md) |
+| Fonte | Archivo via @fontsource-variable/archivo (servida localmente) | 5.3.0 | [design-system.md](design-system.md) |
 | Banco de dados | SQLite (`censo.sqlite`, na raiz) | 3 | [0001](decisions/0001-banco-de-dados-sqlite.md), [0018](decisions/0018-banco-na-raiz.md) |
 | Repositório | Monorepo com npm workspaces | npm do Node 24.21.0 | [0013](decisions/0013-organizacao-do-repositorio.md) |
 | Contratos da API | `@censo/contracts` (schemas TypeBox) | — | [0013](decisions/0013-organizacao-do-repositorio.md) |
