@@ -24,6 +24,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0015](0015-migrations.md) | Migrations com o Migrator do Kysely | Aceito |
 | [0016](0016-execucao-local.md) | Execução local na primeira versão | Aceito |
 | [0017](0017-protecao-contra-bots.md) | Proteção contra bots com rate limit e ALTCHA local | Aceito |
+| [0018](0018-banco-na-raiz.md) | Banco de dados na raiz do repositório | Aceito |
 
 ## Modelo
 
