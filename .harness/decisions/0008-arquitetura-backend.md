@@ -22,17 +22,17 @@ registra as diferenças estruturais em Node.js/TypeScript.
 ```
 backend/src/
 ├── domain/
-│   ├── value-objects/     # CodigoUf, CodigoMunicipio, CodigoSetor, Situacao...
+│   ├── value-objects/     # StateCode, MunicipalityCode, CensusTractCode, AreaType...
 │   ├── errors/            # erros de domínio (classes que estendem Error)
 │   ├── entities/          # reservado para a escrita (não criado na v1)
 │   └── repositories/      # reservado para a escrita (não criado na v1)
 ├── application/
 │   ├── queries/           # uma pasta por Query
-│   │   └── <nome-da-query>/
-│   │       ├── <nome>.query.ts     # DTO de entrada (schema TypeBox + tipo)
-│   │       ├── <nome>.result.ts    # DTO de saída (schema TypeBox + tipo)
-│   │       ├── <nome>.reader.ts    # interface (porta) de leitura
-│   │       └── <nome>.handler.ts   # QueryHandler
+│   │   └── <query-name>/
+│   │       ├── <name>.query.ts     # DTO de entrada (schema TypeBox + tipo)
+│   │       ├── <name>.result.ts    # DTO de saída (schema TypeBox + tipo)
+│   │       ├── <name>.reader.ts    # interface (porta) de leitura
+│   │       └── <name>.handler.ts   # QueryHandler
 │   └── use-cases/         # reservado para Commands (não criado na v1)
 ├── infra/
 │   ├── database/          # conexão, tipos das tabelas, migrations, readers Kysely
@@ -86,7 +86,7 @@ rota Fastify (infra/http)
    na borda (rotas), com TypeBox 1.3.34 e `@fastify/type-provider-typebox`
    6.1.0.
 4. **Value Object por convenção:** construtor privado, fábrica estática
-   `criar()` que valida e lança erro de domínio, `equals()` explícito e
+   `create()` que valida e lança erro de domínio, `equals()` explícito e
    `Object.freeze(this)`.
 5. **Interfaces estruturais:** implementações usam `implements` para deixar a
    intenção explícita.
@@ -114,5 +114,6 @@ rota Fastify (infra/http)
 - Domínio e aplicação testáveis sem banco e sem framework.
 - A adoção de escrita adiciona `entities/`, `repositories/` e `use-cases/` sem
   alterar a estrutura existente.
-- Idioma dos nomes no código (termos do domínio em português, estrutura em
-  inglês) a definir em [conventions.md](../conventions.md).
+- Todo o código em inglês; tabelas e colunas em português ficam restritas a
+  `infra/database`. Glossário e nomenclatura em
+  [conventions.md](../conventions.md).
