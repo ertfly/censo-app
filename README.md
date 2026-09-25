@@ -17,38 +17,27 @@ consultas).
 
 ### Pré-requisitos
 
-- Docker com Compose v2.
-- Git com [Git LFS](https://git-lfs.com): o `censo.sqlite` é versionado no LFS.
+Só Docker (com Compose v2) e Git para clonar. Node, dependências, build,
+testes e lint rodam em containers. O banco `censo.sqlite` vem no clone.
 
-Nada mais precisa estar instalado no host: Node, dependências, testes e lint
-rodam em containers.
-
-### Preparar
+### Produção local: um comando
 
 ```bash
-git lfs install
 git clone <url-do-repositorio> censo-app
 cd censo-app
-git lfs pull                 # garante o censo.sqlite real, não o ponteiro de texto
-cp .env.example .env
-```
-
-No `.env`, preencha os três segredos obrigatórios (sem eles o backend não
-sobe), cada um diferente e com pelo menos 32 caracteres:
-
-```bash
-openssl rand -hex 32         # rode três vezes: ALTCHA_HMAC_KEY, SESSION_SECRET, PROTECTION_LOG_KEY
-```
-
-### Produção local
-
-```bash
-docker compose up --build
+docker compose up
 ```
 
 Acesse **http://localhost:8080** (porta em `APP_PORT`). Use `localhost`: a
 verificação contra bots usa a Web Crypto do navegador, que só funciona em
 contexto seguro (HTTPS ou `localhost`), ver [ADR 0023](.harness/decisions/0023-v1-somente-localhost.md).
+
+Não é preciso criar `.env`: sem ele valem os padrões, e os três segredos da
+proteção contra bots são gerados na primeira subida e guardados no volume
+`secrets` ([ADR 0024](.harness/decisions/0024-segredos-gerados-na-primeira-subida.md)).
+Para mudar algum valor (porta, limites, segredos próprios), copie o
+`.env.example` para `.env` e ajuste. Nenhuma migration precisa ser rodada: o
+banco já vem com a migration de base aplicada.
 
 ### Desenvolvimento (com recarga automática)
 
@@ -89,9 +78,9 @@ Bloqueios e falhas de verificação por dia, sem endereço de rede, dos últimos
 
 ```
 censo-app/
-├── censo.sqlite                 # banco (Git LFS), na raiz por requisito
+├── censo.sqlite                 # banco (no Git, sem LFS), na raiz por requisito
 ├── docs/user-stories.md         # histórias de usuário da v1
-├── .harness/                    # arquitetura e decisões técnicas (ADRs 0001-0023)
+├── .harness/                    # arquitetura e decisões técnicas (ADRs 0001-0025)
 ├── .specify/                    # spec-kit: constituição, templates, scripts
 ├── .claude/skills/              # comandos /speckit-* usados no Claude Code
 ├── specs/
@@ -157,8 +146,8 @@ trata o bloqueio por excesso de consultas.
 
 ## Decisões técnicas e por quê
 
-Todas registradas como ADR em [.harness/decisions/](.harness/decisions/); as
-principais:
+Todas registradas como ADR em [.harness/decisions/](.harness/decisions/) (0001 a
+0025); as principais:
 
 | Decisão | Por quê | ADR |
 |---|---|---|
@@ -169,7 +158,9 @@ principais:
 | Somente leitura na v1 | O requisito é consultar; escrita fica em aberto | [0007](.harness/decisions/0007-primeira-versao-somente-leitura.md) |
 | Monorepo com pacote de contratos | Um schema por rota, compartilhado por backend e frontend | [0013](.harness/decisions/0013-organizacao-do-repositorio.md) |
 | Docker Compose, um comando | A máquina precisa só de Docker; nginx serve o frontend e faz proxy da API na mesma origem | [0005](.harness/decisions/0005-docker-compose.md) |
-| Banco na raiz, via Git LFS, aberto somente leitura | Requisito do projeto; o arquivo binário não incha o histórico | [0018](.harness/decisions/0018-banco-na-raiz.md) |
+| Banco na raiz, aberto somente leitura | Requisito do projeto; o backend nunca escreve no arquivo | [0018](.harness/decisions/0018-banco-na-raiz.md) |
+| Banco versionado direto no Git, sem LFS | Quem clona sem o Git LFS receberia um ponteiro de texto no lugar do banco; o arquivo tem 35 MB, abaixo do limite de 100 MB do GitHub | [0025](.harness/decisions/0025-banco-fora-do-git-lfs.md) |
+| Segredos gerados na primeira subida | Clonar e rodar `docker compose up` basta, sem `.env`; os segredos ficam num volume e não mudam entre reinícios | [0024](.harness/decisions/0024-segredos-gerados-na-primeira-subida.md) |
 | Busca de município com índice em memória | O `LIKE` do SQLite não ignora acentos; os 5.570 nomes cabem em memória e a busca responde em milissegundos | research R1 da [001](specs/001-municipality-search/research.md) |
 | Agregações pelo intervalo da chave primária | O código do setor começa pelo da UF e do município: a consulta usa a chave primária sem índice novo | research R2 da 001 e da 002 |
 | Percentuais pelo maior resto | As partes somam sempre 100,0% | research R4 da 001 |
@@ -215,7 +206,7 @@ Passos seguidos:
 
 1. **Regras do processo** guardadas na memória do Claude Code (ver abaixo).
 2. **`.harness/`**: arquitetura, stack, convenções, mapeamento do banco,
-   índices, sistema visual e 23 ADRs, discutidos antes de cada decisão.
+   índices, sistema visual e 25 ADRs, discutidos antes de cada decisão.
 3. **Constituição** do spec-kit (`.specify/memory/constitution.md`) derivada
    do `.harness/`.
 4. **Histórias de usuário** em [docs/user-stories.md](docs/user-stories.md).
@@ -234,8 +225,8 @@ Passos seguidos:
    unitários e de integração, E2E nas stacks Docker e registro das medições
    no `quickstart.md` de cada feature.
 
-Os desvios encontrados durante a implementação viraram ADRs (ex.: 0021, 0022,
-0023) ou registros no `quickstart.md`, e os erros foram corrigidos em commits
+Os desvios encontrados durante a implementação viraram ADRs (ex.: 0021 a
+0025) ou registros no `quickstart.md`, e os erros foram corrigidos em commits
 separados, sem reescrever o histórico.
 
 ## Memória do Claude Code criada para o projeto
