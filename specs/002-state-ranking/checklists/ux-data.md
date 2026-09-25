@@ -10,53 +10,54 @@
 
 ## Completude dos requisitos
 
-- [ ] CHK001 A nota que explica a área fora dos municípios (RS) é requisito da spec ou só do design e do contrato? [Gap, Spec §FR-009, Design §Estrutura]
-- [ ] CHK002 A contagem de municípios exibidos ("853 municípios", "3 de 853 municípios") está nos requisitos? [Gap, Spec §FR-019]
-- [ ] CHK003 Existe requisito para o estado de carregamento do ranking e dos totais? [Gap, Spec §FR-002]
-- [ ] CHK004 Está definido o estado inicial da tela antes de escolher uma UF (texto de orientação)? [Gap, Spec §Assumptions]
-- [ ] CHK005 Está definido se o termo do filtro é mantido ou perdido ao recarregar ou compartilhar o endereço? [Gap, Spec §FR-017, §FR-019]
-- [ ] CHK006 O cabeçalho da tabela permanecer visível ao rolar 853 linhas é requisito, dado o SC-004? [Gap, Spec §SC-004]
+- [x] CHK001 A nota que explica a área fora dos municípios (RS) é requisito da spec ou só do design e do contrato? [Gap, Spec §FR-009, Design §Estrutura]
+- [x] CHK002 A contagem de municípios exibidos ("853 municípios", "3 de 853 municípios") está nos requisitos? [Gap, Spec §FR-019]
+- [x] CHK003 Existe requisito para o estado de carregamento do ranking e dos totais? [Gap, Spec §FR-002]
+- [x] CHK004 Está definido o estado inicial da tela antes de escolher uma UF (texto de orientação)? [Gap, Spec §Assumptions]
+- [x] CHK005 Está definido se o termo do filtro é mantido ou perdido ao recarregar ou compartilhar o endereço? [Gap, Spec §FR-017, §FR-019]
+- [x] CHK006 O cabeçalho da tabela permanecer visível ao rolar 853 linhas é requisito, dado o SC-004? [Gap, Spec §SC-004]
 
 ## Clareza dos requisitos
 
-- [ ] CHK007 "Ordem alfabética" (lista de UFs e desempate do ranking) especifica a regra do português, com acentos ordenados corretamente? [Clarity, Spec §FR-001, §FR-004]
-- [ ] CHK008 "UF inexistente" cobre também códigos em formato inválido (letras, tamanho errado)? [Ambiguity, Spec §FR-018]
-- [ ] CHK009 Está definido a partir de quantos caracteres o filtro começa a atuar? [Clarity, Spec §FR-019]
-- [ ] CHK010 Como a spec orienta o visitante quando dois municípios aparecem com a mesma densidade arredondada (181 pares) mas em posições diferentes? [Clarity, Spec §Edge Cases]
-- [ ] CHK011 O SC-004 (encontrar um município em até 30 segundos) define quem mede e em que condições? [Measurability, Spec §SC-004]
+- [x] CHK007 "Ordem alfabética" (lista de UFs e desempate do ranking) especifica a regra do português, com acentos ordenados corretamente? [Clarity, Spec §FR-001, §FR-004]
+- [x] CHK008 "UF inexistente" cobre também códigos em formato inválido (letras, tamanho errado)? [Ambiguity, Spec §FR-018]
+- [x] CHK009 Está definido a partir de quantos caracteres o filtro começa a atuar? [Clarity, Spec §FR-019]
+- [x] CHK010 Como a spec orienta o visitante quando dois municípios aparecem com a mesma densidade arredondada (181 pares) mas em posições diferentes? [Clarity, Spec §Edge Cases]
+- [x] CHK011 O SC-004 (encontrar um município em até 30 segundos) define quem mede e em que condições? [Measurability, Spec §SC-004]
 
 ## Consistência
 
-- [ ] CHK012 As colunas do ranking são as mesmas na spec e no design? O FR-005 lista 5 colunas e o design acrescenta "Escala". [Conflict, Spec §FR-005, Design §Estrutura]
-- [ ] CHK013 O formato "nome e sigla" da UF é o mesmo usado para municípios na spec 001 ("São Paulo (SP)") e no design ("Minas Gerais MG")? [Conflict, Spec §US1 cenário 2]
-- [ ] CHK014 A regra do filtro (FR-019) é textualmente equivalente à regra da busca da 001 (FR-004), incluindo o que separa palavras? [Consistency, Spec §FR-019]
-- [ ] CHK015 As regras de formatação numérica são idênticas às da 001, inclusive para posições? [Consistency, Spec §FR-011]
-- [ ] CHK016 O menu fixo e a indicação da tela atual estão definidos igual à 001? [Consistency, Spec §FR-016]
-- [ ] CHK017 O comportamento e a mensagem para endereço inválido são equivalentes aos da 001? [Consistency, Spec §FR-018]
-- [ ] CHK018 Os campos do contrato (`totals`, `items`, `areaOutsideMunicipalitiesKm2`) cobrem tudo o que a spec exige exibir, sem campo exigido faltando? [Consistency, Contracts]
-- [ ] CHK019 O uso da mesma régua de densidade na 001 e na 002 é requisito das duas specs ou só decisão de design? [Consistency, Design §Ideia]
+- [x] CHK012 As colunas do ranking são as mesmas na spec e no design? O FR-005 lista 5 colunas e o design acrescenta "Escala". [Conflict, Spec §FR-005, Design §Estrutura]
+- [x] CHK013 O formato "nome e sigla" da UF é o mesmo usado para municípios na spec 001 ("São Paulo (SP)") e no design ("Minas Gerais MG")? [Conflict, Spec §US1 cenário 2]
+- [x] CHK014 A regra do filtro (FR-019) é textualmente equivalente à regra da busca da 001 (FR-004), incluindo o que separa palavras? [Consistency, Spec §FR-019]
+- [x] CHK015 As regras de formatação numérica são idênticas às da 001, inclusive para posições? [Consistency, Spec §FR-011]
+- [x] CHK016 O menu fixo e a indicação da tela atual estão definidos igual à 001? [Consistency, Spec §FR-016]
+- [x] CHK017 O comportamento e a mensagem para endereço inválido são equivalentes aos da 001? [Consistency, Spec §FR-018]
+- [x] CHK018 Os campos do contrato (`totals`, `items`, `areaOutsideMunicipalitiesKm2`) cobrem tudo o que a spec exige exibir, sem campo exigido faltando? [Consistency, Contracts]
+- [x] CHK019 O uso da mesma régua de densidade na 001 e na 002 é requisito das duas specs ou só decisão de design? [Consistency, Design §Ideia]
 
 ## Cobertura de cenários e casos de borda
 
-- [ ] CHK020 Os casos de borda dos dados (UF com um município, registro sem nome no RS, área total maior que a soma do ranking, empates) têm cenários de aceitação explícitos? [Coverage, Spec §Edge Cases]
-- [ ] CHK021 Está definido o que acontece com o filtro e a rolagem ao trocar de UF, além de limpar o filtro? [Coverage, Spec §FR-022]
-- [ ] CHK022 O fluxo de recuperação após falha preserva a UF escolhida e o termo do filtro? [Coverage, Spec §FR-014]
-- [ ] CHK023 Os requisitos definem a leitura do ranking em celular, onde 5 ou 6 colunas não cabem? [Gap, Spec §FR-015]
+- [x] CHK020 Os casos de borda dos dados (UF com um município, registro sem nome no RS, área total maior que a soma do ranking, empates) têm cenários de aceitação explícitos? [Coverage, Spec §Edge Cases]
+- [x] CHK021 Está definido o que acontece com o filtro e a rolagem ao trocar de UF, além de limpar o filtro? [Coverage, Spec §FR-022]
+- [x] CHK022 O fluxo de recuperação após falha preserva a UF escolhida e o termo do filtro? [Coverage, Spec §FR-014]
+- [x] CHK023 Os requisitos definem a leitura do ranking em celular, onde 5 ou 6 colunas não cabem? [Gap, Spec §FR-015]
 
 ## Requisitos não funcionais
 
-- [ ] CHK024 Há requisitos de acessibilidade para a tabela (cabeçalhos associados às células, anúncio da contagem do filtro)? [Gap, Spec §FR-015]
-- [ ] CHK025 A largura mínima de tela suportada está definida? [Clarity, Spec §FR-015]
-- [ ] CHK026 O SC-001 (1 segundo) define em que condição é medido? [Measurability, Spec §SC-001]
+- [x] CHK024 Há requisitos de acessibilidade para a tabela (cabeçalhos associados às células, anúncio da contagem do filtro)? [Gap, Spec §FR-015]
+- [x] CHK025 A largura mínima de tela suportada está definida? [Clarity, Spec §FR-015]
+- [x] CHK026 O SC-001 (1 segundo) define em que condição é medido? [Measurability, Spec §SC-001]
 
 ## Dependências e premissas
 
-- [ ] CHK027 A premissa de nenhuma UF pré-selecionada é consistente com o endereço principal abrir a "Busca de cidades"? [Assumption, Spec §Assumptions]
-- [ ] CHK028 A dependência da feature 003 (bloqueio por excesso) aparece nos requisitos de falha desta tela? [Dependency, Spec §Assumptions]
-- [ ] CHK029 A premissa de que o filtro não consome o limite de consultas está registrada, ou só aparece no plano? [Assumption, Plan §research R4]
+- [x] CHK027 A premissa de nenhuma UF pré-selecionada é consistente com o endereço principal abrir a "Busca de cidades"? [Assumption, Spec §Assumptions]
+- [x] CHK028 A dependência da feature 003 (bloqueio por excesso) aparece nos requisitos de falha desta tela? [Dependency, Spec §Assumptions]
+- [x] CHK029 A premissa de que o filtro não consome o limite de consultas está registrada, ou só aparece no plano? [Assumption, Plan §research R4]
 
 ## Notes
 
+- Revisão de 2026-09-25: itens avaliados um a um contra as specs revisadas; pendências corrigidas nas specs antes da marcação. Marcação feita pelo agente com autorização explícita do responsável.
 - Mark items `[x]` only after review confirms the requirement-quality criterion is satisfied
 - Leave items unchecked when they still require clarification, correction, or reviewer evaluation
 - `/speckit-implement` reads checklist checkbox state as a gate and must not modify markers

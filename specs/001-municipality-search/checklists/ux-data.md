@@ -10,57 +10,58 @@
 
 ## Completude dos requisitos
 
-- [ ] CHK001 A spec define o que é "palavra" para a regra de início de palavra (quais caracteres separam palavras, como hífen e apóstrofo)? [Clarity, Spec §FR-004]
-- [ ] CHK002 O critério de desempate entre sugestões (ordem alfabética pt-BR e, depois, UF) está na spec ou só na pesquisa técnica? [Gap, Spec §FR-006]
-- [ ] CHK003 Existe requisito para o estado de carregamento das sugestões e dos indicadores, ou ele só aparece no design? [Gap, Spec §FR-009]
-- [ ] CHK004 Está definido se as categorias Urbano e Rural aparecem mesmo com zero setores, como o contrato determina? [Gap, Contracts §GET municipality]
-- [ ] CHK005 Está definido o comportamento do botão voltar do navegador após escolher vários municípios seguidos? [Gap, Spec §FR-017]
-- [ ] CHK006 Há requisito de identificar a fonte dos dados na tela (Censo 2022, IBGE)? [Gap]
-- [ ] CHK007 Está definido se o título da aba do navegador muda para o município escolhido, dado que o endereço é compartilhável? [Gap, Spec §FR-017]
+- [x] CHK001 A spec define o que é "palavra" para a regra de início de palavra (quais caracteres separam palavras, como hífen e apóstrofo)? [Clarity, Spec §FR-004]
+- [x] CHK002 O critério de desempate entre sugestões (ordem alfabética pt-BR e, depois, UF) está na spec ou só na pesquisa técnica? [Gap, Spec §FR-006]
+- [x] CHK003 Existe requisito para o estado de carregamento das sugestões e dos indicadores, ou ele só aparece no design? [Gap, Spec §FR-009]
+- [x] CHK004 Está definido se as categorias Urbano e Rural aparecem mesmo com zero setores, como o contrato determina? [Gap, Contracts §GET municipality]
+- [x] CHK005 Está definido o comportamento do botão voltar do navegador após escolher vários municípios seguidos? [Gap, Spec §FR-017]
+- [x] CHK006 Há requisito de identificar a fonte dos dados na tela (Censo 2022, IBGE)? [Gap]
+- [x] CHK007 Está definido se o título da aba do navegador muda para o município escolhido, dado que o endereço é compartilhável? [Gap, Spec §FR-017]
 
 ## Clareza dos requisitos
 
-- [ ] CHK008 O limite de 2 caracteres conta depois de remover os espaços das pontas, como indicam os casos de borda? [Clarity, Spec §FR-002]
-- [ ] CHK009 O tamanho máximo do termo de busca (60 caracteres no contrato) está previsto na spec? [Clarity, Contracts §suggestions]
-- [ ] CHK010 "Município inexistente" cobre também endereços com código em formato inválido (letras, tamanho errado), como o contrato e o quickstart tratam? [Ambiguity, Spec §FR-018]
-- [ ] CHK011 "Após o visitante parar de digitar" tem duração definida, para que o SC-002 seja mensurável? [Measurability, Spec §SC-002]
-- [ ] CHK012 A amostra de "casos testados" do SC-001 (90% com até 5 caracteres) está definida? [Measurability, Spec §SC-001]
-- [ ] CHK013 A regra de arredondamento que faz os percentuais somarem 100% está na spec ou só na pesquisa técnica? [Clarity, Spec §FR-012, Clarifications]
+- [x] CHK008 O limite de 2 caracteres conta depois de remover os espaços das pontas, como indicam os casos de borda? [Clarity, Spec §FR-002]
+- [x] CHK009 O tamanho máximo do termo de busca (60 caracteres no contrato) está previsto na spec? [Clarity, Contracts §suggestions]
+- [x] CHK010 "Município inexistente" cobre também endereços com código em formato inválido (letras, tamanho errado), como o contrato e o quickstart tratam? [Ambiguity, Spec §FR-018]
+- [x] CHK011 "Após o visitante parar de digitar" tem duração definida, para que o SC-002 seja mensurável? [Measurability, Spec §SC-002]
+- [x] CHK012 A amostra de "casos testados" do SC-001 (90% com até 5 caracteres) está definida? [Measurability, Spec §SC-001]
+- [x] CHK013 A regra de arredondamento que faz os percentuais somarem 100% está na spec ou só na pesquisa técnica? [Clarity, Spec §FR-012, Clarifications]
 
 ## Consistência
 
-- [ ] CHK014 O formato de exibição da sugestão é o mesmo em todos os documentos? O cenário 2 da US1 usa "São Paulo (SP)" e o design usa "São Paulo SP". [Conflict, Spec §US1, Design §Estados]
-- [ ] CHK015 As regras de formatação numérica (casas decimais, separadores) são idênticas entre as specs 001 e 002? [Consistency, Spec §FR-012]
-- [ ] CHK016 A regra de busca por início de palavra está descrita da mesma forma na 001 e no filtro do ranking da 002? [Consistency, Spec §FR-004]
-- [ ] CHK017 O menu fixo tem a mesma definição (itens, indicação da tela atual) nas specs 001 e 002? [Consistency, Spec §FR-020]
-- [ ] CHK018 O comportamento para endereço inválido é equivalente nas duas telas (mensagem e estado da tela)? [Consistency, Spec §FR-018]
-- [ ] CHK019 Os campos e códigos de erro dos contratos cobrem todos os requisitos de exibição e falha da spec, sem campo exigido pela spec faltando? [Consistency, Contracts]
-- [ ] CHK020 O comportamento dos campos enquanto a verificação da feature 003 acontece (desabilitados) é consistente com a premissa de "sessão já verificada" desta spec? [Consistency, Spec §Assumptions]
+- [x] CHK014 O formato de exibição da sugestão é o mesmo em todos os documentos? O cenário 2 da US1 usa "São Paulo (SP)" e o design usa "São Paulo SP". [Conflict, Spec §US1, Design §Estados]
+- [x] CHK015 As regras de formatação numérica (casas decimais, separadores) são idênticas entre as specs 001 e 002? [Consistency, Spec §FR-012]
+- [x] CHK016 A regra de busca por início de palavra está descrita da mesma forma na 001 e no filtro do ranking da 002? [Consistency, Spec §FR-004]
+- [x] CHK017 O menu fixo tem a mesma definição (itens, indicação da tela atual) nas specs 001 e 002? [Consistency, Spec §FR-020]
+- [x] CHK018 O comportamento para endereço inválido é equivalente nas duas telas (mensagem e estado da tela)? [Consistency, Spec §FR-018]
+- [x] CHK019 Os campos e códigos de erro dos contratos cobrem todos os requisitos de exibição e falha da spec, sem campo exigido pela spec faltando? [Consistency, Contracts]
+- [x] CHK020 O comportamento dos campos enquanto a verificação da feature 003 acontece (desabilitados) é consistente com a premissa de "sessão já verificada" desta spec? [Consistency, Spec §Assumptions]
 
 ## Cobertura de cenários e casos de borda
 
-- [ ] CHK021 A spec define o que acontece quando respostas de sugestões chegam fora de ordem (termo antigo respondendo depois do novo)? [Gap, Exception Flow]
-- [ ] CHK022 Está definido o que acontece ao pressionar Enter com sugestões visíveis e nenhuma destacada? [Gap, Spec §FR-016]
-- [ ] CHK023 Os casos de borda dos dados (registro sem nome, 1.103 setores sem classificação, população sem informação de sexo, homônimos) têm cenários de aceitação explícitos? [Coverage, Spec §Edge Cases]
-- [ ] CHK024 A exibição é definida para municípios com uma única categoria de área (só urbano ou só rural)? [Edge Case, Gap]
-- [ ] CHK025 A legibilidade da densidade nos extremos (0,15 e 13.417 hab/km²) tem critério verificável? [Measurability, Spec §Edge Cases]
-- [ ] CHK026 O fluxo de recuperação após falha preserva o termo digitado, além do município escolhido? [Coverage, Spec §FR-015]
+- [x] CHK021 A spec define o que acontece quando respostas de sugestões chegam fora de ordem (termo antigo respondendo depois do novo)? [Gap, Exception Flow]
+- [x] CHK022 Está definido o que acontece ao pressionar Enter com sugestões visíveis e nenhuma destacada? [Gap, Spec §FR-016]
+- [x] CHK023 Os casos de borda dos dados (registro sem nome, 1.103 setores sem classificação, população sem informação de sexo, homônimos) têm cenários de aceitação explícitos? [Coverage, Spec §Edge Cases]
+- [x] CHK024 A exibição é definida para municípios com uma única categoria de área (só urbano ou só rural)? [Edge Case, Gap]
+- [x] CHK025 A legibilidade da densidade nos extremos (0,15 e 13.417 hab/km²) tem critério verificável? [Measurability, Spec §Edge Cases]
+- [x] CHK026 O fluxo de recuperação após falha preserva o termo digitado, além do município escolhido? [Coverage, Spec §FR-015]
 
 ## Requisitos não funcionais
 
-- [ ] CHK027 Os requisitos de acessibilidade vão além de teclado e celular (leitor de tela, contraste, foco visível), ou isso só está no design? [Gap, Spec §FR-016]
-- [ ] CHK028 A equivalência em texto das barras de proporção para leitores de tela é requisito ou só decisão de design? [Gap, Design §Acessibilidade]
-- [ ] CHK029 A largura mínima de tela suportada (360px no design) está na spec? [Clarity, Spec §FR-016]
-- [ ] CHK030 Os critérios de desempenho (SC-002, SC-003) definem em que condição são medidos (rede local, carga)? [Measurability, Spec §SC-002, §SC-003]
+- [x] CHK027 Os requisitos de acessibilidade vão além de teclado e celular (leitor de tela, contraste, foco visível), ou isso só está no design? [Gap, Spec §FR-016]
+- [x] CHK028 A equivalência em texto das barras de proporção para leitores de tela é requisito ou só decisão de design? [Gap, Design §Acessibilidade]
+- [x] CHK029 A largura mínima de tela suportada (360px no design) está na spec? [Clarity, Spec §FR-016]
+- [x] CHK030 Os critérios de desempenho (SC-002, SC-003) definem em que condição são medidos (rede local, carga)? [Measurability, Spec §SC-002, §SC-003]
 
 ## Dependências e premissas
 
-- [ ] CHK031 A premissa de que a sigla da UF é derivada do código está validada para os 27 códigos? [Assumption, Spec §Assumptions]
-- [ ] CHK032 A dependência da feature 003 (consultas só com sessão) está explícita nos requisitos de falha desta tela, por exemplo, bloqueio por excesso de consultas? [Dependency, Spec §Assumptions]
-- [ ] CHK033 A premissa "população total = soma de setor.populacao" está registrada em algum requisito verificável, além da pesquisa técnica? [Assumption, Spec §FR-009]
+- [x] CHK031 A premissa de que a sigla da UF é derivada do código está validada para os 27 códigos? [Assumption, Spec §Assumptions]
+- [x] CHK032 A dependência da feature 003 (consultas só com sessão) está explícita nos requisitos de falha desta tela, por exemplo, bloqueio por excesso de consultas? [Dependency, Spec §Assumptions]
+- [x] CHK033 A premissa "população total = soma de setor.populacao" está registrada em algum requisito verificável, além da pesquisa técnica? [Assumption, Spec §FR-009]
 
 ## Notes
 
+- Revisão de 2026-09-25: itens avaliados um a um contra as specs revisadas; pendências corrigidas nas specs antes da marcação. Marcação feita pelo agente com autorização explícita do responsável.
 - Mark items `[x]` only after review confirms the requirement-quality criterion is satisfied
 - Leave items unchecked when they still require clarification, correction, or reviewer evaluation
 - `/speckit-implement` reads checklist checkbox state as a gate and must not modify markers

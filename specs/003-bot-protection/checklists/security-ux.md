@@ -10,55 +10,56 @@
 
 ## Completude dos requisitos
 
-- [ ] CHK001 A spec exige que nenhum log da aplicação (não só os registros de proteção) contenha endereço de rede, como o ADR 0019 determina? [Gap, Spec §FR-017, ADR 0019]
-- [ ] CHK002 Está definido o que acontece se os registros não puderem ser gravados (disco cheio, volume indisponível): a proteção continua funcionando? [Gap, Exception Flow, Spec §FR-016]
-- [ ] CHK003 Há requisito para o caso de uma mesma sessão verificada ser copiada e usada por vários acessos diferentes? [Gap, Security]
-- [ ] CHK004 A spec define o que o visitante vê numa aba que ficou em segundo plano enquanto a verificação expirava? [Gap, Spec §FR-005]
-- [ ] CHK005 Está definido se a consulta pendente é repetida automaticamente após o fim do bloqueio ou se o visitante precisa agir? [Gap, Spec §FR-009]
+- [x] CHK001 A spec exige que nenhum log da aplicação (não só os registros de proteção) contenha endereço de rede, como o ADR 0019 determina? [Gap, Spec §FR-017, ADR 0019]
+- [x] CHK002 Está definido o que acontece se os registros não puderem ser gravados (disco cheio, volume indisponível): a proteção continua funcionando? [Gap, Exception Flow, Spec §FR-016]
+- [x] CHK003 Há requisito para o caso de uma mesma sessão verificada ser copiada e usada por vários acessos diferentes? [Gap, Security]
+- [x] CHK004 A spec define o que o visitante vê numa aba que ficou em segundo plano enquanto a verificação expirava? [Gap, Spec §FR-005]
+- [x] CHK005 Está definido se a consulta pendente é repetida automaticamente após o fim do bloqueio ou se o visitante precisa agir? [Gap, Spec §FR-009]
 
 ## Clareza dos requisitos
 
-- [ ] CHK006 "Consultas" no limite de 120 por minuto inclui as requisições da própria verificação, como o plano define? [Clarity, Spec §FR-008]
-- [ ] CHK007 "Acesso" está definido de forma verificável (por exemplo, como são tratados endereços IPv6), ou só no plano? [Clarity, Spec §Key Entities]
-- [ ] CHK008 "Robôs de IA conhecidos" tem lista definida ou critério de inclusão na spec? O SC-005 cita "os robôs listados", mas a lista está só no plano. [Ambiguity, Spec §FR-011, §SC-005]
-- [ ] CHK009 A regra para robôs de busca comuns (que não são de IA) acessarem as páginas está explícita? [Clarity, Spec §FR-012]
-- [ ] CHK010 Os 30 minutos de validade contam a partir da verificação (fixos) ou do último uso (renovados)? [Clarity, Spec §FR-004]
-- [ ] CHK011 "Na maioria dos casos" (verificação sem interação; rede compartilhada sem bloqueio) tem limiar mensurável? [Measurability, Spec §FR-002, §Edge Cases]
-- [ ] CHK012 O limite de 7 dias dos registros define a referência de data (dia civil, fuso) usada no descarte? [Clarity, Spec §FR-017]
+- [x] CHK006 "Consultas" no limite de 120 por minuto inclui as requisições da própria verificação, como o plano define? [Clarity, Spec §FR-008]
+- [x] CHK007 "Acesso" está definido de forma verificável (por exemplo, como são tratados endereços IPv6), ou só no plano? [Clarity, Spec §Key Entities]
+- [x] CHK008 "Robôs de IA conhecidos" tem lista definida ou critério de inclusão na spec? O SC-005 cita "os robôs listados", mas a lista está só no plano. [Ambiguity, Spec §FR-011, §SC-005]
+- [x] CHK009 A regra para robôs de busca comuns (que não são de IA) acessarem as páginas está explícita? [Clarity, Spec §FR-012]
+- [x] CHK010 Os 30 minutos de validade contam a partir da verificação (fixos) ou do último uso (renovados)? [Clarity, Spec §FR-004]
+- [x] CHK011 "Na maioria dos casos" (verificação sem interação; rede compartilhada sem bloqueio) tem limiar mensurável? [Measurability, Spec §FR-002, §Edge Cases]
+- [x] CHK012 O limite de 7 dias dos registros define a referência de data (dia civil, fuso) usada no descarte? [Clarity, Spec §FR-017]
 
 ## Consistência
 
-- [ ] CHK013 As telas das specs 001 e 002 têm requisitos para os estados de verificação em andamento, falha e bloqueio definidos aqui? [Consistency, Spec 001 §FR-015, Spec 002 §FR-014]
-- [ ] CHK014 A premissa "sessão já verificada" das specs 001 e 002 é compatível com o FR-006 (campos disponíveis só após a verificação)? [Consistency, Spec §FR-006]
-- [ ] CHK015 O FR-010 ("uso normal não atinge o limite") é consistente com o autocomplete da 001, que consulta a cada digitação, e com o filtro da 002, que não consulta? [Consistency, Spec §FR-010]
-- [ ] CHK016 Os códigos de erro do contrato (`SESSION_REQUIRED`, `VERIFICATION_FAILED`, `RATE_LIMIT_EXCEEDED`) cobrem todos os cenários de falha da spec? [Consistency, Contracts]
-- [ ] CHK017 As mensagens ao visitante na spec, no contrato e no design são as mesmas? [Consistency, Contracts §Mensagens, Design]
+- [x] CHK013 As telas das specs 001 e 002 têm requisitos para os estados de verificação em andamento, falha e bloqueio definidos aqui? [Consistency, Spec 001 §FR-015, Spec 002 §FR-014]
+- [x] CHK014 A premissa "sessão já verificada" das specs 001 e 002 é compatível com o FR-006 (campos disponíveis só após a verificação)? [Consistency, Spec §FR-006]
+- [x] CHK015 O FR-010 ("uso normal não atinge o limite") é consistente com o autocomplete da 001, que consulta a cada digitação, e com o filtro da 002, que não consulta? [Consistency, Spec §FR-010]
+- [x] CHK016 Os códigos de erro do contrato (`SESSION_REQUIRED`, `VERIFICATION_FAILED`, `RATE_LIMIT_EXCEEDED`) cobrem todos os cenários de falha da spec? [Consistency, Contracts]
+- [x] CHK017 As mensagens ao visitante na spec, no contrato e no design são as mesmas? [Consistency, Contracts §Mensagens, Design]
 
 ## Qualidade dos critérios de aceite
 
-- [ ] CHK018 O SC-001 (3 segundos em 95%) define os navegadores e dispositivos de referência? [Measurability, Spec §SC-001]
-- [ ] CHK019 O SC-002 define o que é "uso normal" com quantidade de ações por minuto? [Measurability, Spec §SC-002]
-- [ ] CHK020 O SC-007 ("nenhum registro contém o endereço de rede") pode ser verificado objetivamente, dado que o identificador é derivado do endereço? [Measurability, Spec §SC-007]
+- [x] CHK018 O SC-001 (3 segundos em 95%) define os navegadores e dispositivos de referência? [Measurability, Spec §SC-001]
+- [x] CHK019 O SC-002 define o que é "uso normal" com quantidade de ações por minuto? [Measurability, Spec §SC-002]
+- [x] CHK020 O SC-007 ("nenhum registro contém o endereço de rede") pode ser verificado objetivamente, dado que o identificador é derivado do endereço? [Measurability, Spec §SC-007]
 
 ## Cobertura de cenários e casos de borda
 
-- [ ] CHK021 Há cenário de aceitação para reúso de uma verificação já usada (mesma solução enviada duas vezes)? [Coverage, Gap]
-- [ ] CHK022 Os casos de borda (várias abas, expiração durante a digitação, navegador sem suporte, rede compartilhada, bloqueio durante a verificação, robô não identificado) têm cenários de aceitação? [Coverage, Spec §Edge Cases]
-- [ ] CHK023 Está definido o comportamento com JavaScript desativado, já que a aplicação inteira depende dele? [Edge Case, Spec §Edge Cases]
+- [x] CHK021 Há cenário de aceitação para reúso de uma verificação já usada (mesma solução enviada duas vezes)? [Coverage, Gap]
+- [x] CHK022 Os casos de borda (várias abas, expiração durante a digitação, navegador sem suporte, rede compartilhada, bloqueio durante a verificação, robô não identificado) têm cenários de aceitação? [Coverage, Spec §Edge Cases]
+- [x] CHK023 Está definido o comportamento com JavaScript desativado, já que a aplicação inteira depende dele? [Edge Case, Spec §Edge Cases]
 
 ## Segurança e privacidade
 
-- [ ] CHK024 A spec reconhece que o identificador embaralhado é dado pseudonimizado (recuperável por quem tem a chave) e, portanto, ainda pode ser dado pessoal na LGPD? [Assumption, Spec §FR-016, ADR 0019]
-- [ ] CHK025 Está documentado o modelo de ameaça (quem se quer conter e quem se aceita que passe), além da premissa "encarece, não impede"? [Traceability, Spec §Assumptions]
-- [ ] CHK026 Os requisitos definem o que muda ao expor a aplicação na internet (HTTPS, cookie seguro), ou isso está só nos ADRs? [Dependency, ADR 0016]
+- [x] CHK024 A spec reconhece que o identificador embaralhado é dado pseudonimizado (recuperável por quem tem a chave) e, portanto, ainda pode ser dado pessoal na LGPD? [Assumption, Spec §FR-016, ADR 0019]
+- [x] CHK025 Está documentado o modelo de ameaça (quem se quer conter e quem se aceita que passe), além da premissa "encarece, não impede"? [Traceability, Spec §Assumptions]
+- [x] CHK026 Os requisitos definem o que muda ao expor a aplicação na internet (HTTPS, cookie seguro), ou isso está só nos ADRs? [Dependency, ADR 0016]
 
 ## Acessibilidade
 
-- [ ] CHK027 O FR-015 especifica como a contagem regressiva do bloqueio é anunciada a leitores de tela sem anúncios a cada segundo? [Clarity, Spec §FR-015, Design]
-- [ ] CHK028 Está definido como o visitante é informado de que os campos estão desabilitados durante a verificação ou o bloqueio? [Gap, Spec §FR-006, §FR-009]
+- [x] CHK027 O FR-015 especifica como a contagem regressiva do bloqueio é anunciada a leitores de tela sem anúncios a cada segundo? [Clarity, Spec §FR-015, Design]
+- [x] CHK028 Está definido como o visitante é informado de que os campos estão desabilitados durante a verificação ou o bloqueio? [Gap, Spec §FR-006, §FR-009]
 
 ## Notes
 
+- Revisão de 2026-09-25: itens avaliados um a um contra as specs revisadas; pendências corrigidas nas specs antes da marcação. Marcação feita pelo agente com autorização explícita do responsável.
 - Mark items `[x]` only after review confirms the requirement-quality criterion is satisfied
 - Leave items unchecked when they still require clarification, correction, or reviewer evaluation
 - `/speckit-implement` reads checklist checkbox state as a gate and must not modify markers
