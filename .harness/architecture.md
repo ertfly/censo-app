@@ -1,6 +1,6 @@
 # Arquitetura
 
-> Visão consolidada das decisões [0001 a 0019](decisions/README.md).
+> Visão consolidada das decisões [0001 a 0020](decisions/README.md).
 > Em caso de divergência, vale o ADR.
 
 ## Visão geral
@@ -187,7 +187,7 @@ quebra a compilação das duas pontas
 | Fronteiras | eslint-plugin-boundaries (backend e frontend), com erro | [0011](decisions/0011-lint-e-formatacao.md), [0014](decisions/0014-arquitetura-frontend.md) |
 | Testes unitários | Vitest: Value Objects, QueryHandlers, composables | [0009](decisions/0009-testes.md) |
 | Testes de integração | Vitest: readers e rotas contra SQLite em memória | [0009](decisions/0009-testes.md) |
-| Testes E2E | Playwright contra a stack no Docker | [0009](decisions/0009-testes.md) |
+| Testes E2E | Playwright contra a stack no Docker, com a proteção ligada: `compose.e2e.yaml` (suíte geral) e `compose.e2e-protection.yaml` (limite e expiração) | [0009](decisions/0009-testes.md), [0020](decisions/0020-stacks-de-e2e.md) |
 
 Nenhum teste usa `censo.sqlite`.
 
