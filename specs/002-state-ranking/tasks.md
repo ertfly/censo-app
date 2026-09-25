@@ -48,7 +48,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 - [X] T009 [P] Criar `backend/src/application/queries/get-state-density-ranking/state-ranking.reader.ts` (porta `findByState(code: StateCode): Promise<StateRanking>`) e `get-state-density-ranking.handler.ts`
 - [X] T010 Criar `backend/src/infra/database/readers/kysely-states.reader.ts`: lê `uf`, completa a sigla por `StateCode`, ordena com `Intl.Collator('pt-BR')`
 - [X] T011 Criar `backend/src/infra/database/readers/kysely-state-ranking.reader.ts`: agrega `setor` por `cd_mun` com `cd_setor >= :uf AND cd_setor < :uf_seguinte`, junta `municipio` para o nome, separa o registro `.` (só entra em `totals` e em `areaOutsideMunicipalitiesKm2`), ordena em TypeScript por densidade decrescente e, em empate exato, pelo nome com `Intl.Collator('pt-BR')`, e atribui posições sequenciais (research R1, R2)
-- [ ] T012 Criar `backend/src/infra/http/routes/state.routes.ts` com `GET /api/states` e `GET /api/states/:stateCode/density-ranking` e registrar no `backend/src/main.ts`
+- [X] T012 Criar `backend/src/infra/http/routes/state.routes.ts` com `GET /api/states` e `GET /api/states/:stateCode/density-ranking` e registrar no `backend/src/main.ts`
 
 **Checkpoint**: API da 002 pronta e testada.
 
