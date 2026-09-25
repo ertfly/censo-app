@@ -13,8 +13,47 @@ const EXPIRES_AT_KEY = 'censo:session-expires-at'
 
 const state = ref<VerificationState>('idle')
 export const verificationState = readonly(state)
-// Consultas ficam indisponíveis enquanto a verificação não conclui (FR-006).
-export const queriesBlocked = computed(() => state.value !== 'verified' && state.value !== 'idle')
+
+// Bloqueio por excesso de consultas (spec 003 FR-009, FR-021): relógio reativo,
+// atualizado a cada segundo só enquanto o bloqueio dura.
+const rateLimitedUntil = ref(0)
+const rateLimitSeconds = ref(0)
+const currentTime = ref(Date.now())
+const rateLimitEnded = ref(false)
+let rateLimitTimer: ReturnType<typeof setInterval> | null = null
+
+export const rateLimitRemainingSeconds = computed(() =>
+    Math.max(0, Math.ceil((rateLimitedUntil.value - currentTime.value) / 1000)),
+)
+export const rateLimitInitialSeconds = readonly(rateLimitSeconds)
+export const rateLimitHasEnded = readonly(rateLimitEnded)
+
+// Consultas ficam indisponíveis durante a verificação e o bloqueio (FR-006, FR-009).
+export const queriesBlocked = computed(
+    () =>
+        (state.value !== 'verified' && state.value !== 'idle') ||
+        rateLimitRemainingSeconds.value > 0,
+)
+
+export function markRateLimited(seconds: number): void {
+    currentTime.value = Date.now()
+    rateLimitedUntil.value = currentTime.value + seconds * 1000
+    rateLimitSeconds.value = seconds
+    rateLimitEnded.value = false
+    if (rateLimitTimer) {
+        clearInterval(rateLimitTimer)
+    }
+    rateLimitTimer = setInterval(() => {
+        currentTime.value = Date.now()
+        if (currentTime.value >= rateLimitedUntil.value) {
+            if (rateLimitTimer) {
+                clearInterval(rateLimitTimer)
+            }
+            rateLimitTimer = null
+            rateLimitEnded.value = true
+        }
+    }, 1000)
+}
 
 let verifier: Verifier | null = null
 let verifierWaiters: ((fn: Verifier) => void)[] = []
@@ -76,6 +115,12 @@ async function verify(): Promise<void> {
         writeExpiry(Date.parse(response.expiresAt))
         state.value = 'verified'
     } catch (error) {
+        if (error instanceof ApiError && error.status === 429) {
+            // Bloqueado: a verificação volta a ser tentada na próxima consulta.
+            markRateLimited(error.retryAfterSeconds ?? 60)
+            state.value = 'idle'
+            throw error
+        }
         // markUnsupported() pode ter rodado durante a verificação.
         if (currentState() !== 'unsupported') {
             state.value = 'failed'
@@ -119,6 +164,14 @@ export function resetSessionForTests(options: { keepStorage?: boolean } = {}): v
     verifierWaiters = []
     pending = null
     state.value = 'idle'
+    if (rateLimitTimer) {
+        clearInterval(rateLimitTimer)
+    }
+    rateLimitTimer = null
+    rateLimitedUntil.value = 0
+    rateLimitSeconds.value = 0
+    rateLimitEnded.value = false
+    currentTime.value = Date.now()
     if (!options.keepStorage) {
         writeExpiry(null)
     }

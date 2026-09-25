@@ -4,7 +4,11 @@ export { ApiError } from './request'
 export {
     ensureSession,
     markUnsupported,
+    markRateLimited,
     queriesBlocked,
+    rateLimitHasEnded,
+    rateLimitInitialSeconds,
+    rateLimitRemainingSeconds,
     registerVerifier,
     retryVerification,
     verificationState,

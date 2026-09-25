@@ -58,7 +58,7 @@ describe('rate limit notice', () => {
 
         // O número que muda a cada segundo fica fora da árvore de acessibilidade.
         expect(wrapper.get('[data-countdown]').attributes('aria-hidden')).toBe('true')
-        expect(wrapper.get('.sr-only').text()).toContain('Aguarde 3 segundos')
+        expect(wrapper.get('[role="alert"] .sr-only').text()).toContain('Aguarde 3 segundos')
 
         await vi.advanceTimersByTimeAsync(3000)
         expect(wrapper.get('[aria-live="polite"]').text()).toBe('Você já pode consultar de novo.')
