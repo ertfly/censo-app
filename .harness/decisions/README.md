@@ -20,6 +20,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito (revisto pelo 0013) |
 | [0012](0012-comunicacao-entre-consultas-e-contextos.md) | Comunicação entre consultas e entre contextos | Aceito |
 | [0013](0013-organizacao-do-repositorio.md) | Monorepo com npm workspaces e pacote de contratos | Aceito |
+| [0014](0014-arquitetura-frontend.md) | Arquitetura do frontend: Feature-Sliced Design enxuto | Aceito |
 
 ## Modelo
 

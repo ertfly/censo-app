@@ -76,7 +76,7 @@ Interfaces não usam prefixo `I` (`MunicipalityReader`, não
 ## Organização de pastas
 
 Backend: ver [ADR 0008](decisions/0008-arquitetura-backend.md).
-Frontend: _a definir._
+Frontend: ver [ADR 0014](decisions/0014-arquitetura-frontend.md).
 
 ## Estilo de código
 
