@@ -1,6 +1,6 @@
 # 0005. Execução com Docker Compose: produção e desenvolvimento
 
-- Status: Aceito (montagem do banco revista pelo [ADR 0007](0007-primeira-versao-somente-leitura.md))
+- Status: Aceito (montagem do banco revista pelo [ADR 0007](0007-primeira-versao-somente-leitura.md); contexto de build revisto pelo [ADR 0013](0013-organizacao-do-repositorio.md))
 - Data: 2026-09-25
 
 ## Contexto
