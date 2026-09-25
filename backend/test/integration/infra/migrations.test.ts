@@ -33,7 +33,7 @@ describe('migrations', () => {
             .selectFrom('setor')
             .select((eb) => eb.fn.countAll<number>().as('count'))
             .executeTakeFirstOrThrow()
-        expect(count).toBe(13)
+        expect(count).toBe(18)
         await db.destroy()
     })
 })

@@ -25,7 +25,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 ## Phase 1: Setup
 
-- [ ] T001 Ampliar `backend/test/fixtures/census.fixture.ts` com uma UF de ranking (código 31) contendo: dois municípios de teste com densidade exatamente igual, "Água Boa" e "Aguaí", que pela regra do português ficam nessa ordem (na comparação binária a ordem se inverte); um município urbano muito denso e um rural pouco denso; e confirmar que o fixture já tem DF com um único município e o registro `.` do RS com área
+- [X] T001 Ampliar `backend/test/fixtures/census.fixture.ts` com uma UF de ranking (código 31) contendo: dois municípios de teste com densidade exatamente igual, "Água Boa" e "Aguaí", que pela regra do português ficam nessa ordem (na comparação binária a ordem se inverte); um município urbano muito denso e um rural pouco denso; e confirmar que o fixture já tem DF com um único município e o registro `.` do RS com área
 
 ---
 

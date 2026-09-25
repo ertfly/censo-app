@@ -9,6 +9,10 @@ import type {
 
 // Dados mínimos com os casos de borda de .harness/database.md: nomes repetidos,
 // setor sem situação, setor sem demografia, sexo ausente e o registro "." do RS.
+// A UF 31 serve ao ranking da 002: empate exato de densidade entre "Água Boa" e
+// "Aguaí" (nessa ordem pela regra do português; invertidos na comparação
+// binária), um município urbano muito denso e um rural pouco denso. O DF tem um
+// único município.
 // Códigos no formato real (setor começa com o município, que começa com a UF);
 // valores inventados.
 
@@ -18,6 +22,7 @@ export const UFS: UfTable[] = [
     { cd_uf: '22', nm_uf: 'Piauí' },
     { cd_uf: '25', nm_uf: 'Paraíba' },
     { cd_uf: '29', nm_uf: 'Bahia' },
+    { cd_uf: '31', nm_uf: 'Minas Gerais' },
     { cd_uf: '35', nm_uf: 'São Paulo' },
     { cd_uf: '43', nm_uf: 'Rio Grande do Sul' },
     { cd_uf: '53', nm_uf: 'Distrito Federal' },
@@ -29,6 +34,10 @@ export const MUNICIPIOS: MunicipioTable[] = [
     { cd_mun: '2200001', nm_mun: 'Bom Jesus', cd_uf: '22' },
     { cd_mun: '2500001', nm_mun: 'Bom Jesus', cd_uf: '25' },
     { cd_mun: '2900001', nm_mun: 'Paulo Afonso', cd_uf: '29' },
+    { cd_mun: '3100104', nm_mun: 'Água Boa', cd_uf: '31' },
+    { cd_mun: '3101003', nm_mun: 'Aguaí', cd_uf: '31' },
+    { cd_mun: '3106200', nm_mun: 'Belo Horizonte', cd_uf: '31' },
+    { cd_mun: '3100005', nm_mun: 'Serra Rural', cd_uf: '31' },
     { cd_mun: '3550308', nm_mun: 'São Paulo', cd_uf: '35' },
     { cd_mun: '4314902', nm_mun: 'Porto Alegre', cd_uf: '43' },
     { cd_mun: '.', nm_mun: '', cd_uf: '43' },
@@ -87,6 +96,42 @@ export const SETORES: SetorTable[] = [
         area_km2: 5,
         populacao: 500,
     },
+    // Minas Gerais (ranking da 002): densidades 10, 10, 5.000 e 0,1
+    {
+        cd_setor: '310010400000001',
+        cd_mun: '3100104',
+        situacao: 'Rural',
+        area_km2: 10,
+        populacao: 100,
+    },
+    {
+        cd_setor: '310100300000001',
+        cd_mun: '3101003',
+        situacao: 'Urbana',
+        area_km2: 12,
+        populacao: 120,
+    },
+    {
+        cd_setor: '310100300000002',
+        cd_mun: '3101003',
+        situacao: 'Rural',
+        area_km2: 8,
+        populacao: 80,
+    },
+    {
+        cd_setor: '310620000000001',
+        cd_mun: '3106200',
+        situacao: 'Urbana',
+        area_km2: 1,
+        populacao: 5000,
+    },
+    {
+        cd_setor: '310000500000001',
+        cd_mun: '3100005',
+        situacao: 'Rural',
+        area_km2: 500,
+        populacao: 50,
+    },
     {
         cd_setor: '431490200000001',
         cd_mun: '4314902',
@@ -134,6 +179,11 @@ export const DEMOGRAFIAS: DemografiaTable[] = [
     { cd_setor: '150000100000001', moradores: 60, homens: 30, mulheres: 30 },
     { cd_setor: '170000100000001', moradores: 40, homens: 20, mulheres: 20 },
     { cd_setor: '290000100000001', moradores: 500, homens: 240, mulheres: 260 },
+    { cd_setor: '310010400000001', moradores: 100, homens: 50, mulheres: 50 },
+    { cd_setor: '310100300000001', moradores: 120, homens: 60, mulheres: 60 },
+    { cd_setor: '310100300000002', moradores: 80, homens: 40, mulheres: 40 },
+    { cd_setor: '310620000000001', moradores: 5000, homens: 2400, mulheres: 2600 },
+    { cd_setor: '310000500000001', moradores: 50, homens: 25, mulheres: 25 },
     { cd_setor: '431490200000001', moradores: 900, homens: 430, mulheres: 470 },
     // Sexo parcialmente ausente
     { cd_setor: '530010800000001', moradores: 700, homens: 340, mulheres: null },
