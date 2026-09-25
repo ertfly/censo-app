@@ -101,7 +101,9 @@ Motivo: builds reproduzíveis e sem quebra por atualização implícita.
   tenha apenas Docker ([ADR 0005](../../.harness/decisions/0005-docker-compose.md)).
 - Testes, lint e migrations também rodam em container.
 - Nenhuma instrução de uso pode exigir Node.js ou outra ferramenta no host,
-  exceto Git com Git LFS para obter o repositório.
+  exceto Git para obter o repositório; clonar e rodar o comando basta, sem
+  `.env` nem passo manual ([ADR 0024](../../.harness/decisions/0024-segredos-gerados-na-primeira-subida.md),
+  [ADR 0025](../../.harness/decisions/0025-banco-fora-do-git-lfs.md)).
 
 Motivo: requisito de distribuição do projeto.
 
@@ -122,7 +124,8 @@ Motivo: evitar interface com aparência de template.
 - Stack completa e versões: [stack.md](../../.harness/stack.md).
 - Arquitetura consolidada: [architecture.md](../../.harness/architecture.md).
 - Banco: SQLite em `censo.sqlite`, na raiz do repositório
-  ([ADR 0018](../../.harness/decisions/0018-banco-na-raiz.md)), versionado com Git LFS, sem senha e
+  ([ADR 0018](../../.harness/decisions/0018-banco-na-raiz.md)), versionado direto no Git
+  ([ADR 0025](../../.harness/decisions/0025-banco-fora-do-git-lfs.md)), sem senha e
   sem acesso externo; só o nginx publica porta no host.
 - Mudanças de schema só via migration, aplicadas em desenvolvimento e
   commitadas de forma deliberada; nunca executadas em produção
@@ -161,4 +164,4 @@ Motivo: evitar interface com aparência de template.
   `/speckit-analyze` aponta violações; violações não justificadas por ADR
   bloqueiam a implementação.
 
-**Version**: 1.0.1 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25
+**Version**: 1.1.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-25
