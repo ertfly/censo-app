@@ -24,3 +24,5 @@ spec-kit (`.specify/memory/constitution.md`) e o `plan.md` de cada feature
    `conventions.md`.
 3. Uma decisão substituída não é apagada: o ADR antigo recebe o status
    `Substituído por NNNN` e um novo ADR é criado.
+4. Uma revisão parcial segue a mesma lógica: o novo ADR indica o que revisa,
+   e o ADR antigo recebe no status `revisto pelo ADR NNNN`.

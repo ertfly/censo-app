@@ -1,6 +1,6 @@
 # 0001. Banco de dados SQLite em data/ versionado com Git LFS
 
-- Status: Aceito
+- Status: Aceito (modo de uso revisto pelo [ADR 0007](0007-primeira-versao-somente-leitura.md))
 - Data: 2026-09-25
 
 ## Contexto
