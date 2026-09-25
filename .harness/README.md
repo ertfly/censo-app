@@ -13,6 +13,7 @@ spec-kit (`.specify/memory/constitution.md`) e o `plan.md` de cada feature
 | [architecture.md](architecture.md) | Visão geral da arquitetura: componentes, camadas, fluxos |
 | [stack.md](stack.md) | Tecnologias escolhidas e justificativas |
 | [conventions.md](conventions.md) | Padrões de código, nomenclatura e organização |
+| [database.md](database.md) | Mapeamento do banco: estrutura, qualidade dos dados, melhorias |
 | [decisions/](decisions/) | Registros de decisão de arquitetura (ADRs) |
 
 ## Processo
