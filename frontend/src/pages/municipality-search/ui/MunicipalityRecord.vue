@@ -169,10 +169,8 @@ defineExpose({ focusTitle })
                     data-indicator="area"
                     class="mt-2 font-expanded text-[2rem] leading-tight font-semibold text-ink"
                 >
-                    {{ formatDecimal2(loaded.areaKm2)
-                    }}<span class="ml-1 font-condensed text-base font-normal text-ink-muted"
-                        >km²</span
-                    >
+                    {{ formatDecimal2(loaded.areaKm2) }}
+                    <span class="font-condensed text-base font-normal text-ink-muted">km²</span>
                 </p>
                 <div v-else class="mt-3 h-8 w-36 rounded-xs bg-ink/10" />
             </section>
@@ -186,8 +184,8 @@ defineExpose({ focusTitle })
                         data-indicator="density"
                         class="font-expanded text-2xl font-semibold text-ink"
                     >
-                        {{ formatDecimal2(loaded.populationDensity)
-                        }}<span class="ml-1 font-condensed text-base font-normal text-ink-muted"
+                        {{ formatDecimal2(loaded.populationDensity) }}
+                        <span class="font-condensed text-base font-normal text-ink-muted"
                             >hab/km²</span
                         >
                     </p>

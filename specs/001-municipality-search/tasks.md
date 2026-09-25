@@ -180,7 +180,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 ## Phase 5: Polish & Cross-Cutting Concerns
 
 - [X] T080 [P] Medir SC-002 e SC-003 na stack de produção local (sugestões e indicadores em até 1 s) e SC-001 (25 das 27 capitais com até 5 caracteres) com um teste E2E `e2e/tests/capitals.spec.ts`
-- [ ] T081 [P] Revisar a tela em 360px, só com teclado e com leitor de tela, e corrigir o que falhar (FR-016)
+- [X] T081 [P] Revisar a tela em 360px, só com teclado e com leitor de tela, e corrigir o que falhar (FR-016)
 - [ ] T082 Rodar `npm run lint`, `npm run format:check`, todos os testes e o quickstart manual ([quickstart.md](quickstart.md)); registrar desvios em `.harness/` se houver
 
 ---

@@ -67,7 +67,7 @@ function quantity(value: number): string {
                 />
             </div>
         </div>
-        <ul class="sr-only">
+        <ul class="sr-only" :aria-label="name">
             <li v-for="row in rows" :key="row.key">
                 {{ row.label }}: {{ quantity(row.value) }},
                 <span data-percent>{{ formatPercent1(row.percent) }}</span>
