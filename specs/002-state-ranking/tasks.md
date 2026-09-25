@@ -95,7 +95,7 @@ Mesmas da [001](../001-municipality-search/tasks.md#regras-de-execução).
 
 ### Implementation for User Story 2
 
-- [ ] T027 [US2] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/StateRecord.vue`: título "Nome/SIGLA" em largura expandida, ficha com População, Área e Densidade, `DensityScale` com o marcador da UF, nota da área fora dos municípios (FR-008)
+- [X] T027 [US2] Invocar a skill `frontend-design` e criar `frontend/src/pages/state-ranking/ui/StateRecord.vue`: título "Nome/SIGLA" em largura expandida, ficha com População, Área e Densidade, `DensityScale` com o marcador da UF, nota da área fora dos municípios (FR-008)
 - [ ] T028 [US2] Integrar `StateRecord.vue` em `StateRankingPage.vue`, acima do filtro e do ranking, com os mesmos estados de carregamento e erro
 
 **Checkpoint**: feature 002 completa.
