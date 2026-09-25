@@ -7,6 +7,9 @@ test('blocks for 1 minute after too many queries and then lets them through', as
     request,
 }) => {
     test.setTimeout(150_000)
+    // Falha de verificação registrada, conferida depois no relatório (T039).
+    const invalid = await request.post('/api/session', { data: { payload: 'invalid' } })
+    expect(invalid.status()).toBe(400)
     await createApiSession(request)
 
     let blocked: Awaited<ReturnType<typeof request.get>> | undefined
