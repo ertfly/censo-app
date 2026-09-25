@@ -65,6 +65,7 @@ const description = computed(
         />
         <span
             v-if="referencePosition !== null"
+            data-density-reference
             class="absolute inset-y-0 w-px bg-ink"
             :style="{ left: `${referencePosition}%` }"
         />
@@ -87,6 +88,7 @@ const description = computed(
             />
             <span
                 v-if="referencePosition !== null"
+                data-density-reference
                 class="absolute bottom-0 h-7 w-px bg-ink"
                 :style="{ left: `${referencePosition}%` }"
             />
