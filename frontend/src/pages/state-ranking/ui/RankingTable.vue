@@ -90,7 +90,7 @@ const explanation = computed(() =>
                     <tr
                         v-for="item in visibleItems"
                         :key="item.code"
-                        class="border-b border-border last:border-b-0 max-sm:grid max-sm:grid-cols-6 max-sm:gap-x-3 max-sm:gap-y-1 max-sm:px-4 max-sm:py-3"
+                        class="border-b border-border last:border-b-0 max-sm:grid max-sm:grid-cols-7 max-sm:gap-x-3 max-sm:gap-y-1 max-sm:px-4 max-sm:py-3"
                     >
                         <td
                             data-position
@@ -100,7 +100,7 @@ const explanation = computed(() =>
                         </td>
                         <th
                             scope="row"
-                            class="px-3 py-2 font-sans font-medium text-ink max-sm:col-span-5 max-sm:p-0"
+                            class="px-3 py-2 font-sans font-medium text-ink max-sm:col-span-6 max-sm:p-0"
                         >
                             {{ item.name }}
                         </th>
@@ -109,7 +109,7 @@ const explanation = computed(() =>
                         >
                             <span
                                 aria-hidden="true"
-                                class="block font-sans text-xs text-ink-muted sm:hidden"
+                                class="block font-sans text-xs whitespace-nowrap text-ink-muted sm:hidden"
                                 >População</span
                             >{{ formatInteger(item.population) }}
                         </td>
@@ -118,21 +118,21 @@ const explanation = computed(() =>
                         >
                             <span
                                 aria-hidden="true"
-                                class="block font-sans text-xs text-ink-muted sm:hidden"
+                                class="block font-sans text-xs whitespace-nowrap text-ink-muted sm:hidden"
                                 >Área (km²)</span
                             >{{ formatDecimal2(item.areaKm2) }}
                         </td>
                         <td
                             :data-density="item.populationDensity"
-                            class="px-3 py-2 text-right text-ink max-sm:col-span-2 max-sm:p-0 max-sm:text-left"
+                            class="px-3 py-2 text-right text-ink max-sm:col-span-3 max-sm:p-0 max-sm:text-left"
                         >
                             <span
                                 aria-hidden="true"
-                                class="block font-sans text-xs text-ink-muted sm:hidden"
+                                class="block font-sans text-xs whitespace-nowrap text-ink-muted sm:hidden"
                                 >Densidade (hab/km²)</span
                             >{{ formatDecimal2(item.populationDensity) }}
                         </td>
-                        <td class="px-3 py-2 max-sm:col-span-6 max-sm:p-0 max-sm:pt-1">
+                        <td class="px-3 py-2 max-sm:col-span-7 max-sm:p-0 max-sm:pt-1">
                             <DensityScale
                                 compact
                                 :value="item.populationDensity"
