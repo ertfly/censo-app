@@ -1,0 +1,7 @@
+[
+    { "term": "sao pau", "matches": ["São Paulo"] },
+    { "term": "paulo", "matches": ["São Paulo", "Paulo Afonso"] },
+    { "term": "aulo", "matches": [] },
+    { "term": "BOM JESUS", "matches": ["Bom Jesus"] },
+    { "term": "arco", "matches": ["Pau D'Arco"] }
+]
