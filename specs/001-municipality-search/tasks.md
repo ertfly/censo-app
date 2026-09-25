@@ -158,7 +158,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 - [X] T066 [P] [US2] Teste de integração `backend/test/integration/http/municipality-indicators.test.ts`: `200` no formato do contrato; `400 INVALID_MUNICIPALITY_CODE` (`abc`, `123`, código com UF inexistente); `404 MUNICIPALITY_NOT_FOUND` (código válido inexistente); `401` sem sessão
 - [X] T067 [P] [US2] Teste unitário `frontend/test/unit/pages/municipality-search/municipality-record.test.ts`: percentuais de urbano/rural e sexo somam 100,0; "Sem classificação" e "Sem informação" só quando > 0; nota de "Sem informação"; texto equivalente das barras para leitor de tela
 - [X] T068 [P] [US2] Teste unitário `frontend/test/unit/shared/density-scale.test.ts`: posição logarítmica de 0,1 a 100.000; valores extremos 0,15 e 13.417; marcas 1, 10, 100, 1.000, 10.000
-- [ ] T069 [P] [US2] Teste E2E `e2e/tests/municipality-indicators.spec.ts`: quickstart cenários 7, 8, 9, 10, 12 e 13; troca de município substitui a ficha (FR-014); voltar do navegador após duas escolhas leva à página anterior à busca (FR-025); SC-004 comparando a ficha de uma amostra (capitais, homônimo, município com setores sem classificação e com população sem informação de sexo) com a consulta direta em `e2e/.tmp/censo.sqlite`
+- [X] T069 [P] [US2] Teste E2E `e2e/tests/municipality-indicators.spec.ts`: quickstart cenários 7, 8, 9, 10, 12 e 13; troca de município substitui a ficha (FR-014); voltar do navegador após duas escolhas leva à página anterior à busca (FR-025); SC-004 comparando a ficha de uma amostra (capitais, homônimo, município com setores sem classificação e com população sem informação de sexo) com a consulta direta em `e2e/.tmp/censo.sqlite`
 
 ### Implementation for User Story 2
 
