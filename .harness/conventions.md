@@ -79,7 +79,11 @@ Frontend: _a definir._
 
 ## Estilo de código
 
-_A definir (lint, formatação)._
+- Indentação com 4 espaços, sem tabs.
+- Sem ponto e vírgula, aspas simples, vírgula final, linhas até 100
+  caracteres, LF.
+- Ferramentas e fronteiras entre camadas: ver
+  [ADR 0011](decisions/0011-lint-e-formatacao.md).
 
 ## Testes
 

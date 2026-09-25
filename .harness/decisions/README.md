@@ -17,6 +17,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito |
 | [0010](0010-typescript-6.md) | TypeScript 6.0.3 no lugar do TypeScript 7 | Aceito |
+| [0011](0011-lint-e-formatacao.md) | Lint, formatação e fronteiras de importação | Aceito |
 
 ## Modelo
 
