@@ -1,6 +1,6 @@
 # 0011. Lint, formatação e fronteiras de importação
 
-- Status: Aceito
+- Status: Aceito (fronteiras revistas pelo [ADR 0013](0013-organizacao-do-repositorio.md))
 - Data: 2026-09-25
 
 ## Contexto
@@ -54,7 +54,7 @@ Aplicadas pelo `eslint-plugin-boundaries`, com erro (não aviso):
 | Camada | Pode importar | Pacotes externos permitidos |
 |---|---|---|
 | `domain` | `domain` | Nenhum |
-| `application` | `domain`, `application` | `typebox` (schemas dos DTOs) |
+| `application` | `domain`, `application` | `typebox`, `@censo/contracts` (ADR 0013) |
 | `infra` | `domain`, `application`, `infra` | Qualquer |
 | `main.ts` | Todas | Qualquer |
 
