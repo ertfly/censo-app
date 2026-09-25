@@ -6,6 +6,7 @@ import { ProtectionEventLog } from '../logging/protection-event-log.js'
 import { registerErrorHandler } from './error-handler.js'
 import { UsedChallengeStore } from './protection/challenge-store.js'
 import { type Clock, systemClock } from './protection/clock.js'
+import { registerRateLimit } from './protection/rate-limit.plugin.js'
 import { registerSessionGuard } from './protection/session.plugin.js'
 import { sessionRoutes } from './protection/session.routes.js'
 import { healthRoutes } from './routes/health.routes.js'
@@ -37,6 +38,8 @@ export async function buildApp(dependencies: AppDependencies) {
     })
     const usedChallenges = new UsedChallengeStore({ maxEntries: 50_000, now: () => clock.now() })
 
+    // Limite antes da sessão: vale inclusive para quem ainda não tem sessão.
+    registerRateLimit(app, { config: dependencies.protection, clock, eventLog })
     await registerSessionGuard(app, {
         sessionSecret: dependencies.protection.sessionSecret,
         clock,
