@@ -64,7 +64,7 @@ describe('MunicipalityRecord', () => {
     })
 
     it.each([
-        ['area-type-tracts', ['33,3%', '33,3%', '33,4%']],
+        ['area-type-tracts', ['33,4%', '33,3%', '33,3%']],
         ['area-type-population', ['83,3%', '16,7%', '0,0%']],
         ['sex', ['42,5%', '40,8%', '16,7%']],
     ])('makes the %s percentages add up to 100,0%%', (breakdown, expected) => {
@@ -96,7 +96,7 @@ describe('MunicipalityRecord', () => {
             .findAll('.sr-only')
             .map((element) => element.text())
             .join(' ')
-        expect(screenReaderText).toContain('Urbano: 1 setor, 33,3%')
+        expect(screenReaderText).toContain('Urbano: 1 setor, 33,4%')
         expect(screenReaderText).toContain('Urbano: 1.000 pessoas, 83,3%')
         expect(screenReaderText).toContain('Mulheres: 510 pessoas, 42,5%')
         expect(screenReaderText).toContain('Sem informação: 200 pessoas, 16,7%')
