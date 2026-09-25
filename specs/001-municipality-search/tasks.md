@@ -162,7 +162,7 @@ As rotas desta feature já nascem protegidas pela 003; os testes de rota e E2E o
 
 ### Implementation for User Story 2
 
-- [ ] T070 [P] [US2] Criar `packages/contracts/src/municipalities/get-municipality-indicators.contract.ts` conforme [contracts/api.md](contracts/api.md) e exportar
+- [X] T070 [P] [US2] Criar `packages/contracts/src/municipalities/get-municipality-indicators.contract.ts` conforme [contracts/api.md](contracts/api.md) e exportar
 - [ ] T071 [P] [US2] Criar `backend/src/domain/value-objects/area-type.vo.ts` (`'urban' | 'rural' | 'unclassified'` como objeto `as const`, sem `enum`) e `backend/src/domain/errors/municipality-not-found.error.ts` (`MUNICIPALITY_NOT_FOUND`, 404)
 - [ ] T072 [US2] Criar `backend/src/application/queries/get-municipality-indicators/municipality-indicators.reader.ts` (porta `findByCode(code: MunicipalityCode): Promise<MunicipalityIndicators | null>`) e `get-municipality-indicators.handler.ts`
 - [ ] T073 [US2] Criar `backend/src/infra/database/readers/kysely-municipality-indicators.reader.ts`: filtra `setor` por `cd_setor >= :code AND cd_setor < :code+1 AND cd_mun = :code`, `LEFT JOIN demografia`, agrupa por `situacao` (`Urbana` → `urban`, `Rural` → `rural`, nulo → `unclassified`), soma `homens`/`mulheres` com nulo = 0, calcula `unknown` e densidade (research R2, R3)
