@@ -1,6 +1,6 @@
 # Arquitetura
 
-> Visão consolidada das decisões [0001 a 0017](decisions/README.md).
+> Visão consolidada das decisões [0001 a 0018](decisions/README.md).
 > Em caso de divergência, vale o ADR.
 
 ## Visão geral
@@ -32,7 +32,7 @@ Navegador ──────►│  frontend (nginx 1.30.5)              backend
   publicada      │   └── /api/*  → proxy ────────┼─────► /api/*                           │
                  │                               │          │                             │
                  │                               │          ▼                             │
-                 │                               │   data/censo.sqlite  (volume :ro)      │
+                 │                               │   censo.sqlite (arquivo montado :ro)   │
                  └────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -47,7 +47,7 @@ Navegador ──────►│  frontend (nginx 1.30.5)              backend
 Navegador ──► frontend (Vite dev, HMR) ── proxy /api ──► backend (npm run dev, recarga)
                                                               │
                                                               ▼
-                                                     data/censo.sqlite
+                                                     censo.sqlite (raiz montada)
 ```
 
 - Código montado do host; `node_modules` em volumes nomeados.
@@ -61,7 +61,7 @@ Monorepo com npm workspaces ([ADR 0013](decisions/0013-organizacao-do-repositori
 censo-app/
 ├── .harness/                 # arquitetura e decisões técnicas
 ├── .specify/, specs/         # spec-kit (a criar)
-├── data/censo.sqlite         # banco (Git LFS)
+├── censo.sqlite              # banco (Git LFS), na raiz por requisito
 ├── packages/contracts/       # @censo/contracts: schemas da API
 ├── backend/                  # @censo/backend
 ├── frontend/                 # @censo/frontend
@@ -185,7 +185,7 @@ quebra a compilação das duas pontas
 | Testes de integração | Vitest: readers e rotas contra SQLite em memória | [0009](decisions/0009-testes.md) |
 | Testes E2E | Playwright contra a stack no Docker | [0009](decisions/0009-testes.md) |
 
-Nenhum teste usa `data/censo.sqlite`.
+Nenhum teste usa `censo.sqlite`.
 
 ## Pendências
 

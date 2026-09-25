@@ -1,6 +1,6 @@
 # Banco de dados: mapeamento
 
-> Levantamento feito em 2026-09-25 sobre `data/censo.sqlite`.
+> Levantamento feito em 2026-09-25 sobre `censo.sqlite` (raiz do repositório).
 > Decisão de localização e versionamento: [ADR 0001](decisions/0001-banco-de-dados-sqlite.md).
 > Índices e desempenho: [indexes.md](indexes.md).
 
@@ -8,7 +8,7 @@
 
 | Item | Valor |
 |---|---|
-| Arquivo | `data/censo.sqlite` (~35 MB, Git LFS) |
+| Arquivo | `censo.sqlite`, na raiz ([ADR 0018](decisions/0018-banco-na-raiz.md)) (~35 MB, Git LFS) |
 | Motor | SQLite 3 |
 | Page size | 4096 bytes (8.593 páginas, 0 livres) |
 | `journal_mode` | `delete` (padrão) |

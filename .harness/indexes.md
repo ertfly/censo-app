@@ -96,7 +96,7 @@ Observações:
    indica uso de chave ou índice.
 3. **Medir antes**, em uma cópia do banco:
    ```bash
-   cp data/censo.sqlite /tmp/teste.sqlite
+   cp censo.sqlite /tmp/teste.sqlite
    sqlite3 /tmp/teste.sqlite ".timer on" "<consulta>"
    ```
 4. **Testar alternativas sem índice** (intervalo da PK, reescrita da consulta).
