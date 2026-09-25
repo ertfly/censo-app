@@ -1,6 +1,6 @@
 # 0006. Acesso a dados com better-sqlite3 e Kysely
 
-- Status: Aceito (complementado pelo [ADR 0015](0015-migrations.md))
+- Status: Aceito (complementado pelo [ADR 0015](0015-migrations.md); compilação do driver revista pelo [ADR 0021](0021-compilacao-do-driver-sqlite.md))
 - Data: 2026-09-25
 
 ## Contexto

@@ -1,6 +1,6 @@
 # 0005. Execução com Docker Compose: produção e desenvolvimento
 
-- Status: Aceito (montagem do banco revista pelo [ADR 0007](0007-primeira-versao-somente-leitura.md); contexto de build revisto pelo [ADR 0013](0013-organizacao-do-repositorio.md); ambiente de execução definido pelo [ADR 0016](0016-execucao-local.md); montagem do banco revista pelo [ADR 0018](0018-banco-na-raiz.md))
+- Status: Aceito (montagem do banco revista pelo [ADR 0007](0007-primeira-versao-somente-leitura.md); contexto de build revisto pelo [ADR 0013](0013-organizacao-do-repositorio.md); ambiente de execução definido pelo [ADR 0016](0016-execucao-local.md); montagem do banco revista pelo [ADR 0018](0018-banco-na-raiz.md); compilação do driver revista pelo [ADR 0021](0021-compilacao-do-driver-sqlite.md))
 - Data: 2026-09-25
 
 ## Contexto

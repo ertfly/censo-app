@@ -11,8 +11,8 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0002](0002-runtime-e-backend.md) | Runtime Node.js LTS com TypeScript e backend em Fastify | Aceito (revisto pelo 0010) |
 | [0003](0003-frontend-vue.md) | Frontend em Vue 3 com Composition API e Vite | Aceito (revisto pelo 0014) |
 | [0004](0004-ui-tailwind-shadcn-vue.md) | UI com Tailwind CSS, shadcn-vue e Reka UI | Aceito |
-| [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito (revisto pelo 0007, 0013 e 0018, complementado pelo 0016) |
-| [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito (complementado pelo 0015) |
+| [0005](0005-docker-compose.md) | Execução com Docker Compose: produção e desenvolvimento | Aceito (revisto pelo 0007, 0013, 0018 e 0021, complementado pelo 0016) |
+| [0006](0006-acesso-a-dados.md) | Acesso a dados com better-sqlite3 e Kysely | Aceito (complementado pelo 0015, revisto pelo 0021) |
 | [0007](0007-primeira-versao-somente-leitura.md) | Primeira versão somente leitura, escrita em aberto | Aceito (revisto pelo 0018) |
 | [0008](0008-arquitetura-backend.md) | Arquitetura do backend: DDD simplificado com CQRS de leitura | Aceito (complementado pelo 0012, revisto pelo 0013) |
 | [0009](0009-testes.md) | Estratégia de testes automatizados | Aceito (complementado pelo 0020) |
@@ -27,6 +27,7 @@ Cada decisão técnica relevante é registrada em um arquivo
 | [0018](0018-banco-na-raiz.md) | Banco de dados na raiz do repositório | Aceito |
 | [0019](0019-registros-de-protecao.md) | Registros de proteção sem endereço de rede | Aceito |
 | [0020](0020-stacks-de-e2e.md) | Stacks de E2E com a proteção ligada | Aceito |
+| [0021](0021-compilacao-do-driver-sqlite.md) | Compilação do better-sqlite3 nas imagens Docker | Aceito |
 
 ## Modelo
 
