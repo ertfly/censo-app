@@ -33,9 +33,9 @@ Abrir o endereço publicado pelo nginx (porta definida no `.env`).
 | 8 | Recarregar a página | Mesmo município e indicadores | FR-017 |
 | 9 | Abrir `/municipalities/9999999` e `/municipalities/abc` | Busca vazia com aviso de endereço inválido | FR-018 |
 | 10 | Escolher um município com setores sem classificação e com população sem informação de sexo | Categorias "Sem classificação" e "Sem informação" aparecem; percentuais somam 100,0% | FR-010, FR-011 |
-| 12 | Digitar `arco` | Inclui "Pau D'Arco/PA" e "Pau D'Arco/TO" | FR-004 |
-| 13 | Conferir título da aba e rodapé com um município escolhido | "São Paulo/SP - Censo 2022"; "Fonte: IBGE, Censo Demográfico 2022" | FR-024, FR-026 |
-| 11 | Repetir 3 e 7 em tela de 360px | Tudo legível e utilizável | FR-016 |
+| 11 | Digitar `arco` | Inclui "Pau D'Arco/PA" e "Pau D'Arco/TO" | FR-004 |
+| 12 | Conferir título da aba e rodapé com um município escolhido | "São Paulo/SP - Censo 2022"; "Fonte: IBGE, Censo Demográfico 2022" | FR-024, FR-026 |
+| 13 | Repetir 3 e 7 em tela de 360px | Tudo legível e utilizável | FR-016 |
 
 ## Conferência dos números (SC-004)
 
